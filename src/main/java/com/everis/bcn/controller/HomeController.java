@@ -1,4 +1,4 @@
-package com.everis.bcn;
+package com.everis.bcn.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
