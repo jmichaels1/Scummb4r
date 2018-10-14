@@ -1,12 +1,15 @@
 package com.everis.bcn.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -16,7 +19,7 @@ import javax.persistence.Transient;
  *
  */
 @Entity
-@Table(name="resurant")
+@Table(name="restaurant")
 public class Restaurant implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -35,7 +38,10 @@ public class Restaurant implements Serializable {
 	@Column(name = "description", length = 500)
 	private String description;
 	
-	//TODO lista de mesas
+	@OneToMany(mappedBy = "aListMesa", fetch=FetchType.EAGER)
+	private ArrayList<Mesa> aListMesa;
+	
+	//TODO lista de reservas?
 	
 	/**
 	 * Constructor without parameters

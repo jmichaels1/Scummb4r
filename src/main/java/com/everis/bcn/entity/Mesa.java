@@ -1,7 +1,6 @@
 package com.everis.bcn.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name="booking")
-public class Booking implements Serializable {
+@Table(name="mesa")
+public class Mesa implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -25,40 +24,30 @@ public class Booking implements Serializable {
 	@Column(name = "id", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name="localizador")
-	private int localizador;
+	@Column(name = "capacity")
+	private int capacity;
 	
-	@Column(name="personas")
-	private int personas;
-	
-	@Column(name="dia")
-	private Date dia;
-	
-	@Column(name="mesa")
-	private Mesa mesa;
-	
-	@Column(name="restaurant")
+	@Column(name = "restaurant")
 	private Restaurant restaurant;
-	
-	@Column(name="turn")
-	private Turn turn;
 	
 	/**
 	 * Constructor without parameters
 	 */
-	public Booking() {
+	public Mesa() {
 		super();
 	}
 	
 	/**
 	 * Constructor with parameters
+	 * @param id
+	 * @param capacity
+	 * @param restaurant
 	 */
-	public Booking(int id, int localizador, int personas, Date dia) {
+	public Mesa(int id, int capacity, Restaurant restaurant) {
 		super();
 		this.id = id;
-		this.localizador = localizador;
-		this.personas = personas;
-		this.dia = dia;
+		this.capacity = capacity;
+		this.restaurant = restaurant;
 	}
 
 	public int getId() {
@@ -69,34 +58,25 @@ public class Booking implements Serializable {
 		this.id = id;
 	}
 
-	public int getLocalizador() {
-		return localizador;
+	public int getCapacity() {
+		return capacity;
 	}
 
-	public void setLocalizador(int localizador) {
-		this.localizador = localizador;
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
-	public int getPersonas() {
-		return personas;
+	public Restaurant getRestaurant() {
+		return restaurant;
 	}
 
-	public void setPersonas(int personas) {
-		this.personas = personas;
-	}
-
-	public Date getDia() {
-		return dia;
-	}
-
-	public void setDia(Date dia) {
-		this.dia = dia;
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -114,7 +94,7 @@ public class Booking implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Booking other = (Booking) obj;
+		Mesa other = (Mesa) obj;
 		if (id != other.id)
 			return false;
 		return true;
@@ -122,9 +102,7 @@ public class Booking implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Booking [id=" + id + ", localizador=" + localizador + ", personas=" + personas + ", dia=" + dia + "]";
+		return "Mesa [id=" + id + ", capacity=" + capacity + ", restaurant=" + restaurant + "]";
 	}
 	
-	
-
 }
