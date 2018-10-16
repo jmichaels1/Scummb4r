@@ -29,7 +29,7 @@ public class Turn implements Serializable {
 	private int id;
 	
 	@Column(name = "description")
-	private int description;
+	private String description;
 	
 	/**
 	 * Constructor without parameters
@@ -43,7 +43,7 @@ public class Turn implements Serializable {
 	 * @param id
 	 * @param description
 	 */
-	public Turn(int id, int description) {
+	public Turn(int id, String description) {
 		super();
 		this.id = id;
 		this.description = description;
@@ -57,19 +57,20 @@ public class Turn implements Serializable {
 		this.id = id;
 	}
 
-	public int getDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(int description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + description;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		return result;
 	}
@@ -83,7 +84,10 @@ public class Turn implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Turn other = (Turn) obj;
-		if (description != other.description)
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
 			return false;
 		if (id != other.id)
 			return false;
