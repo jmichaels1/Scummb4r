@@ -3,8 +3,6 @@ package com.everis.bcn.test;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 
 import com.everis.bcn.entity.Turn;
 
@@ -23,6 +21,9 @@ public class Test {
 		
 		entityManager.getTransaction().commit();
 		entityManager.close();
+		
+		System.out.println("Tudoo Bemmm !!!");
+		
 		
 		emFactory.close();
 

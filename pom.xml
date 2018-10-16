@@ -132,10 +132,8 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.0.8</version>
+			<version>8.0.12</version>
 		</dependency>
-
-
 
 	</dependencies>
 	<build>
