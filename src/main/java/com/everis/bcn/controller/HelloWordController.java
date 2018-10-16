@@ -24,11 +24,6 @@ public class HelloWordController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HelloWordController.class);
 	
-	@PersistenceContext(unitName = "persistence")
-	private static EntityManager manager;
-	
-	@PersistenceUnit(unitName = "persistence")
-	private static EntityManagerFactory emf;
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -36,11 +31,6 @@ public class HelloWordController {
 	@RequestMapping("hello")
 	public String home(String name, Model model) {
 		logger.info("Welcome ! The client locale is : ", name);
-		
-		manager = emf.createEntityManager();
-		
-		manager.persist(new Turn(1, "tarde"));
-		
 		model.addAttribute("name", "jeimmy" );
 		return "hello";
 	}

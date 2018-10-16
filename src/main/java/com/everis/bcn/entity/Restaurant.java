@@ -38,8 +38,8 @@ public class Restaurant implements Serializable {
 	@Column(name = "description", length = 500)
 	private String description;
 	
-	@OneToMany(mappedBy = "aListMesa", fetch=FetchType.EAGER)
-	private ArrayList<Mesa> aListMesa;
+	//@OneToMany(mappedBy = "aListMesa", fetch=FetchType.EAGER)
+	//private ArrayList<Mesa> aListMesa;
 	
 	//TODO lista de reservas?
 	
