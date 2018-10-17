@@ -16,7 +16,9 @@ public class Test {
 		
 		entityManager.getTransaction().begin();
 //		
-		Turn t = new Turn(1, "mañana");
+		Turn t = new Turn();
+		t.setDescription("mañana");
+		
 		entityManager.persist(t);
 		
 		entityManager.getTransaction().commit();

@@ -23,14 +23,14 @@ public class Test2 {
 	    	
 	    	
 	      Class.forName("com.mysql.jdbc.Driver").newInstance();
-	      String url = "jdbc:mysql://localhost:3307/sys";
+	      String url = "jdbc:mysql://localhost:3307/scummb4rdb?useUnicode=true&serverTimezone=UTC";
 	      
 	      System.out.println("antes de lanzar la url !!");
 	      
-	      conn = DriverManager.getConnection(url, "root", "root");
+	      conn = DriverManager.getConnection(url, "jmicahel", "jm123");
 	      
 	      
-	      System.out.println("se conecta desde aqui !!");
+	      System.out.println(conn != null? "conectado !!" : "no se conecta, coño !!");
 	      
 //	      EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("persistence");
 //			EntityManager entityManager = emFactory.createEntityManager();
