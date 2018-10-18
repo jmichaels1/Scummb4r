@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.everis.bcn.entity.Turn;
 
@@ -28,10 +29,10 @@ public class HelloWordController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping("hello")
-	public String home(String name, Model model) {
+	@RequestMapping("/hello")
+	public String home(@RequestParam(value="name", required = false)String name, Model model) {
 		logger.info("Welcome ! The client locale is : ", name);
-		model.addAttribute("name", "jeimmy" );
+		model.addAttribute("name", name);
 		return "hello";
 	}
 	
