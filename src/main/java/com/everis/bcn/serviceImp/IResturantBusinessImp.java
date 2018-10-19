@@ -1,4 +1,4 @@
-package com.veris.bcn.serviceImp;
+package com.everis.bcn.serviceImp;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,11 @@ import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
 import com.everis.bcn.service.IResturantBusiness;
 
+/**
+ * 
+ * @author J Michael
+ *
+ */
 public class IResturantBusinessImp implements IResturantBusiness {
 
 	@Override
