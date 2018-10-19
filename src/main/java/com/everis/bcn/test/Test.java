@@ -1,33 +1,23 @@
 package com.everis.bcn.test;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import com.everis.bcn.entity.Turn;
+import com.everis.bcn.manager.HibernateManagerDB;
 
 public class Test {
 	
 
 	public static void main(String[] args) {
+
+		HibernateManagerDB hm = new HibernateManagerDB("persistence");
 		
-		EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("persistence");
-		EntityManager entityManager = emFactory.createEntityManager();
+		hm.beginTransaction();
 		
-		entityManager.getTransaction().begin();
-//		
 		Turn t = new Turn();
-		t.setDescription("mañana");
+		t.setDescription("nit");
 		
-		entityManager.persist(t);
-		
-		entityManager.getTransaction().commit();
-		entityManager.close();
-		
-		System.out.println("Tudoo Bemmm !!!");
-		
-		
-		emFactory.close();
+		hm.persistObj(t);
+		hm.commitTransaction();
+		hm.closeTransaction();
 
 	}
 

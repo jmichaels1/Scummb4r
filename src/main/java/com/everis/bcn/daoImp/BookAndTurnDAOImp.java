@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.everis.bcn.dao.BookDAOImp;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Turn;
+import com.everis.bcn.manager.HibernateManagerDB;
 
 /**
  * 
@@ -13,16 +14,21 @@ import com.everis.bcn.entity.Turn;
  */
 public class BookAndTurnDAOImp implements BookDAOImp {
 
+	HibernateManagerDB hm;
+
+	/**** implements BookingDAO *****/
+	
+
 	@Override
 	public void addBooking(Booking booking) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void updateBooking(Booking booking) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -34,7 +40,7 @@ public class BookAndTurnDAOImp implements BookDAOImp {
 	@Override
 	public void deleteBooking(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -43,16 +49,22 @@ public class BookAndTurnDAOImp implements BookDAOImp {
 		return null;
 	}
 
+	/**** implements turnDAO *****/
+
 	@Override
 	public void addTurn(Turn turn) {
-		// TODO Auto-generated method stub
-		
+		hm = new HibernateManagerDB("persistence");
+
+		hm.beginTransaction();
+		hm.persistObj(turn);
+		hm.commitTransaction();
+		hm.closeTransaction();
 	}
 
 	@Override
 	public void updateTurn(Turn turn) {
-		// TODO Auto-generated method stub
 		
+
 	}
 
 	@Override
@@ -64,7 +76,7 @@ public class BookAndTurnDAOImp implements BookDAOImp {
 	@Override
 	public void deleteTurn(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -72,9 +84,5 @@ public class BookAndTurnDAOImp implements BookDAOImp {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-
-
 
 }
