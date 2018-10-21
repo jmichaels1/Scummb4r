@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  * @author jsalirio
  *
  */
-@Component
+
 public class HibernateManagerDB {
 	
 	EntityManagerFactory emFactory;
@@ -26,17 +26,6 @@ public class HibernateManagerDB {
 		configPersistence(persistXmlFileName);
 	}
 
-
-	/**
-	 * Contructor with parameters
-	 * @param emFactory
-	 * @param entityManager
-	 */
-	public HibernateManagerDB(EntityManagerFactory emFactory, EntityManager entityManager, String persistXmlFileName) {
-		this.emFactory = emFactory;
-		this.entityManager = entityManager;
-		configPersistence(persistXmlFileName);
-	}
 	
 	/**** Getters and Setters *****/
 
@@ -79,26 +68,6 @@ public class HibernateManagerDB {
 		entityManager.getTransaction().begin();
 	}
 	
-	/**
-	 * persisted tObj
-	 * @param obj
-	 */
-	public void persistObj(Object obj) {
-		entityManager.persist(obj);
-	}
-	
-	/**
-	 * 
-	 * @param className
-	 * @param ObjId
-	 * @return 
-	 * @return 
-	 */
-	public Class<?> findOjb(Class className, int ObjId) {
-		
-		return entityManager.find(className.getClass(), new Integer(ObjId));
-		
-	}
 	
 	/**
 	 * commit Transaction

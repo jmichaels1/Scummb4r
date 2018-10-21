@@ -8,13 +8,14 @@ import javax.persistence.Persistence;
 
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Turn;
+import com.everis.bcn.manager.HibernateManagerDB;
 
 /**
  * 
  * @author J Michael
  *
  */
-public interface BookDAOImp extends TurnDAOImp {
+public interface BookingDAO {
 	
 	public void addBooking(Booking booking);
 	public void updateBooking(Booking booking);
@@ -22,19 +23,8 @@ public interface BookDAOImp extends TurnDAOImp {
 	public void deleteBooking(int id);
 	public ArrayList<Booking> getBookings();
 	
-	@Override
-	public void addTurn(Turn turn);
-	
-	@Override
-	public void updateTurn(Turn turn);
-	
-	@Override
-	public Turn getTurn(int id);
-	
-	@Override
-	public void deleteTurn(int id);
-	
-	@Override
-	public ArrayList<Turn> getTurn();
+	public void setHm(HibernateManagerDB hm);
+	public HibernateManagerDB getHm();
 
+	
 }

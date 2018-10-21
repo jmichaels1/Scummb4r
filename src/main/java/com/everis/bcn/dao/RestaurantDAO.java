@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
+import com.everis.bcn.manager.HibernateManagerDB;
 
 /**
  * 
@@ -17,5 +18,9 @@ public interface RestaurantDAO {
 	public Restaurant getRestaurant(int id);
 	public void deleteRestaurant(int id);
 	public ArrayList<Restaurant> getRestaurants();
+	
+	public void setHm(HibernateManagerDB hm);
+	public HibernateManagerDB getHm();
+
 
 }
