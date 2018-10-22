@@ -3,6 +3,8 @@ package com.everis.bcn.serviceImp;
 import java.util.ArrayList;
 
 import com.everis.bcn.daoImp.BookDAOImp;
+import com.everis.bcn.daoImp.RestaurantDAOImp;
+import com.everis.bcn.daoImp.TurnDAOImp;
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.dto.CancelDto;
 import com.everis.bcn.entity.Booking;
@@ -20,6 +22,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	
 	private HibernateManagerDB hm = new HibernateManagerDB("persistence");
 	private BookDAOImp bookinDao = new BookDAOImp();
+	private RestaurantDAOImp restanurantDao = new RestaurantDAOImp();
+	private TurnDAOImp turnDAO = new TurnDAOImp();
 	
 	private BookingDto bookdto;
 	private CancelDto canceldto;
@@ -28,44 +32,58 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public boolean editBooking(Booking booking) {
 		bookinDao.setHm(hm);
 		hm.beginTransaction();
-		
+		//TODO como verificar cambio para return boolean
+		hm.commitTransaction();
+		hm.closeTransaction();
 		return false;
 	}
 
 	@Override
 	public boolean cancelBooking(Booking booking) {
+		bookinDao.setHm(hm);
+		hm.beginTransaction();
 		// TODO Auto-generated method stub
+		hm.commitTransaction();
+		hm.closeTransaction();
 		return false;
 	}
 
 	@Override
 	public boolean reserve(Restaurant restaurant, Booking booking) {
+		bookinDao.setHm(hm);
+		hm.beginTransaction();
 		// TODO Auto-generated method stub
+		hm.commitTransaction();
+		hm.closeTransaction();
 		return false;
 	}
 
 	@Override
 	public void addRestaurant(Restaurant restaurant) {
-		// TODO Auto-generated method stub
-		
+		restanurantDao.setHm(hm);
+		hm.beginTransaction();
+		restanurantDao.save(restaurant);
+		hm.commitTransaction();
+		hm.closeTransaction();
 	}
 
 	@Override
 	public ArrayList<Restaurant> getRestaurants() {
-		// TODO Auto-generated method stub
-		return null;
+		restanurantDao.setHm(hm);
+		hm.beginTransaction();
+		return restanurantDao.getAll();
 	}
 
 	@Override
 	public ArrayList<Turn> getTurns() {
-		// TODO Auto-generated method stub
-		return null;
+		turnDAO.setHm(hm);
+		return turnDAO.getAll();
 	}
 
 	@Override
 	public ArrayList<Booking> getBookings() {
-		// TODO Auto-generated method stub
-		return null;
+		bookinDao.setHm(hm);
+		return bookinDao.getAll();
 	}
 
 }

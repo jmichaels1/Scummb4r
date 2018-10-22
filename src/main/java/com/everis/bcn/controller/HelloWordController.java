@@ -18,36 +18,27 @@ import com.everis.bcn.entity.Turn;
 
 
 /**
- * Handles requests for the application home page.
+ * 
+ * @author jsalirio
+ *
  */
 @Controller
 public class HelloWordController {
 	
-	
 	private static final Logger logger = LoggerFactory.getLogger(HelloWordController.class);
-	
-	@PersistenceContext(unitName="persistencia")
-	private EntityManager entityManager;
-	
+
 	
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * 
+	 * @param name
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping("hello")
 	public String home(@RequestParam(value="name", required = false)String name, Model model) {
 		logger.info("Welcome ! The client locale is : ", name);
 		model.addAttribute("name", name);
-		
-		test();
-		
 		return "hello";
-	}
-
-
-	private void test() {
-		Turn t = new Turn();
-		t.setDescription("nit");
-		entityManager.persist(t);
 	}
 	
 }
