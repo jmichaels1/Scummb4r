@@ -1,7 +1,5 @@
 package com.everis.bcn.service;
 
-import java.awt.print.Book;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import com.everis.bcn.entity.Booking;
@@ -15,7 +13,7 @@ import com.everis.bcn.entity.Turn;
  */
 public interface IResturantBusiness {
 	
-	public boolean editBokking(Booking booking);
+	public boolean editBooking(Booking booking);
 	public boolean cancelBooking(Booking booking);
 	public boolean reserve(Restaurant restaurant, Booking booking);
 	public void addRestaurant(Restaurant restaurant);

@@ -2,7 +2,7 @@ package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
 
-import com.everis.bcn.dao.TurnDAO;
+import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Turn;
 import com.everis.bcn.manager.HibernateManagerDB;
 
@@ -11,32 +11,32 @@ import com.everis.bcn.manager.HibernateManagerDB;
  * @author J Michael
  *
  */
-public class TurnDAOImp implements TurnDAO {
+public class TurnDAOImp implements Dao<Turn> {
 	
 	private HibernateManagerDB hm;
 	
 	@Override
-	public void addTurn(Turn turn) {
+	public void save(Turn turn) {
 		hm.getEntityManager().persist(turn);
 	}
 
 	@Override
-	public void updateTurn(Turn turn) {
+	public void update(Turn turn) {
 		hm.getEntityManager().merge(turn);
 	}
 
 	@Override
-	public Turn getTurn(int id) {
+	public Turn get(int id) {
 		return hm.getEntityManager().find(Turn.class, id);
 	}
 
 	@Override
-	public void deleteTurn(int id) {
-		hm.getEntityManager().remove(getTurn(id));
+	public void delete(int id) {
+		hm.getEntityManager().remove(get(id));
 	}
 
 	@Override
-	public ArrayList<Turn> getTurns() {
+	public ArrayList<Turn> getAll() {
 		return (ArrayList<Turn>) hm.getEntityManager()
 				.createQuery("Select a From Turn a", Turn.class)
 				.getResultList();

@@ -2,24 +2,22 @@ package com.everis.bcn.dao;
 
 import java.util.ArrayList;
 
-import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.manager.HibernateManagerDB;
 
 /**
  * 
  * @author J Michael
  *
+ * @param <T>
  */
-public interface MesaDAO {
+public interface Dao<T> {
 	
-	public void addMesa(Mesa mesa);
-	public void updateMesa(Mesa mesa);
-	public Mesa getMesa(int id);
-	public void deleteMesa(int id);
-	public ArrayList<Mesa> getMesas();
+	public void save(T t);
+	public void update(T t);
+	public T get(int id);
+	public void delete(int id);
+	public ArrayList<T> getAll();
 	
 	public void setHm(HibernateManagerDB hm);
 	public HibernateManagerDB getHm();
-
-
 }

@@ -13,7 +13,7 @@ import com.everis.bcn.entity.Turn;
  * @author J Michael
  *
  */
-public class BookDto {
+public class BookingDto {
 	
 	private ArrayList<Restaurant> aListRenstaurant;
 	private ArrayList<Turn> aListTurn;

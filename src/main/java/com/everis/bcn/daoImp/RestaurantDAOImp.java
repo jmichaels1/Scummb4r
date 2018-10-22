@@ -2,37 +2,36 @@ package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
 
-import com.everis.bcn.dao.RestaurantDAO;
-import com.everis.bcn.entity.Mesa;
+import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.manager.HibernateManagerDB;
 
-public class RestaurantDAOImp implements RestaurantDAO {
+public class RestaurantDAOImp implements Dao<Restaurant> {
 	
 	private HibernateManagerDB hm;
 
 	@Override
-	public void addRestaurant(Restaurant restaurant) {
+	public void save(Restaurant restaurant) {
 		hm.getEntityManager().persist(restaurant);
 	}
 
 	@Override
-	public void updateRestaurant(Restaurant restaurant) {
+	public void update(Restaurant restaurant) {
 		hm.getEntityManager().merge(restaurant);
 	}
 
 	@Override
-	public Restaurant getRestaurant(int id) {
+	public Restaurant get(int id) {
 		return hm.getEntityManager().find(Restaurant.class, id);
 	}
 
 	@Override
-	public void deleteRestaurant(int id) {
-		hm.getEntityManager().remove(getRestaurant(id));
+	public void delete(int id) {
+		hm.getEntityManager().remove(get(id));
 	}
 
 	@Override
-	public ArrayList<Restaurant> getRestaurants() {
+	public ArrayList<Restaurant> getAll() {
 		return (ArrayList<Restaurant>) hm.getEntityManager()
 				.createQuery("Select a From Restaurant a", Restaurant.class)
 				.getResultList();

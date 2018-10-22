@@ -1,23 +1,17 @@
 package com.everis.bcn.test;
 
-
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 import java.util.function.Consumer;
 
-import javax.persistence.EntityManager;
+
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.everis.bcn.dao.BookingDAO;
-import com.everis.bcn.dao.TurnDAO;
 import com.everis.bcn.daoImp.BookDAOImp;
 import com.everis.bcn.daoImp.TurnDAOImp;
 import com.everis.bcn.entity.Booking;
-import com.everis.bcn.entity.Turn;
 import com.everis.bcn.manager.HibernateManagerDB;
 
 public class Test {
@@ -34,11 +28,11 @@ public class Test {
 
 		HibernateManagerDB hm = new HibernateManagerDB("persistence");
 		
-		TurnDAO td = new TurnDAOImp();
-		BookingDAO bd = new BookDAOImp();
+		TurnDAOImp td = new TurnDAOImp();
+		BookDAOImp dao = new BookDAOImp();
 		
 		td.setHm(hm); // "injection" hm in dao class
-		bd.setHm(hm);
+		dao.setHm(hm);
 		
 		hm.beginTransaction();
 		
@@ -48,28 +42,38 @@ public class Test {
 		
 //		td.updateTurn(t1);
 		
-		bd.deleteBooking(1);
+//		Booking booking = new Booking();
+//		booking.setDia(new Date());
+//		booking.setLocalizador(4);
+//		booking.setPersonas(10);
+		
+//		dao.saved(booking);
+//
+//		ArrayList<Booking> lt = dao.getAll();
 //		
-		ArrayList<Turn> lt = td.getTurns();
-		
-		lt.forEach(new Consumer<Turn>() {
-			@Override
-			public void accept(Turn item) {
-				System.out.println(item);
-			}
-		});
-		
+//		lt.forEach(new Consumer<Booking>() {
+//			@Override
+//			public void accept(Booking item) {
+//				System.out.println(item);
+//			}
+//		});
+//		
 //		Booking booking = new Booking();
 //		booking.setDia(new Date());
 //		booking.setLocalizador(5);
 //		booking.setPersonas(10);
 //		
-//		bd.addBooking(booking);
+//		dao.save(booking);
 //		
-//		Booking booking_cons = bd.getBooking(1);
+//		Optional<Booking> booking_cons = dao.get(2);
 //		System.out.println("Booking 1 : " + booking_cons);
+		
+//		dao.delete(2);
+		dao.getAll().stream().forEach((booking1) -> {
+			System.out.println(booking1);
+		});
 //		
-//		Turn turn = td.getTurn(1);
+//		Turn turn = tds.getTurn(1);
 //		System.out.println("Turn 1 : " + turn);
 		
 		hm.commitTransaction();

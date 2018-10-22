@@ -1,8 +1,7 @@
 package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
-
-import com.everis.bcn.dao.BookingDAO;
+import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.manager.HibernateManagerDB;
 
@@ -11,32 +10,33 @@ import com.everis.bcn.manager.HibernateManagerDB;
  * @author J Michael
  *
  */
-public class BookDAOImp implements BookingDAO {
+public class BookDAOImp implements Dao<Booking> {
 
 	HibernateManagerDB hm; // otra clase lo implementa
 
 	@Override
-	public void addBooking(Booking booking) {
+	public void save(Booking booking) {
 		hm.getEntityManager().persist(booking);
 	}
 
 	@Override
-	public void updateBooking(Booking booking) {
+	public void update(Booking booking) {
 		hm.getEntityManager().merge(booking);
 	}
 
 	@Override
-	public Booking getBooking(int id) {
+	public Booking get(int id) {
 		return hm.getEntityManager().find(Booking.class, id);
 	}
 
 	@Override
-	public void deleteBooking(int id) {
-		hm.getEntityManager().remove(getBooking(id));
+	public void delete(int id) {
+		Booking b = get(id);
+		hm.getEntityManager().remove(get(id));
 	}
 
 	@Override
-	public ArrayList<Booking> getBookings() {
+	public ArrayList<Booking> getAll() {
 		return (ArrayList<Booking>) hm.getEntityManager()
 				.createQuery("Select a From Booking a", Booking.class)
 				.getResultList();
