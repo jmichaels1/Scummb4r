@@ -4,9 +4,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import org.springframework.stereotype.Component;
-
-
 /**
  * 
  * @author jsalirio
@@ -15,8 +12,8 @@ import org.springframework.stereotype.Component;
 
 public class HibernateManagerDB {
 	
-	EntityManagerFactory emFactory;
-	EntityManager entityManager;
+	private EntityManagerFactory emFactory;
+	private EntityManager entityManager;
 	
 	
 	/**
