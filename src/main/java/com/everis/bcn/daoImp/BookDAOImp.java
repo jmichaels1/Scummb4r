@@ -1,6 +1,11 @@
 package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.manager.HibernateManagerDB;
@@ -13,6 +18,7 @@ import com.everis.bcn.manager.HibernateManagerDB;
 public class BookDAOImp implements Dao<Booking> {
 
 	HibernateManagerDB hm; // otra clase lo implementa
+	
 
 	@Override
 	public void save(Booking booking) {

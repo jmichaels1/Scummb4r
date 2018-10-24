@@ -31,8 +31,8 @@ public class Booking implements Serializable {
 	@Column(name="personas")
 	private int personas;
 	
-	@Column(name="dia")
-	private Date dia;
+	@Column(name="day")
+	private Date day;
 	
 	@Column(name="mesa")
 	private Mesa mesa;
@@ -53,12 +53,12 @@ public class Booking implements Serializable {
 	/**
 	 * Constructor with parameters
 	 */
-	public Booking(int id, int localizador, int personas, Date dia) {
+	public Booking(int id, int localizador, int personas, Date day) {
 		super();
 		this.id = id;
 		this.localizador = localizador;
 		this.personas = personas;
-		this.dia = dia;
+		this.day = day;
 	}
 
 	public int getId() {
@@ -86,11 +86,11 @@ public class Booking implements Serializable {
 	}
 
 	public Date getDia() {
-		return dia;
+		return day;
 	}
 
 	public void setDia(Date dia) {
-		this.dia = dia;
+		this.day = dia;
 	}
 
 	public static long getSerialversionuid() {
@@ -146,7 +146,7 @@ public class Booking implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Booking [id=" + id + ", localizador=" + localizador + ", personas=" + personas + ", dia=" + dia + "]";
+		return "Booking [id=" + id + ", localizador=" + localizador + ", personas=" + personas + ", dia=" + day + "]";
 	}
 	
 	

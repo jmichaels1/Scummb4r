@@ -14,22 +14,22 @@ import com.everis.bcn.entity.Turn;
  */
 public class BookingDto {
 	
-	private ArrayList<Restaurant> aListRenstaurant;
+	private ArrayList<Restaurant> aListRestaurant;
 	private ArrayList<Turn> aListTurn;
 	
 	private int restaurantId;
-	private Date dia;
+	private Date day;
 	private int turnId;
 	private int persons;
 	private Mesa mesa;
 	
 	/**** Getters And Setters *****/
 	
-	public ArrayList<Restaurant> getaListRenstaurant() {
-		return aListRenstaurant;
+	public ArrayList<Restaurant> getaListRestaurant() {
+		return aListRestaurant;
 	}
-	public void setaListRenstaurant(ArrayList<Restaurant> aListRenstaurant) {
-		this.aListRenstaurant = aListRenstaurant;
+	public void setaListRestaurant(ArrayList<Restaurant> aListRestaurant) {
+		this.aListRestaurant = aListRestaurant;
 	}
 	public ArrayList<Turn> getaListTurn() {
 		return aListTurn;
@@ -44,10 +44,10 @@ public class BookingDto {
 		this.restaurantId = restaurantId;
 	}
 	public Date getDia() {
-		return dia;
+		return day;
 	}
 	public void setDia(Date dia) {
-		this.dia = dia;
+		this.day = dia;
 	}
 	public int getTurnId() {
 		return turnId;

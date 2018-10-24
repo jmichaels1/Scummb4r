@@ -2,6 +2,10 @@ package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
 
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Turn;
 import com.everis.bcn.manager.HibernateManagerDB;
@@ -15,9 +19,13 @@ public class TurnDAOImp implements Dao<Turn> {
 	
 	private HibernateManagerDB hm;
 	
+	@Autowired
+	private EntityManager entityManager;
+	
 	@Override
 	public void save(Turn turn) {
-		hm.getEntityManager().persist(turn);
+		//hm.getEntityManager().persist(turn);
+		entityManager.persist(turn);
 	}
 
 	@Override
