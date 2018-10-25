@@ -70,7 +70,6 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Override
 	public ArrayList<Restaurant> getRestaurants() {
 		restanurantDao.setHm(hm);
-		hm.beginTransaction();
 		return restanurantDao.getAll();
 	}
 

@@ -26,6 +26,9 @@ import com.everis.bcn.entity.Turn;
 public class HelloWordController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HelloWordController.class);
+	
+	@Autowired
+	private EntityManager entityManager;
 
 	
 	/**
@@ -38,6 +41,13 @@ public class HelloWordController {
 	public String home(@RequestParam(value="name", required = false)String name, Model model) {
 		logger.info("Welcome ! The client locale is : ", name);
 		model.addAttribute("name", name);
+		
+//		Turn t1 = new Turn();
+//		//	t1.setId(2);
+//		t1.setDescription("jejejejexD");
+//		System.out.println("PERSIST BEFORE");
+//		entityManager.persist(t1);
+//		System.out.println("PERSIST AFTER");
 		return "hello";
 	}
 	

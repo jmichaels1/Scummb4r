@@ -1,6 +1,6 @@
 package com.everis.bcn.test;
 
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.Optional;
 import java.util.function.Consumer;
