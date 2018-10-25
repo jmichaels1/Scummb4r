@@ -52,12 +52,7 @@ public class BookingDto {
 	public void setRestaurantId(int restaurantId) {
 		this.restaurantId = restaurantId;
 	}
-	public Date getDia() {
-		return day;
-	}
-	public void setDia(Date dia) {
-		this.day = dia;
-	}
+	
 	public int getTurnId() {
 		return turnId;
 	}
@@ -75,6 +70,15 @@ public class BookingDto {
 	}
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
+	}
+
+	public Date getDay() {
+		return day;
+	}
+
+
+	public void setDay(Date day) {
+		this.day = day;
 	}
 	
 	

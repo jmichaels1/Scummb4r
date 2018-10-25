@@ -23,63 +23,67 @@
 </head>
 <body>
 	
-<%-- 	<form:form class="form-horizontal" method="post" commandName="bookingDto"> --%>
-<!-- 		<fieldset> -->
-<!-- 			<legend class="text-center header">Booking</legend> -->
+	<form:form>
+		<fieldset>
+			<legend class="text-center header">Booking</legend>
 
-<%-- 			<form:errors path="*" element="div" cssClass="alert alert-danger" /> --%>
+			<form:errors path="*" element="div" cssClass="alert alert-danger" />
 
-<!-- 			<div class="form-group"> -->
-<!-- 				<span class="col-md-1 col-md-offset-2 text-center"><i -->
-<!-- 					class="fa fa-user bigicon"></i></span> -->
-<!-- 				<div class="col-md-8"> -->
-<%-- 					<form:select id="restaurantId" path="restaurantId" name="restaurantId" type="text" --%>
-<%-- 						class="form-control" > --%>
-<%-- 						<form:option value = "NONE" label = "Select"/> --%>
-<%-- 						<form:options items = "${aListRestaurnt}" /> --%>
-<%-- 						<form:errors path="restaurantId" /> --%>
-<%-- 					</form:select> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<div class="form-group">
+				<span class="col-md-1 col-md-offset-2 text-center"><i
+					class="fa fa-user bigicon"></i></span>
+				<div class="col-md-8">
+					<form:select id="restaurantId" path="restaurantId" name="restaurantId" type="text"
+						class="form-control" >
+						<form:label path="restaurantId">restaurant : </form:label>
+ 						<form:options items = "${aListRestaurnt}" /> 
+ 						<form:errors path="restaurantId" /> 
+ 					</form:select> 
+				</div>
+			</div>
 
-<!-- 			<div class="form-group"> -->
-<!-- 				<span class="col-md-1 col-md-offset-2 text-center"><i -->
-<!-- 					class="fa fa-user bigicon"></i></span> -->
-<!-- 				<div class="col-md-8"> -->
-<%-- 					<form:input id="datepicker" path="day" name="day" --%>
-<%-- 						type="date" /> --%>
-<%-- 					<form:errors path="day" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<div class="form-group">
+				<span class="col-md-1 col-md-offset-2 text-center"><i
+					class="fa fa-user bigicon"></i></span>
+				<div class="col-md-8">
+					<form:label path="day">Day : </form:label>
+					<form:input id="datepicker" path="day" name="day"
+ 						type="date" /> 
+ 					<form:errors path="day" /> 
+				</div>
+			</div>
 
-<!-- 			<div class="form-group"> -->
-<!-- 				<span class="col-md-1 col-md-offset-2 text-center"><i -->
-<!-- 					class="fa fa-envelope-o bigicon"></i></span> -->
-<!-- 				<div class="col-md-8"> -->
-<%-- 					<form:input id="turnId" path="turnId" name="turnId"/> --%>
-<%-- 					<form:option value = "NONE" label = "Select"/> --%>
-<%-- 					<form:options items = "${aListTurn}" /> --%>
-<%-- 					<form:errors path="turnId" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<div class="form-group">
+				<span class="col-md-1 col-md-offset-2 text-center"><i
+					class="fa fa-envelope-o bigicon"></i></span>
+				<div class="col-md-8">
+				<form:select id="turnId" path="turnId" name="turnId" type="text"
+						class="form-control" >
+						<form:label path="turnId">Turn : </form:label>
+						<form:options items = "${aListTurn}" />
+						<form:errors path="turnId" />
+					</form:select> 
+				</div>
+			</div>
 
-<!-- 			<div class="form-group"> -->
-<!-- 				<span class="col-md-1 col-md-offset-2 text-center"><i -->
-<!-- 					class="fa fa-phone-square bigicon"></i></span> -->
-<!-- 				<div class="col-md-8"> -->
-<%-- 					<form:input id="persons" path="persons" name="persons" --%>
-<%-- 						type="text" placeholder="persons" class="form-control" /> --%>
-<%-- 					<form:errors path="persons" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
+			<div class="form-group">
+				<span class="col-md-1 col-md-offset-2 text-center"><i
+					class="fa fa-phone-square bigicon"></i></span>
+				<div class="col-md-8">
+					<form:label path="persons">Nº People : </form:label>
+					<form:input id="persons" path="persons" name="persons"
+ 						type="text" placeholder="persons" class="form-control" /> 
+ 					<form:errors path="persons" /> 
+				</div>
+			</div>
 
-<!-- 			<div class="form-group"> -->
-<!-- 				<div class="col-md-12 text-center"> -->
-<%-- 					<form:button type="submit" class="btn btn-primary btn-lg">Save Booking</form:button> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</fieldset> -->
-<%-- 	</form:form> --%>
+			<div class="form-group">
+				<div class="col-md-12 text-center">
+					<form:button type="submit" class="btn btn-primary btn-lg">Save Booking</form:button>
+				</div>
+			</div>
+		</fieldset>
+	</form:form>
 
 </body>
 </html>

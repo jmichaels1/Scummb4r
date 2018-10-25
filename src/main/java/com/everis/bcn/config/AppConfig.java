@@ -12,11 +12,11 @@ import org.springframework.context.annotation.Configuration;
  * @author J Michael
  *
  */
-@Configuration
-@ComponentScan("com.everis.bcn")
+//@Configuration
+//@ComponentScan("com.everis.bcn")
 public class AppConfig {
 	
-	@Bean
+//	@Bean
 	public EntityManager getEntity() {
 		return	Persistence.createEntityManagerFactory("persistence").createEntityManager();
 	}

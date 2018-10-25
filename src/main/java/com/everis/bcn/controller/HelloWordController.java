@@ -27,8 +27,8 @@ public class HelloWordController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HelloWordController.class);
 	
-	@Autowired
-	private EntityManager entityManager;
+//	@Autowired
+//	private EntityManager entityManager;
 
 	
 	/**
