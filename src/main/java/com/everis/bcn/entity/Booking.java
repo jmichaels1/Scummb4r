@@ -71,6 +71,7 @@ public class Booking implements Serializable {
 		this.day = day;
 		this.localizador = generateLocalizator();
 	}
+	
 
 	public int getId() {
 		return id;
