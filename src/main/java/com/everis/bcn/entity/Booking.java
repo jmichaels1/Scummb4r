@@ -63,8 +63,13 @@ public class Booking implements Serializable {
 	 * Constructor with parameters
 	 */
 	public Booking(int restaurantID, Date day, int turnID, int personas) {
+		RestaurantDAOImp dao_rest = new RestaurantDAOImp();
+		TurnDAOImp dao_turn = new TurnDAOImp();
+		restaurant = dao_rest.get(restaurantID);
+		turn = dao_turn.get(turnID);
 		this.personas = personas;
 		this.day = day;
+		this.localizador = generateLocalizator();
 	}
 
 	public int getId() {
@@ -148,6 +153,14 @@ public class Booking implements Serializable {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	
+	/**
+	 * generate Localizator
+	 * @return
+	 */
+	private int generateLocalizator() {
+		return Integer.parseInt("" + restaurant.getId() + turn.getId() + mesa.getId() + day.toString().replaceAll("-", ""));
 	}
 
 	@Override
