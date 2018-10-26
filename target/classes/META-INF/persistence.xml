@@ -4,7 +4,7 @@
 	<class>com.everis.bcn.entity.Turn</class>
 	<properties>	
 		<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/scummb4rdb?useUnicode=true&amp;serverTimezone=UTC"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/scummb4rdb?useUnicode=true&amp;serverTimezone=UTC"/>
         <property name="javax.persistence.jdbc.user" value="jmicahel" />
         <property name="javax.persistence.jdbc.password" value="jm123" />
 	

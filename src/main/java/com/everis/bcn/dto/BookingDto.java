@@ -23,14 +23,6 @@ public class BookingDto {
 	private int persons;
 	private Mesa mesa;
 	
-	/***
-	 * Método Constrcutor
-	 * @param day
-	 */
-	public BookingDto(Date day) {
-		this.day = day;
-	}
-	
 	
 	/**** Getters And Setters *****/
 	

@@ -18,7 +18,7 @@ public class BookingAssembler {
 	public static Booking getBookingDto(BookingDto bookingDto) {
 		Booking booking = new Booking();
 	//	booking.setRestaurant(bookingDto.getRestaurantId());
-		booking.setDia(bookingDto.getDia());
+		booking.setDia(bookingDto.getDay());
 		booking.setMesa(bookingDto.getMesa());
 //		booking.setTurnId(bookingDto.getTurn().getId());
 //		booking.setPersons(bookingDto.getPersonas());

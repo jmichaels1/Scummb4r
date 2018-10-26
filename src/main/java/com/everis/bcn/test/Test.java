@@ -15,7 +15,6 @@ import com.everis.bcn.daoImp.TurnDAOImp;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
-import com.everis.bcn.manager.HibernateManagerDB;
 
 public class Test {
 	
@@ -29,21 +28,21 @@ public class Test {
 	public static void main(String[] args) {
 
 
-		HibernateManagerDB hm = new HibernateManagerDB("persistence");
+//		HibernateManagerDB hm = new HibernateManagerDB("persistence");
 		
-		TurnDAOImp td = new TurnDAOImp();
+		TurnDAOImp dao_turn = new TurnDAOImp();
 		BookDAOImp dao = new BookDAOImp();
 		RestaurantDAOImp rest_dao = new RestaurantDAOImp();
 		
-		td.setHm(hm); // "injection" hm in dao class
-		dao.setHm(hm);
-		rest_dao.setHm(hm);
+//		td.setHm(hm); // "injection" hm in dao class
+//		dao.setHm(hm);
+//		rest_dao.setHm(hm);
 		
-		hm.beginTransaction();
+//		hm.beginTransaction();
 		
 		Turn t1 = new Turn();
 	//	t1.setId(2);
-		t1.setDescription("jejejejexD");
+		t1.setDescription("9");
 		
 //		td.updateTurn(t1);
 		
@@ -100,11 +99,11 @@ public class Test {
 //		rest_dao.save(r2);
 //		rest_dao.save(r3);
 		
-		td.save(t1);
+		dao_turn.save(t1);
 		
-		hm.commitTransaction();
-		hm.closeTransaction();
-		
+//		hm.commitTransaction();
+//		hm.closeTransaction();
+//		
 	}
 
 }

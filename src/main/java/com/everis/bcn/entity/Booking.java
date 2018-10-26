@@ -15,6 +15,10 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.everis.bcn.daoImp.RestaurantDAOImp;
+import com.everis.bcn.daoImp.TurnDAOImp;
+import com.everis.bcn.serviceImp.IResturantBusinessImp;
+
 /**
  * @author jsalirio
  *
@@ -58,10 +62,7 @@ public class Booking implements Serializable {
 	/**
 	 * Constructor with parameters
 	 */
-	public Booking(int id, int localizador, int personas, Date day) {
-		super();
-		this.id = id;
-		this.localizador = localizador;
+	public Booking(int restaurantID, Date day, int turnID, int personas) {
 		this.personas = personas;
 		this.day = day;
 	}
