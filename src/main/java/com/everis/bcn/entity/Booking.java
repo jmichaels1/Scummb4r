@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.everis.bcn.daoImp.BookDAOImp;
@@ -26,8 +28,8 @@ public class Booking implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private int id;
+	@Column(name = "bookingId", unique = true, nullable = false)
+	private int bookingId;
 	
 	@Column(name="localizador")
 	private long localizador;
@@ -41,7 +43,8 @@ public class Booking implements Serializable {
 	@Column(name="mesa")
 	private Mesa mesa;
 	
-	@Column(name="restaurant")
+	@ManyToOne
+	@JoinColumn(name = "id", nullable = false)
 	private Restaurant restaurant;
 	
 	@Column(name="turn")
@@ -55,11 +58,11 @@ public class Booking implements Serializable {
 	}
 
 	public int getId() {
-		return id;
+		return bookingId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.bookingId = id;
 	}
 
 	public long getLocalizador() {
@@ -114,12 +117,14 @@ public class Booking implements Serializable {
 	public void setTurn(Turn turn) {
 		this.turn = turn;
 	}
+	
+	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + bookingId;
 		return result;
 	}
 
@@ -132,14 +137,14 @@ public class Booking implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Booking other = (Booking) obj;
-		if (id != other.id)
+		if (bookingId != other.bookingId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Booking [id=" + id + ", localizador=" + localizador + ", personas=" + personas + ", day=" + day
+		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + day
 				+ ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
 	}
 	

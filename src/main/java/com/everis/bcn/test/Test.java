@@ -10,9 +10,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
 import com.everis.bcn.daoImp.BookDAOImp;
+import com.everis.bcn.daoImp.MesaDAOImp;
 import com.everis.bcn.daoImp.RestaurantDAOImp;
 import com.everis.bcn.daoImp.TurnDAOImp;
 import com.everis.bcn.entity.Booking;
+import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
 
@@ -21,8 +23,8 @@ public class Test {
 //	@PersistenceContext(unitName="persistence", type = PersistenceContextType.EXTENDED)
 //	static EntityManager entityManager;
 	
-	@PersistenceContext(unitName= "persistence")
-	private static EntityManagerFactory emf;
+//	@PersistenceContext(unitName= "persistence")
+//	private static EntityManagerFactory emf;
 	
 
 	public static void main(String[] args) {
@@ -33,6 +35,7 @@ public class Test {
 		TurnDAOImp dao_turn = new TurnDAOImp();
 		BookDAOImp dao = new BookDAOImp();
 		RestaurantDAOImp rest_dao = new RestaurantDAOImp();
+		MesaDAOImp dao_mesa = new MesaDAOImp();
 		
 //		td.setHm(hm); // "injection" hm in dao class
 //		dao.setHm(hm);
@@ -41,17 +44,35 @@ public class Test {
 //		hm.beginTransaction();
 		
 		Turn t1 = new Turn();
-	//	t1.setId(2);
-		t1.setDescription("9");
+		t1.setId(2);
+//		t1.setDescription("9");
 		
-//		td.updateTurn(t1);
+//		dao_turn.save(t1);
 		
-//		Booking booking = new Booking();
-//		booking.setDia(new Date());
-//		booking.setLocalizador(4);
-//		booking.setPersonas(10);
+		Restaurant r = new Restaurant();
+		r.setId(1);
+//		
+//		rest_dao.save(r);
 		
-//		dao.saved(booking);
+//		
+		Mesa m = new Mesa();
+		m.setRestaurant(r);
+		
+//		dao_mesa.save(m);
+		
+//		Mesa m = dao_mesa.get(1);
+//		System.out.println("get db restaurant : " + m.getRestaurant());
+		
+//		
+		Booking booking = new Booking();
+		booking.setDia(new Date());
+		booking.setLocalizador(4444);
+		booking.setPersonas(10);
+		booking.setRestaurant(r);
+		booking.setMesa(m);
+		booking.setTurn(t1);
+//		
+		dao.save(booking);
 //
 //		ArrayList<Booking> lt = dao.getAll();
 //		
@@ -99,7 +120,7 @@ public class Test {
 //		rest_dao.save(r2);
 //		rest_dao.save(r3);
 		
-		dao_turn.save(t1);
+//		dao_turn.save(t1);
 		
 //		hm.commitTransaction();
 //		hm.closeTransaction();

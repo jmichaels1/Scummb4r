@@ -2,11 +2,14 @@ package com.everis.bcn.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,13 +24,14 @@ public class Mesa implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private int id;
+	@Column(name = "mesaId", unique = true, nullable = false)
+	private int mesaId;
 	
 	@Column(name = "capacity")
 	private int capacity;
 	
-	@Column(name = "restaurant")
+	@ManyToOne
+	@JoinColumn(name = "id", nullable = false)
 	private Restaurant restaurant;
 	
 	/**
@@ -45,17 +49,17 @@ public class Mesa implements Serializable {
 	 */
 	public Mesa(int id, int capacity, Restaurant restaurant) {
 		super();
-		this.id = id;
+		this.mesaId = id;
 		this.capacity = capacity;
 		this.restaurant = restaurant;
 	}
 
 	public int getId() {
-		return id;
+		return mesaId;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.mesaId = id;
 	}
 
 	public int getCapacity() {
@@ -82,7 +86,7 @@ public class Mesa implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + mesaId;
 		return result;
 	}
 
@@ -95,14 +99,14 @@ public class Mesa implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Mesa other = (Mesa) obj;
-		if (id != other.id)
+		if (mesaId != other.mesaId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Mesa [id=" + id + ", capacity=" + capacity + ", restaurant=" + restaurant + "]";
+		return "Mesa [id=" + mesaId + ", capacity=" + capacity + ", restaurant=" + restaurant + "]";
 	}
 	
 }

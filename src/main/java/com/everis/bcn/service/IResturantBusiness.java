@@ -3,6 +3,7 @@ package com.everis.bcn.service;
 import java.util.ArrayList;
 
 import com.everis.bcn.entity.Booking;
+import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
 

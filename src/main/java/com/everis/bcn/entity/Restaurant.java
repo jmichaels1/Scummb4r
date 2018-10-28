@@ -2,7 +2,10 @@ package com.everis.bcn.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,8 +41,11 @@ public class Restaurant implements Serializable {
 	@Column(name = "description", length = 500)
 	private String description;
 	
-	//@OneToMany(mappedBy = "aListMesa", fetch=FetchType.EAGER)
-	//private ArrayList<Mesa> aListMesa;
+	@OneToMany(mappedBy = "restaurant", fetch=FetchType.EAGER)
+	private Set<Mesa> aListMesa;
+	
+	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+	private Set<Booking> aListBooking;
 	
 	//TODO lista de reservas?
 	
@@ -107,6 +113,24 @@ public class Restaurant implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	
+
+	public Set<Mesa> getaListMesa() {
+		return aListMesa;
+	}
+
+	public void setaListMesa(Set<Mesa> aListMesa) {
+		this.aListMesa = aListMesa;
+	}
+
+	public Set<Booking> getaListBooking() {
+		return aListBooking;
+	}
+
+	public void setaListBooking(Set<Booking> aListBooking) {
+		this.aListBooking = aListBooking;
 	}
 
 	@Override

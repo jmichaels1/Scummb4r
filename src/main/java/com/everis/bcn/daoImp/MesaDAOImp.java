@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Mesa;
+import com.everis.bcn.entity.Restaurant;
+import com.everis.bcn.entity.Turn;
 
 
 /**
@@ -48,6 +50,14 @@ public class MesaDAOImp extends AppConfig implements Dao<Mesa> {
 		return (ArrayList<Mesa>) entityManager
 				.createQuery("Select a From Mesa a", Mesa.class)
 				.getResultList();
+	} 
+	
+	/******* Métodos Agregados **************/
+	
+
+	public Mesa getMesaAvailable(Restaurant restaurant, Turn turn) {
+		return (Mesa) entityManager.createQuery("Select a From Booking a where a.restaurant = " + restaurant + " and a.turn = " + turn).getSingleResult();
+		
 	}
 
 }
