@@ -6,58 +6,51 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Turn;
-import com.everis.bcn.manager.HibernateManagerDB;
 
 /**
  * 
  * @author J Michael
  *
  */
-public class TurnDAOImp implements Dao<Turn> {
-	
-	private HibernateManagerDB hm;
-	
-	@Autowired
-	private EntityManager entityManager;
+public class TurnDAOImp extends AppConfig implements Dao<Turn> {
 	
 	@Override
 	public void save(Turn turn) {
-		//hm.getEntityManager().persist(turn);
+		entityManager.getTransaction().begin();
 		entityManager.persist(turn);
+		entityManager.getTransaction().commit();
+//		entityManager.close();
 	}
 
 	@Override
 	public void update(Turn turn) {
-		hm.getEntityManager().merge(turn);
+		entityManager.getTransaction().begin();
+		entityManager.merge(turn);
+		entityManager.getTransaction().commit();
+//		entityManager.close();
 	}
 
 	@Override
 	public Turn get(int id) {
-		return hm.getEntityManager().find(Turn.class, id);
+		return entityManager.find(Turn.class, id);
 	}
 
 	@Override
 	public void delete(int id) {
-		hm.getEntityManager().remove(get(id));
+		entityManager.getTransaction().begin();
+		entityManager.remove(get(id));
+		entityManager.getTransaction().commit();
+//		entityManager.close();
 	}
 
 	@Override
 	public ArrayList<Turn> getAll() {
-		return (ArrayList<Turn>) hm.getEntityManager()
+		return (ArrayList<Turn>) entityManager
 				.createQuery("Select a From Turn a", Turn.class)
 				.getResultList();
-	}
-	
-	@Override
-	public void setHm(HibernateManagerDB hm) {
-		this.hm = hm;
-	}
-	
-	@Override
-	public HibernateManagerDB getHm() {
-		return hm;
 	}
 
 }

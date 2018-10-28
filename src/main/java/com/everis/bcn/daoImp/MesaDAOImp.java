@@ -2,9 +2,9 @@ package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
 
+import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Mesa;
-import com.everis.bcn.manager.HibernateManagerDB;
 
 
 /**
@@ -12,45 +12,42 @@ import com.everis.bcn.manager.HibernateManagerDB;
  * @author J Michael
  *
  */
-public class MesaDAOImp implements Dao<Mesa> {
-	
-	private HibernateManagerDB hm;
+public class MesaDAOImp extends AppConfig implements Dao<Mesa> {
 
 	@Override
 	public void save(Mesa mesa) {
-		hm.getEntityManager().persist(mesa);
+		entityManager.getTransaction().begin();
+		entityManager.persist(mesa);
+		entityManager.getTransaction().commit();
+//		entityManager.close();
 	}
 
 	@Override
 	public void update(Mesa mesa) {
-		hm.getEntityManager().merge(mesa);
+		entityManager.getTransaction().begin();
+		entityManager.merge(mesa);
+		entityManager.getTransaction().commit();
+//		entityManager.close();
 	}
 
 	@Override
 	public Mesa get(int id) {
-		return hm.getEntityManager().find(Mesa.class, id);
+		return entityManager.find(Mesa.class, id);
 	}
 
 	@Override
 	public void delete(int id) {
-		hm.getEntityManager().remove(get(id));
+		entityManager.getTransaction().begin();
+		entityManager.remove(get(id));
+		entityManager.getTransaction().commit();
+//		entityManager.close();
 	}
 
 	@Override
 	public ArrayList<Mesa> getAll() {
-		return (ArrayList<Mesa>) hm.getEntityManager()
+		return (ArrayList<Mesa>) entityManager
 				.createQuery("Select a From Mesa a", Mesa.class)
 				.getResultList();
-	}
-	
-	@Override
-	public void setHm(HibernateManagerDB hm) {
-		this.hm = hm;
-	}
-	
-	@Override
-	public HibernateManagerDB getHm() {
-		return hm;
 	}
 
 }

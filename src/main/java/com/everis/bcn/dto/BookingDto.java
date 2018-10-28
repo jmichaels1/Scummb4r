@@ -3,9 +3,13 @@ package com.everis.bcn.dto;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
+import com.everis.bcn.serviceImp.IResturantBusinessImp;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * 
@@ -18,18 +22,13 @@ public class BookingDto {
 	private ArrayList<Turn> aListTurn;
 	
 	private int restaurantId;
+	
+	@DateTimeFormat(pattern = "dd/mm/yy") 
 	private Date day;
+	
 	private int turnId;
 	private int persons;
 	private Mesa mesa;
-	
-	/***
-	 * Método Constrcutor
-	 * @param day
-	 */
-	public BookingDto(Date day) {
-		this.day = day;
-	}
 	
 	
 	/**** Getters And Setters *****/
@@ -79,6 +78,24 @@ public class BookingDto {
 
 	public void setDay(Date day) {
 		this.day = day;
+	}
+	
+	/******* Métodos agregados **********/
+	
+	public Restaurant getResturant() {
+		IResturantBusinessImp i = new IResturantBusinessImp();
+		return i.getRestaurant(restaurantId);
+	}
+	
+	public Turn getTurn() {
+		IResturantBusinessImp i = new IResturantBusinessImp();
+		return i.getTurn(turnId);
+	}
+	
+	@Override
+	public String toString() {
+		return "BookingDto [restaurantId=" + restaurantId + ", day=" + day + ", turnId=" + turnId + ", persons="
+				+ persons + ", mesa=" + mesa + "]";
 	}
 	
 	

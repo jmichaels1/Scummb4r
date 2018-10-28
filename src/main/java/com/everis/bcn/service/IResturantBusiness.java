@@ -20,5 +20,10 @@ public interface IResturantBusiness {
 	public ArrayList<Restaurant> getRestaurants();
 	public ArrayList<Turn> getTurns();
 	public ArrayList<Booking> getBookings();
+	
+	/*** aggregate methods ****/
+	
+	public Restaurant getRestaurant(int restaurantId);
+	public Turn getTurn(int turnId);
 
 }

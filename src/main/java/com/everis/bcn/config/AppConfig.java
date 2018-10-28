@@ -16,10 +16,18 @@ import org.springframework.context.annotation.Configuration;
 //@ComponentScan("com.everis.bcn")
 public class AppConfig {
 	
-//	@Bean
+	protected EntityManager entityManager;
+	
+/*//	@Bean
 	public EntityManager getEntity() {
 		return	Persistence.createEntityManagerFactory("persistence").createEntityManager();
+	}*/
+
+	public AppConfig() {
+		if (entityManager == null) entityManager = Persistence.createEntityManagerFactory("persistence").createEntityManager();
 	}
+	
+	
 }
 
 

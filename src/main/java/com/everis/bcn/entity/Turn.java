@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.everis.bcn.daoImp.TurnDAOImp;
+
 
 /**
  * @author jsalirio
@@ -35,7 +37,6 @@ public class Turn implements Serializable {
 	 * Constructor without parameters
 	 */
 	public Turn() {
-		super();
 	}
 	
 	/**
@@ -64,6 +65,8 @@ public class Turn implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	/**** sobreCarga *****/
 	
 	
 	@Override

@@ -14,7 +14,7 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( "#datepicker" ).datepicker();
+    $( "#datepicker" ).datepicker({ minDate:0, dateFormat: 'dd/mm/yy' });
   } );
   </script>
 </head>
@@ -48,7 +48,7 @@
 				<div class="col-md-8">
 					<form:label path="day">Day : </form:label>
 					<form:input id="datepicker" path="day" name="day"
- 						type="date" /> 
+ 						type="date"/> 
  					<form:errors path="day" /> 
 				</div>
 			</div>
@@ -70,7 +70,7 @@
 				<span class="col-md-1 col-md-offset-2 text-center"><i
 					class="fa fa-phone-square bigicon"></i></span>
 				<div class="col-md-8">
-					<form:label path="persons">Nº People : </form:label>
+					<form:label path="persons">People : </form:label>
 					<form:input id="persons" path="persons" name="persons"
  						type="text" placeholder="persons" class="form-control" /> 
  					<form:errors path="persons" /> 

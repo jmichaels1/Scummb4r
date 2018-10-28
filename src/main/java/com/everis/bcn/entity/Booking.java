@@ -9,11 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
+import com.everis.bcn.daoImp.BookDAOImp;
+import com.everis.bcn.daoImp.RestaurantDAOImp;
+import com.everis.bcn.daoImp.TurnDAOImp;
 
 /**
  * @author jsalirio
@@ -31,7 +30,7 @@ public class Booking implements Serializable {
 	private int id;
 	
 	@Column(name="localizador")
-	private int localizador;
+	private long localizador;
 	
 	@Column(name="personas")
 	private int personas;
@@ -54,17 +53,6 @@ public class Booking implements Serializable {
 	public Booking() {
 		super();
 	}
-	
-	/**
-	 * Constructor with parameters
-	 */
-	public Booking(int id, int localizador, int personas, Date day) {
-		super();
-		this.id = id;
-		this.localizador = localizador;
-		this.personas = personas;
-		this.day = day;
-	}
 
 	public int getId() {
 		return id;
@@ -74,11 +62,11 @@ public class Booking implements Serializable {
 		this.id = id;
 	}
 
-	public int getLocalizador() {
+	public long getLocalizador() {
 		return localizador;
 	}
 
-	public void setLocalizador(int localizador) {
+	public void setLocalizador(long localizador) {
 		this.localizador = localizador;
 	}
 
@@ -118,7 +106,7 @@ public class Booking implements Serializable {
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
 	}
-
+	
 	public Turn getTurn() {
 		return turn;
 	}
@@ -151,9 +139,13 @@ public class Booking implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Booking [id=" + id + ", localizador=" + localizador + ", personas=" + personas + ", dia=" + day + "]";
+		return "Booking [id=" + id + ", localizador=" + localizador + ", personas=" + personas + ", day=" + day
+				+ ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
 	}
 	
+	
+	
+
 	
 
 }
