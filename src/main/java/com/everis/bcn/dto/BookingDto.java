@@ -1,5 +1,7 @@
 package com.everis.bcn.dto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,6 +31,7 @@ public class BookingDto {
 	private int turnId;
 	private int persons;
 	private Mesa mesa;
+	
 	
 	
 	/**** Getters And Setters *****/
@@ -76,7 +79,7 @@ public class BookingDto {
 	}
 
 
-	public void setDay(Date day) {
+	public void setDay(Date day) throws ParseException {
 		this.day = day;
 	}
 	

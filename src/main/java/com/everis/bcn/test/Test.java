@@ -9,7 +9,7 @@ import java.util.function.Consumer;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 
-import com.everis.bcn.daoImp.BookDAOImp;
+import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.MesaDAOImp;
 import com.everis.bcn.daoImp.RestaurantDAOImp;
 import com.everis.bcn.daoImp.TurnDAOImp;
@@ -33,7 +33,7 @@ public class Test {
 //		HibernateManagerDB hm = new HibernateManagerDB("persistence");
 		
 		TurnDAOImp dao_turn = new TurnDAOImp();
-		BookDAOImp dao = new BookDAOImp();
+		BookingDAOImp dao = new BookingDAOImp();
 		RestaurantDAOImp rest_dao = new RestaurantDAOImp();
 		MesaDAOImp dao_mesa = new MesaDAOImp();
 		

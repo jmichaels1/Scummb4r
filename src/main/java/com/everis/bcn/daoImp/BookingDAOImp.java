@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
+import com.everis.bcn.entity.Restaurant;
 
 /**
  * 
  * @author J Michael
  *
  */
-public class BookDAOImp extends AppConfig implements Dao<Booking> {
+public class BookingDAOImp extends AppConfig implements Dao<Booking> {
 	
 
 	@Override
@@ -54,5 +55,11 @@ public class BookDAOImp extends AppConfig implements Dao<Booking> {
 				.createQuery("Select a From Booking a", Booking.class)
 				.getResultList();
 	}	
+	
+	/***** Métoos Agregados *****/
+	
+	public boolean isBookingFree(Booking booking) {
+		return false;
+	}
 	
 }

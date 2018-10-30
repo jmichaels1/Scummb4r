@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
+import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Restaurant;
 
 public class RestaurantDAOImp extends AppConfig implements Dao<Restaurant> {

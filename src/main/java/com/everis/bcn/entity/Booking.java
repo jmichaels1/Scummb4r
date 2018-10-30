@@ -1,6 +1,7 @@
 package com.everis.bcn.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.everis.bcn.daoImp.BookDAOImp;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.RestaurantDAOImp;
 import com.everis.bcn.daoImp.TurnDAOImp;
 
@@ -37,6 +40,7 @@ public class Booking implements Serializable {
 	@Column(name="personas")
 	private int personas;
 	
+	@DateTimeFormat(pattern="dd-mm-yyyy")
 	@Column(name="day")
 	private Date day;
 	
@@ -144,8 +148,11 @@ public class Booking implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + day
-				+ ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
+//		final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-mm-yyyy");
+//		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + 
+//				FORMAT.format(day) + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
+		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + 
+		day + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
 	}
 	
 	

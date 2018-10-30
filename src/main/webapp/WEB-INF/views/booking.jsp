@@ -48,7 +48,7 @@
 				<div class="col-md-8">
 					<form:label path="day">Day : </form:label>
 					<form:input id="datepicker" path="day" name="day"
- 						type="date"/> 
+ 						type="text"/> 
  					<form:errors path="day" /> 
 				</div>
 			</div>
