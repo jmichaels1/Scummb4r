@@ -34,8 +34,8 @@ public class BookingDtoValidate implements Validator {
 		Restaurant restaurant = iResturantBusinessImp.getRestaurant(bookingDto.getRestaurantId());
 		
 		restaurant.getaListBooking().stream().forEach((booking) -> {
-			if (booking.getRestaurant().getId() == bookingDto.getRestaurantId() && 
-					booking.getDia().equals(bookingDto.getDay()) && booking.getTurn().getId() == bookingDto.getTurn().getId()) {
+			if (booking.getRestaurant().getRestaurantId() == bookingDto.getRestaurantId() && 
+					booking.getDay().equals(bookingDto.getDay()) && booking.getTurn().getTurnId() == bookingDto.getTurn().getTurnId()) {
 				isAvailable = false;
 //				break;
 			}});

@@ -44,19 +44,19 @@ public class Test {
 //		hm.beginTransaction();
 		
 		Turn t1 = new Turn();
-		t1.setId(2);
-//		t1.setDescription("9");
+//		t1.setTurnId(2);
+		t1.setDescription("1");
 		
-//		dao_turn.save(t1);
+		dao_turn.save(t1);
 		
-		Restaurant r = new Restaurant();
-		r.setId(1);
+//		Restaurant r = new Restaurant();
+//		r.setRestaurantId(1);
 //		
 //		rest_dao.save(r);
 		
 //		
-		Mesa m = new Mesa();
-		m.setRestaurant(r);
+//		Mesa m = new Mesa();
+//		m.setRestaurant(r);
 		
 //		dao_mesa.save(m);
 		
@@ -64,15 +64,15 @@ public class Test {
 //		System.out.println("get db restaurant : " + m.getRestaurant());
 		
 //		
-		Booking booking = new Booking();
-		booking.setDia(new Date());
-		booking.setLocalizador(4444);
-		booking.setPersonas(10);
-		booking.setRestaurant(r);
-		booking.setMesa(m);
-		booking.setTurn(t1);
-//		
-		dao.save(booking);
+//		Booking booking = new Booking();
+//		booking.setDay(new Date());
+//		booking.setLocalizador(4444);
+//		booking.setPersonas(10);
+//		booking.setRestaurant(r);
+//		booking.setMesa(m);
+//		booking.setTurn(t1);
+////		
+//		dao.save(booking);
 //
 //		ArrayList<Booking> lt = dao.getAll();
 //		

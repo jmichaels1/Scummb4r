@@ -36,7 +36,7 @@ public class BookingAssembler extends IResturantBusinessImp {
 			@Override
 			protected void configure() {
 				map().setRestaurant(source.getResturant()); 
-				map().setDia(source.getDay());
+				map().setDay(source.getDay());
 				map().setTurn(source.getTurn());
 				map().setPersonas(source.getPersons());
 				map().setMesa(source.getMesa());
@@ -59,8 +59,8 @@ public class BookingAssembler extends IResturantBusinessImp {
 		System.out.println("print from generateLocalizator() : " + booking);
 //		return Integer.parseInt("" + booking.getRestaurant().getId() + booking.getTurn().getId() + 
 //				booking.getMesa().getId() + FORMAT.format(booking.getDia()).replaceAll("-", ""));
-		return Long.parseLong("" + booking.getRestaurant().getId() + booking.getTurn().getId() + 
-				FORMAT.format(booking.getDia()).replaceAll("-", ""));
+		return Long.parseLong("" + booking.getRestaurant().getRestaurantId() + booking.getTurn().getTurnId() + 
+				FORMAT.format(booking.getDay()).replaceAll("-", ""));
 	}
 	
 	

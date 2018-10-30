@@ -27,8 +27,8 @@ public class Turn implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private int id;
+	@Column(name = "turnId", unique = true, nullable = false)
+	private int turnId;
 	
 	@Column(name = "description")
 	private String description;
@@ -44,18 +44,18 @@ public class Turn implements Serializable {
 	 * @param id
 	 * @param description
 	 */
-	public Turn(int id, String description) {
+	public Turn(int turnId, String description) {
 		super();
-		this.id = id;
+		this.turnId = turnId;
 		this.description = description;
 	}
 
-	public int getId() {
-		return id;
+	public int getTurnId() {
+		return turnId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setTurnId(int turnId) {
+		this.turnId = turnId;
 	}
 
 	public String getDescription() {
@@ -74,7 +74,7 @@ public class Turn implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + id;
+		result = prime * result + turnId;
 		return result;
 	}
 
@@ -92,14 +92,14 @@ public class Turn implements Serializable {
 				return false;
 		} else if (!description.equals(other.description))
 			return false;
-		if (id != other.id)
+		if (turnId != other.turnId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Turn [id=" + id + ", description=" + description + "]";
+		return "Turn [id=" + turnId + ", description=" + description + "]";
 	}
 	
 

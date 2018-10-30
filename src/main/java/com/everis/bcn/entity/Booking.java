@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,12 +13,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.everis.bcn.daoImp.BookingDAOImp;
-import com.everis.bcn.daoImp.RestaurantDAOImp;
-import com.everis.bcn.daoImp.TurnDAOImp;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @author jsalirio
@@ -40,15 +39,16 @@ public class Booking implements Serializable {
 	@Column(name="personas")
 	private int personas;
 	
-	@DateTimeFormat(pattern="dd-mm-yyyy")
-	@Column(name="day")
+	@Basic
+	@Temporal(TemporalType.DATE)
 	private Date day;
 	
-	@Column(name="mesa")
+	@ManyToOne
+	@JoinColumn(name="mesaId", nullable = false)
 	private Mesa mesa;
 	
 	@ManyToOne
-	@JoinColumn(name = "id", nullable = false)
+	@JoinColumn(name = "restaurantId", nullable = false)
 	private Restaurant restaurant;
 	
 	@Column(name="turn")
@@ -61,12 +61,23 @@ public class Booking implements Serializable {
 		super();
 	}
 
-	public int getId() {
+	
+
+	public int getBookingId() {
 		return bookingId;
 	}
 
-	public void setId(int id) {
-		this.bookingId = id;
+
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
+	}
+
+	public Date getDay() {
+		return day;
+	}
+
+	public void setDay(Date day) {
+		this.day = day;
 	}
 
 	public long getLocalizador() {
@@ -83,14 +94,6 @@ public class Booking implements Serializable {
 
 	public void setPersonas(int personas) {
 		this.personas = personas;
-	}
-
-	public Date getDia() {
-		return day;
-	}
-
-	public void setDia(Date dia) {
-		this.day = dia;
 	}
 
 	public static long getSerialversionuid() {

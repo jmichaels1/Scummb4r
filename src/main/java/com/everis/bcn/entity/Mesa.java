@@ -31,7 +31,7 @@ public class Mesa implements Serializable {
 	private int capacity;
 	
 	@ManyToOne
-	@JoinColumn(name = "id", nullable = false)
+	@JoinColumn(name = "restaurantId", nullable = false)
 	private Restaurant restaurant;
 	
 	/**

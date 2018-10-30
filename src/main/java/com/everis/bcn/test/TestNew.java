@@ -31,9 +31,11 @@ public class TestNew {
 //		Date d = dao_booking.get(1).getDia();
 //		System.out.println("fecha desde db : " + FORMAT.format(d));
 		
-		Set<Booking> bookingList = dao_rest.get(1).getaListBooking();
-		
-		System.out.println("count booking db : " + bookingList.size());
+//		Set<Booking> bookingList = dao_rest.get(1).getaListBooking();
+//		
+//		System.out.println("count booking db : " + bookingList.size());
+//		
+//		bookingList.stream().forEach(booking -> System.out.println("booking getDate : " + booking.getDay()));
 				
 		
 //		Date date;

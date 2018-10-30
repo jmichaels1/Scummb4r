@@ -64,7 +64,7 @@ public class BookingController extends BookingAssembler {
 		iResturantBusinessImp.getRestaurants().stream().forEach(new Consumer<Restaurant>() {
 			@Override
 			public void accept(Restaurant restaurant) {
-				aListRestaurnt.add(restaurant.getId());
+				aListRestaurnt.add(restaurant.getRestaurantId());
 			}
 		});
 		return aListRestaurnt;
@@ -77,7 +77,7 @@ public class BookingController extends BookingAssembler {
 		iResturantBusinessImp.getTurns().stream().forEach(new Consumer<Turn>() {
 			@Override
 			public void accept(Turn turn) {
-				aListTurn.add(turn.getId());
+				aListTurn.add(turn.getTurnId());
 			}
 		});
 		return aListTurn;

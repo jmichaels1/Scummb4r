@@ -29,8 +29,8 @@ public class Restaurant implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private int id;
+	@Column(name = "restaurantId", unique = true, nullable = false)
+	private int restaurantId;
 	
 	@Column(name = "name", length = 50)
 	private String name;
@@ -63,7 +63,7 @@ public class Restaurant implements Serializable {
 	 * @param description
 	 */
 	public Restaurant(int id, String name, String address, String description) {
-		this.id = id;
+		this.restaurantId = id;
 		this.name = name;
 		this.address = address;
 		this.description = description;
@@ -73,18 +73,18 @@ public class Restaurant implements Serializable {
 	/**** Metodos ******/
 
 
-	@Transient
-	public Integer getTotalPlazas() {
-		//TODO implementar
-		return null;
+//	@Transient
+//	public Integer getTotalPlazas() {
+//		//TODO implementar
+//		return null;
+//	}
+
+	public int getRestaurantId() {
+		return restaurantId;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
+	public void setRestaurantId(int restaurantId) {
+		this.restaurantId = restaurantId;
 	}
 
 	public String getName() {
@@ -137,7 +137,7 @@ public class Restaurant implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + restaurantId;
 		return result;
 	}
 
@@ -150,15 +150,15 @@ public class Restaurant implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Restaurant other = (Restaurant) obj;
-		if (id != other.id)
+		if (restaurantId != other.restaurantId)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Restaurant [id=" + id + ", name=" + name + ", address=" + address + ", description=" + description
-				+ ", getTotalPlazas()=" + getTotalPlazas() + "]";
+		return "Restaurant [id=" + restaurantId + ", name=" + name + ", address=" + address + ", description=" + description
+				+ "]";
 	}
 	
 
