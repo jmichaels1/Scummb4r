@@ -42,9 +42,13 @@ public class BookingAssembler extends IResturantBusinessImp {
 				map().setMesa(source.getMesa());
 			}
 		});
-		
+		Restaurant restaurant = new Restaurant();
+		restaurant.setRestaurantId(1);
+		Mesa m = new Mesa();
+		m.setId(1);
+		m.setRestaurant(restaurant);
 		modelMapper.map(bookingDto, booking);
-		
+		booking.setMesa(m);
 		booking.setLocalizador(generateLocalizator(booking));
 
 		return booking;

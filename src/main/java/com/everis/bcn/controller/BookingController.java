@@ -52,7 +52,7 @@ public class BookingController extends BookingAssembler {
 //		System.out.println("soc l'dto: " + dto);
 //		System.out.println("soc l'date de dto: " + dt1.format(dto.getDay()));
 		System.out.println("Soc l'booking : " + booking);
-//		System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking.getRestaurant(), booking)); 
+		System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking.getRestaurant(), booking)); 
 		return null;
 	}
 	

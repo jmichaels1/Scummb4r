@@ -26,7 +26,7 @@
                     <tbody>
                         <c:forEach items="${aListRestaurants}" var="dato">
                             <tr>
-                                <td><c:out value="${dato.id}"/></td>
+                                <td><c:out value="${dato.restaurantId}"/></td>
                                 <td><c:out value="${dato.name}"/></td>
                                 <td><c:out value="${dato.address}"/></td>
                                 <td><c:out value="${dato.description}"/></td>

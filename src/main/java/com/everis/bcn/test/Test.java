@@ -101,24 +101,24 @@ public class Test {
 //		Turn turn = tds.getTurn(1);
 //		System.out.println("Turn 1 : " + turn);
 		
-//		Restaurant r1 = new Restaurant();
-//		r1.setAddress("Carrer sant iscle 45");
-//		r1.setDescription("Buen restaurant, aire acondicionado, vista al mar");
-//		r1.setName("Suamu");
-//		
-//		Restaurant r2 = new Restaurant();
-//		r2.setAddress("Av diagonal 32");
-//		r2.setDescription("Ven a disfrutar de nuetras mejores tapas");
-//		r2.setName("Goiko");
-//		
-//		Restaurant r3 = new Restaurant();
-//		r3.setAddress("Carrer Roma 81");
-//		r3.setDescription("Los mejors postres al 2 x 1");
-//		r3.setName("El chino");
-//		
-//		rest_dao.save(r1);
-//		rest_dao.save(r2);
-//		rest_dao.save(r3);
+		Restaurant r1 = new Restaurant();
+		r1.setAddress("Carrer sant iscle 45");
+		r1.setDescription("Buen restaurant, aire acondicionado, vista al mar");
+		r1.setName("Suamu");
+		
+		Restaurant r2 = new Restaurant();
+		r2.setAddress("Av diagonal 32");
+		r2.setDescription("Ven a disfrutar de nuetras mejores tapas");
+		r2.setName("Goiko");
+		
+		Restaurant r3 = new Restaurant();
+		r3.setAddress("Carrer Roma 81");
+		r3.setDescription("Los mejors postres al 2 x 1");
+		r3.setName("El chino");
+		
+		rest_dao.save(r1);
+		rest_dao.save(r2);
+		rest_dao.save(r3);
 		
 //		dao_turn.save(t1);
 		

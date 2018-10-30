@@ -1,7 +1,6 @@
 package com.everis.bcn.entity;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Basic;
@@ -16,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 /**
  * @author jsalirio
@@ -51,7 +49,8 @@ public class Booking implements Serializable {
 	@JoinColumn(name = "restaurantId", nullable = false)
 	private Restaurant restaurant;
 	
-	@Column(name="turn")
+	@ManyToOne
+	@JoinColumn(name = "turnId", nullable = false)
 	private Turn turn;
 	
 	/**
