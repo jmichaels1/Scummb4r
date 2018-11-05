@@ -62,14 +62,14 @@ public class IResturantBusinessImp implements IResturantBusiness {
 		return bookinDao.getAll();
 	}
 
-	@Override
-	public Restaurant getRestaurant(int restaurantId) {
-		return restanurantDao.get(restaurantId);
-	}
-
-	@Override
-	public Turn getTurn(int turnId) {
-		return turnDAO.get(turnId);
-	}
+//	@Override
+//	public Restaurant getRestaurant(int restaurantId) {
+//		return restanurantDao.get(restaurantId);
+//	}
+//
+//	@Override
+//	public Turn getTurn(int turnId) {
+//		return turnDAO.get(turnId);
+//	}
 	
 }

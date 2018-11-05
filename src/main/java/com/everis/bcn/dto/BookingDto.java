@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.everis.bcn.daoImp.RestaurantDAOImp;
+import com.everis.bcn.daoImp.TurnDAOImp;
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
@@ -83,13 +85,11 @@ public class BookingDto {
 	/******* Métodos agregados **********/
 	
 	public Restaurant getResturant() {
-		IResturantBusinessImp i = new IResturantBusinessImp();
-		return i.getRestaurant(restaurantId);
+		return new RestaurantDAOImp().get(restaurantId);
 	}
 	
 	public Turn getTurn() {
-		IResturantBusinessImp i = new IResturantBusinessImp();
-		return i.getTurn(turnId);
+		return new TurnDAOImp().get(turnId);
 	}
 	
 	

@@ -24,7 +24,7 @@ public interface IResturantBusiness {
 	
 	/*** aggregate methods ****/
 	
-	public Restaurant getRestaurant(int restaurantId);
-	public Turn getTurn(int turnId);
+//	public Restaurant getRestaurant(int restaurantId); //TODO, verificar daoImp de la clase
+//	public Turn getTurn(int turnId); //TODO, verificar daoImp de la clase
 
 }
