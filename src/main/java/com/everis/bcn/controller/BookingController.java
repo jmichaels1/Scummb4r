@@ -2,7 +2,6 @@ package com.everis.bcn.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.function.Consumer;
 
 import org.apache.catalina.mapper.Mapper;
@@ -36,7 +35,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 public class BookingController extends BookingAssembler {
 	
 	private IResturantBusinessImp iResturantBusinessImp;
-	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+//	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 	
 	
 	@RequestMapping(value="booking", method=RequestMethod.GET)
@@ -46,13 +45,11 @@ public class BookingController extends BookingAssembler {
 	
 	@RequestMapping(method=RequestMethod.POST)
     public ModelAndView form(@ModelAttribute("command") BookingDto dto, BindingResult result, SessionStatus session){
+		iResturantBusinessImp = new IResturantBusinessImp();
 		ModelAndView mv = new ModelAndView();
-//		SimpleDateFormat dt1 = new SimpleDateFormat("dd-mm-yyyy");
 		Booking booking = getBookingFromDto(dto);
-//		System.out.println("soc l'dto: " + dto);
-//		System.out.println("soc l'date de dto: " + dt1.format(dto.getDay()));
 		System.out.println("Soc l'booking : " + booking);
-		System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking.getRestaurant(), booking)); 
+		System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking)); 
 		return null;
 	}
 	

@@ -1,6 +1,5 @@
 package com.everis.bcn.serviceImp;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import com.everis.bcn.daoImp.BookingDAOImp;
@@ -38,9 +37,9 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	}
 
 	@Override
-	public boolean reserve(Restaurant restaurant, Booking booking) {
-		
-		return false;
+	public boolean reserve(Booking booking) {
+		bookinDao.save(booking);
+		return true;
 	}
 
 	@Override
@@ -49,17 +48,17 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	}
 
 	@Override
-	public ArrayList<Restaurant> getRestaurants() {
+	public Set<Restaurant> getRestaurants() {
 		return restanurantDao.getAll();
 	}
 
 	@Override
-	public ArrayList<Turn> getTurns() {
+	public Set<Turn> getTurns() {
 		return turnDAO.getAll();
 	}
 
 	@Override
-	public ArrayList<Booking> getBookings() {
+	public Set<Booking> getBookings() {
 		return bookinDao.getAll();
 	}
 

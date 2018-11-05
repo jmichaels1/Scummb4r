@@ -2,8 +2,11 @@ package com.everis.bcn.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Set;
+import java.util.TimeZone;
 
 import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.MesaDAOImp;
@@ -17,30 +20,34 @@ import com.everis.bcn.entity.Turn;
 
 public class TestNew {
 	
-	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+//	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
 	public static void main(String[] args) throws ParseException {
 		
-		SimpleDateFormat dt1 = new SimpleDateFormat("dd-mm-yyyy");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+	//	formatter.setTimeZone(TimeZone.getTimeZone("Europe/Madrid"));
+		
 		
 		MesaDAOImp dao_mesa = new MesaDAOImp();
 		BookingDAOImp dao_booking = new BookingDAOImp();
 		TurnDAOImp dao_turn = new TurnDAOImp();
-		RestaurantDAOImp dao_rest = new RestaurantDAOImp();
+//		RestaurantDAOImp dao_rest = new RestaurantDAOImp();
 		
 //		Date d = dao_booking.get(1).getDay();
 //		System.out.println("fecha desde db : " + FORMAT.format(d));
-//		
+		
 //		Set<Booking> bookingList = dao_rest.get(1).getaListBooking();
-//		
+//		Set<Booking> bookingList = dao_booking.getAll();
+		
 //		System.out.println("count booking db : " + bookingList.size());
-//		
+		
 //		bookingList.stream().forEach(booking -> System.out.println("booking getDate : " + booking.getDay()));
 				
 		
 		Date date;
 		try {
-			date = FORMAT.parse("07-02-2019");
+//			date = new Date(Calendar.getInstance().getTime().getTime());
+//			date = FORMAT.parse("01/11/2018");
 			Restaurant r = new Restaurant();
 			r.setRestaurantId(1);
 			
@@ -51,22 +58,32 @@ public class TestNew {
 			Turn t = new Turn();
 			t.setTurnId(3);
 			
+			//c.setTimeZone(TimeZone.getTimeZone("UTC"));
+			
+			//date = formatter.parse("2018-11-02");
+			
+			//System.out.println("date before : " + date);
+
 			Booking b = new Booking();
-			b.setDay(date);
+			b.setDay(formatter.parse("2018-11-05"));
 			b.setMesa(m);
 			b.setRestaurant(r);
 			b.setTurn(t);
 			
 			dao_booking.save(b);
 			
+			System.out.println("date after : " + b.getDay());
+//			
 		} catch (Exception e) {
-			System.out.println("Erro parse");
+			System.out.println("Erro : " + e.getMessage() + e.getCause());
 		}
-		
-		
-		
-		
-		
-	}
-
+////		
+		}
 }
+		
+		
+		
+		
+	
+
+

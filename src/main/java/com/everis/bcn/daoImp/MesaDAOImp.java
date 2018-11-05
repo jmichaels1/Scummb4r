@@ -1,12 +1,14 @@
 package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
+import com.google.common.collect.Sets;
 
 
 /**
@@ -46,10 +48,10 @@ public class MesaDAOImp extends AppConfig implements Dao<Mesa> {
 	}
 
 	@Override
-	public ArrayList<Mesa> getAll() {
-		return (ArrayList<Mesa>) entityManager
+	public Set<Mesa> getAll() {
+		return Sets.newHashSet((ArrayList<Mesa>) entityManager
 				.createQuery("Select a From Mesa a", Mesa.class)
-				.getResultList();
+				.getResultList());
 	} 
 	
 	/******* Métodos Agregados **************/

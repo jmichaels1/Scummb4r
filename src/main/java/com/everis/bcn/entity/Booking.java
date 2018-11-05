@@ -3,7 +3,6 @@ package com.everis.bcn.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 /**
@@ -37,7 +38,7 @@ public class Booking implements Serializable {
 	@Column(name="personas")
 	private int personas;
 	
-	@Basic
+	@Column(name="day")
 	@Temporal(TemporalType.DATE)
 	private Date day;
 	

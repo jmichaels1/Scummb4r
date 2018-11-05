@@ -1,6 +1,6 @@
 package com.everis.bcn.dao;
 
-import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -17,9 +17,6 @@ public interface Dao<T> {
 	public void update(T t);
 	public T get(int id);
 	public void delete(int id);
-	public ArrayList<T> getAll();
-	
-//	public void setHm(HibernateManagerDB hm);
-//	public HibernateManagerDB getHm();
+	public Set<T> getAll();
 	
 }

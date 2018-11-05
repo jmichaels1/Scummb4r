@@ -1,6 +1,7 @@
 package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Turn;
+import com.google.common.collect.Sets;
 
 /**
  * 
@@ -47,10 +49,10 @@ public class TurnDAOImp extends AppConfig implements Dao<Turn> {
 	}
 
 	@Override
-	public ArrayList<Turn> getAll() {
-		return (ArrayList<Turn>) entityManager
+	public Set<Turn> getAll() {
+		return Sets.newHashSet((ArrayList<Turn>) entityManager
 				.createQuery("Select a From Turn a", Turn.class)
-				.getResultList();
+				.getResultList());
 	}
 
 }

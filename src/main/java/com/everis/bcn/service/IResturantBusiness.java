@@ -1,6 +1,5 @@
 package com.everis.bcn.service;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 import com.everis.bcn.entity.Booking;
@@ -17,11 +16,11 @@ public interface IResturantBusiness {
 	
 	public boolean editBooking(Booking booking);
 	public boolean cancelBooking(Booking booking);
-	public boolean reserve(Restaurant restaurant, Booking booking);
+	public boolean reserve(Booking booking);
 	public void addRestaurant(Restaurant restaurant);
-	public ArrayList<Restaurant> getRestaurants();
-	public ArrayList<Turn> getTurns();
-	public ArrayList<Booking> getBookings();
+	public Set<Restaurant> getRestaurants();
+	public Set<Turn> getTurns();
+	public Set<Booking> getBookings();
 	
 	/*** aggregate methods ****/
 	

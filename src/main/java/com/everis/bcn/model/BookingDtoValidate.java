@@ -25,7 +25,7 @@ public class BookingDtoValidate implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		BookingDto bookingDto = (BookingDto) obj;
+		final BookingDto bookingDto = (BookingDto) obj;
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persons",
 		        "required.persons", "El campo persons es Obligatorio. refrescar la página");

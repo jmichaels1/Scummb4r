@@ -1,11 +1,13 @@
 package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Restaurant;
+import com.google.common.collect.Sets;
 
 public class RestaurantDAOImp extends AppConfig implements Dao<Restaurant> {
 
@@ -39,10 +41,10 @@ public class RestaurantDAOImp extends AppConfig implements Dao<Restaurant> {
 	}
 
 	@Override
-	public ArrayList<Restaurant> getAll() {
-		return (ArrayList<Restaurant>) entityManager
+	public Set<Restaurant> getAll() {
+		return Sets.newHashSet((ArrayList<Restaurant>) entityManager
 				.createQuery("Select a From Restaurant a", Restaurant.class)
-				.getResultList();
+				.getResultList());
 	}
 
 }

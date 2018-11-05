@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
@@ -19,13 +17,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  *
  */
 public class BookingDto {
-	
+
 	private ArrayList<Restaurant> aListRestaurant;
 	private ArrayList<Turn> aListTurn;
 	
 	private int restaurantId;
 	
-	@DateTimeFormat(pattern = "dd/mm/yy") 
 	private Date day;
 	
 	private int turnId;
@@ -95,14 +92,12 @@ public class BookingDto {
 		return i.getTurn(turnId);
 	}
 	
+	
 	@Override
 	public String toString() {
-		return "BookingDto [restaurantId=" + restaurantId + ", day=" + day + ", turnId=" + turnId + ", persons="
-				+ persons + ", mesa=" + mesa + "]";
+		return "BookingDto [aListRestaurant=" + aListRestaurant + ", aListTurn=" + aListTurn + ", restaurantId="
+				+ restaurantId + ", day=" + day + ", turnId=" + turnId + ", persons=" + persons + ", mesa=" + mesa
+				+ "]";
 	}
 	
-	
-	
-	
-
 }

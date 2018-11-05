@@ -1,6 +1,7 @@
 package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 
@@ -10,6 +11,7 @@ import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Restaurant;
+import com.google.common.collect.Sets;
 
 /**
  * 
@@ -50,10 +52,10 @@ public class BookingDAOImp extends AppConfig implements Dao<Booking> {
 	}
 
 	@Override
-	public ArrayList<Booking> getAll() {
-		return (ArrayList<Booking>) entityManager
+	public Set<Booking> getAll() {
+		return Sets.newHashSet((ArrayList<Booking>) entityManager
 				.createQuery("Select a From Booking a", Booking.class)
-				.getResultList();
+				.getResultList());
 	}	
 	
 	/***** Métoos Agregados *****/

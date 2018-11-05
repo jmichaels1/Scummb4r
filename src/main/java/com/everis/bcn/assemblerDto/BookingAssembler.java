@@ -1,5 +1,6 @@
 package com.everis.bcn.assemblerDto;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import org.modelmapper.ModelMapper;
@@ -21,7 +22,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  */
 public class BookingAssembler extends IResturantBusinessImp {
 	
-	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("dd-mm-yyyy");
+	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
 	/**
 	 * get BookingDto object
@@ -29,6 +30,7 @@ public class BookingAssembler extends IResturantBusinessImp {
 	 * @return
 	 */
 	public Booking getBookingFromDto(BookingDto bookingDto) {
+		System.out.println("bookingDTO to mapped : " + bookingDto);
 		Booking booking = new Booking();
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
@@ -39,18 +41,22 @@ public class BookingAssembler extends IResturantBusinessImp {
 				map().setDay(source.getDay());
 				map().setTurn(source.getTurn());
 				map().setPersonas(source.getPersons());
-				map().setMesa(source.getMesa());
 			}
 		});
+		
+		
 		Restaurant restaurant = new Restaurant();
 		restaurant.setRestaurantId(1);
+		
 		Mesa m = new Mesa();
 		m.setId(1);
-		m.setRestaurant(restaurant);
+		m.setRestaurant(restaurant); 
+		
 		modelMapper.map(bookingDto, booking);
 		booking.setMesa(m);
+		
 		booking.setLocalizador(generateLocalizator(booking));
-
+		
 		return booking;
 	}
 	
@@ -59,12 +65,10 @@ public class BookingAssembler extends IResturantBusinessImp {
 	 * @param booking
 	 * @return
 	 */
-	private long generateLocalizator(Booking booking) {
-		System.out.println("print from generateLocalizator() : " + booking);
-//		return Integer.parseInt("" + booking.getRestaurant().getId() + booking.getTurn().getId() + 
-//				booking.getMesa().getId() + FORMAT.format(booking.getDia()).replaceAll("-", ""));
-		return Long.parseLong("" + booking.getRestaurant().getRestaurantId() + booking.getTurn().getTurnId() + 
-				FORMAT.format(booking.getDay()).replaceAll("-", ""));
+	private long generateLocalizator(Booking booking) {		
+//		return Long.parseLong(booking.getRestaurant().getRestaurantId() + booking.getTurn().getTurnId(
+//				)+FORMAT.format(booking.getDay()).replaceAll("/", ""));
+		return 123456;
 	}
 	
 	
