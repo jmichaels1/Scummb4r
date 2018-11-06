@@ -155,7 +155,7 @@ public class Booking implements Serializable {
 //		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + 
 //				FORMAT.format(day) + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
 		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + 
-		day + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
+		day + ", mesa=" + mesa + ", turn=" + turn + "]";
 	}
 	
 	

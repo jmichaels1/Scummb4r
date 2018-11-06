@@ -30,7 +30,6 @@ public class BookingDtoValidate implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persons",
 		        "required.persons", "El campo persons es Obligatorio. refrescar la página");
 		
-//		iResturantBusinessImp = new IResturantBusinessImp();
 		Restaurant restaurant = bookingDto.getResturant();
 		
 		restaurant.getaListBooking().stream().forEach((booking) -> {

@@ -24,9 +24,7 @@ public class BookingDto {
 	private ArrayList<Turn> aListTurn;
 	
 	private int restaurantId;
-	
 	private Date day;
-	
 	private int turnId;
 	private int persons;
 	private Mesa mesa;

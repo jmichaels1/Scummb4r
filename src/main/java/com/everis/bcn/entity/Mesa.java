@@ -106,7 +106,7 @@ public class Mesa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Mesa [id=" + mesaId + ", capacity=" + capacity + ", restaurant=" + restaurant + "]";
+		return "Mesa [id=" + mesaId + ", capacity=" + capacity + "]";
 	}
 	
 }

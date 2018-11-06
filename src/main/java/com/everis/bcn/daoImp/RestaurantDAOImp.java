@@ -6,6 +6,7 @@ import java.util.Set;
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
+import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.google.common.collect.Sets;
 
@@ -46,5 +47,4 @@ public class RestaurantDAOImp extends AppConfig implements Dao<Restaurant> {
 				.createQuery("Select a From Restaurant a", Restaurant.class)
 				.getResultList());
 	}
-
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
+import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.google.common.collect.Sets;
 
@@ -59,9 +60,20 @@ public class BookingDAOImp extends AppConfig implements Dao<Booking> {
 	}	
 	
 	/***** Métoos Agregados *****/
-	
-	public boolean isBookingFree(Booking booking) {
-		return false;
+		
+	/**
+	 * 
+	 * @param restaurantId
+	 * @param turnId
+	 * @return
+	 */
+	public ArrayList<Integer> getMesasIdOfTheTurn(int restaurantId, int turnId){
+		return (ArrayList<Integer>) entityManager
+				.createQuery("Select a.mesa.id "
+						+ "From Booking a "
+						+ "where a.restaurant.id = " + restaurantId + 
+								" and a.turn.id = " + turnId, Integer.class)
+				.getResultList();
 	}
 	
 }

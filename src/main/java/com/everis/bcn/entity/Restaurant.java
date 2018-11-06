@@ -157,9 +157,17 @@ public class Restaurant implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Restaurant [id=" + restaurantId + ", name=" + name + ", address=" + address + ", description=" + description
-				+ "]";
+		return "Restaurant [restaurantId=" + restaurantId + ", name=" + name + ", address=" + address + ", description="
+				+ description + ", aListMesa=" + aListMesa + ", aListBooking=" + aListBooking + "]";
 	}
+
+//	@Override
+//	public String toString() {
+//		return "Restaurant [id=" + restaurantId + ", name=" + name + ", address=" + address + ", description=" + description
+//				+ "]";
+//	}
+	
+	
 	
 
 }

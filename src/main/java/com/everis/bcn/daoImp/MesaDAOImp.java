@@ -52,14 +52,16 @@ public class MesaDAOImp extends AppConfig implements Dao<Mesa> {
 		return Sets.newHashSet((ArrayList<Mesa>) entityManager
 				.createQuery("Select a From Mesa a", Mesa.class)
 				.getResultList());
-	} 
-	
-	/******* Métodos Agregados **************/
-	
-
-	public Mesa getMesaAvailable(Restaurant restaurant, Turn turn) {
-		return (Mesa) entityManager.createQuery("Select a From Booking a where a.restaurant = " + restaurant + " and a.turn = " + turn).getSingleResult();
-		
 	}
-
+	
+	/**
+	 * get Mesas from restId
+	 * @param restaurantId
+	 * @return
+	 */
+	public Set<Mesa> getMesasIdOfTheRestaurant(int restaurantId) {
+		return Sets.newHashSet((ArrayList<Mesa>) entityManager
+				.createQuery("Select a.id From Mesa a where a.restaurant.id = " + restaurantId, Mesa.class)
+				.getResultList());
+	}
 }
