@@ -45,22 +45,14 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	
 	@Override
 	public boolean reserve(Booking booking) {
+		boolean resp = true;
 		Set<Mesa> setMesa = mesaDao.getMesasIdOfTheRestaurant(booking.getRestaurant().getRestaurantId());
 		Set<Mesa> setBookingMesa = bookinDao.getMesasIdOfTheTurn(booking.getRestaurant().getRestaurantId(), booking.getTurn().getTurnId());
-
-//		for (Mesa mesa : setMesa) {
-//			if (!setBookingMesa.contains(mesa)) {
-//				System.out.println("MESA DISPONIBLE : " + mesa);
-//			}
-//		}
-		
-		List<Mesa> list = new ArrayList<Mesa>(setMesa);
-		
-		list.stream().filter(mesa -> !setBookingMesa.contains(mesa)).collect(Collectors.toList());
-//		setMesa.stream().forEach(mesa -> System.out.println("MESA LIBRE : " + mesa));
-		list.forEach(System.out::println);
-//		bookinDao.save(booking);
-		return true;
+		List<Mesa> list = setMesa.stream().filter(mesa -> !setBookingMesa.contains(mesa)).collect(Collectors.toList());
+		booking.setMesa(list.size()>0? list.get(0): null);
+		if (booking.getMesa() == null) resp = false;
+		else bookinDao.save(booking);
+		return resp;
 	}
 
 	@Override
