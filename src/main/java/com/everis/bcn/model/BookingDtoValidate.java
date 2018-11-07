@@ -40,8 +40,6 @@ public class BookingDtoValidate implements Validator {
 			}});
 		
 		if (!isAvailable) errors.rejectValue(null, "Booking not available"); 
-			
-		
 	}
 
 }

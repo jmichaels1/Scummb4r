@@ -83,15 +83,9 @@ public class TestNew {
 			dao_rest.get(2).getaListBooking().stream().forEach(booking -> System.out.println(booking));
 		
 		} catch (Exception e) {
-			System.out.println("Erro : " + e.getMessage() + e.getCause());
+			System.out.println("Error : " + e.getMessage() + e.getCause());
 		}
 	
 		}
 }
 		
-		
-		
-		
-	
-
-

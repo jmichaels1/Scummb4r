@@ -87,6 +87,7 @@ public class Mesa implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + mesaId;
+		result = prime * result + ((restaurant == null) ? 0 : restaurant.hashCode());
 		return result;
 	}
 
@@ -100,6 +101,11 @@ public class Mesa implements Serializable {
 			return false;
 		Mesa other = (Mesa) obj;
 		if (mesaId != other.mesaId)
+			return false;
+		if (restaurant == null) {
+			if (other.restaurant != null)
+				return false;
+		} else if (!restaurant.equals(other.restaurant))
 			return false;
 		return true;
 	}

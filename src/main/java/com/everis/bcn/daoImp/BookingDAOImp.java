@@ -67,13 +67,13 @@ public class BookingDAOImp extends AppConfig implements Dao<Booking> {
 	 * @param turnId
 	 * @return
 	 */
-	public ArrayList<Integer> getMesasIdOfTheTurn(int restaurantId, int turnId){
-		return (ArrayList<Integer>) entityManager
-				.createQuery("Select a.mesa.id "
+	public Set<Mesa> getMesasIdOfTheTurn(int restaurantId, int turnId){
+		return Sets.newHashSet((ArrayList<Mesa>) entityManager
+				.createQuery("Select a.mesa "
 						+ "From Booking a "
 						+ "where a.restaurant.id = " + restaurantId + 
-								" and a.turn.id = " + turnId, Integer.class)
-				.getResultList();
+								" and a.turn.id = " + turnId, Mesa.class)
+				.getResultList());
 	}
 	
 }
