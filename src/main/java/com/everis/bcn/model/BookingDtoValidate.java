@@ -39,7 +39,11 @@ public class BookingDtoValidate implements Validator {
 //				break;
 			}});
 		
+		if (bookingDto.getPersons() < 1)  errors.rejectValue(null, "Cantidad de Personas para la reserva no es válido");
+		
 		if (!isAvailable) errors.rejectValue(null, "Booking not available"); 
+		
+		
 	}
 
 }

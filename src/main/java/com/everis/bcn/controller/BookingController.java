@@ -24,6 +24,7 @@ import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
+import com.everis.bcn.model.BookingDtoValidate;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
 /**
@@ -35,7 +36,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 public class BookingController extends BookingAssembler {
 	
 	private IResturantBusinessImp iResturantBusinessImp;
-//	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+	private BookingDtoValidate dtoValidate;
 	
 	
 	@RequestMapping(value="booking", method=RequestMethod.GET)
@@ -46,7 +47,10 @@ public class BookingController extends BookingAssembler {
 	@RequestMapping(method=RequestMethod.POST)
     public ModelAndView form(@ModelAttribute("command") BookingDto dto, BindingResult result, SessionStatus session){
 		iResturantBusinessImp = new IResturantBusinessImp();
-		ModelAndView mv = new ModelAndView();
+		dtoValidate = new BookingDtoValidate();
+		ModelAndView mv = new ModelAndView();   
+		dtoValidate.validate(dto, result);
+		System.out.println("result validation : " + result.hasErrors() != null? "hay errores" : " no hay errores");
 		Booking booking = getBookingFromDto(dto);
 		System.out.println("Soc l'booking : " + booking);
 		System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking)); 
