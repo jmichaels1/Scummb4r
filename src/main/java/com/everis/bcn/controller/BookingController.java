@@ -50,7 +50,9 @@ public class BookingController extends BookingAssembler {
 		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
 		dtoValidate.validate(dto, result);
-		System.out.println("result validation : " + result.hasErrors() != null? "hay errores" : " no hay errores");
+	//	System.out.println("result validation : " + result.hasErrors() != null? "hay errores" : " no hay errores");
+		if (result.hasErrors()) System.out.println("hay errores");
+		else System.out.println("No hay errores");
 		Booking booking = getBookingFromDto(dto);
 		System.out.println("Soc l'booking : " + booking);
 		System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking)); 

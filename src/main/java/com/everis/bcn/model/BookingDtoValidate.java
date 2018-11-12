@@ -25,25 +25,24 @@ public class BookingDtoValidate implements Validator {
 
 	@Override
 	public void validate(Object obj, Errors errors) {
-		final BookingDto bookingDto = (BookingDto) obj;
+		BookingDto bookingDto = (BookingDto) obj;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persons",
-		        "required.persons", "El campo persons es Obligatorio. refrescar la página");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persons",
+//		        "required.persons", "El campo persons es Obligatorio. refrescar la página");
 		
-		Restaurant restaurant = bookingDto.getResturant();
+//		Restaurant restaurant = bookingDto.getResturant();
 		
-		restaurant.getaListBooking().stream().forEach((booking) -> {
-			if (booking.getRestaurant().getRestaurantId() == bookingDto.getRestaurantId() && 
-					booking.getDay().equals(bookingDto.getDay()) && booking.getTurn().getTurnId() == bookingDto.getTurn().getTurnId()) {
-				isAvailable = false;
-//				break;
-			}});
+//		restaurant.getaListBooking().stream().forEach((booking) -> {
+//			if (booking.getRestaurant().getRestaurantId() == bookingDto.getRestaurantId() && 
+//					booking.getDay().equals(bookingDto.getDay()) && booking.getTurn().getTurnId() == bookingDto.getTurn().getTurnId()) {
+//				isAvailable = false;
+////				break;
+//			}});
 		
+		System.out.println("cantidad personas del dto : " + bookingDto.getPersons());
 		if (bookingDto.getPersons() < 1)  errors.rejectValue(null, "Cantidad de Personas para la reserva no es válido");
 		
-		if (!isAvailable) errors.rejectValue(null, "Booking not available"); 
-		
-		
+	//	if (!isAvailable) errors.rejectValue(null, "Booking not available"); 
 	}
 
 }
