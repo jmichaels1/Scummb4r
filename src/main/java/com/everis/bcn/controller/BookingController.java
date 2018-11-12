@@ -38,7 +38,13 @@ public class BookingController extends BookingAssembler {
 	private IResturantBusinessImp iResturantBusinessImp;
 	private BookingDtoValidate dtoValidate;
 	
-	
+	/**
+	 * Método Constructor
+	 */
+	public BookingController() {
+		dtoValidate = new BookingDtoValidate();
+	}
+
 	@RequestMapping(value="booking", method=RequestMethod.GET)
 	public ModelAndView booking() {
 		return new ModelAndView("booking", "command", new BookingDto());
@@ -50,11 +56,24 @@ public class BookingController extends BookingAssembler {
 		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
 		dtoValidate.validate(dto, result);
-		System.out.println("result validation : " + result.hasErrors() != null? "hay errores" : " no hay errores");
-		Booking booking = getBookingFromDto(dto);
-		System.out.println("Soc l'booking : " + booking);
-		System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking)); 
-		return null;
+//		System.out.println("result validation : " + result.hasErrors() != null? "hay errores" : mv.setView("success"));
+//		mv.setViewName(result.hasErrors()? "success" : "booking");
+//		if (result.hasErrors()) System.out.println("hay errores");
+//		else System.out.println("No hay errores");
+		
+		if (result.hasErrors()) {
+			mv.setViewName("booking");
+			mv.addObject("command", new BookingDto());
+			System.out.println("Hay errores en el registro");
+		} else {
+			Booking booking = getBookingFromDto(dto);
+			System.out.println("Soc l'booking : " + booking);
+			System.out.println("Se reservó : " + iResturantBusinessImp.reserve(booking));
+			mv.setViewName("success");
+			mv.addObject(booking.toString());
+		}
+		
+		return mv;
 	}
 	
 	
