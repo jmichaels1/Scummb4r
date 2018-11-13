@@ -27,20 +27,14 @@ public class BookingDtoValidate implements Validator {
 	public void validate(Object obj, Errors errors) {
 		BookingDto bookingDto = (BookingDto) obj;
 		
-//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "persons",
-//		        "required.persons", "El campo persons es Obligatorio. refrescar la página");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "day",
+		        "required.persons", "es olbigatorio indicar el día de la reserva");
 		
 //		Restaurant restaurant = bookingDto.getResturant();
-		
-//		restaurant.getaListBooking().stream().forEach((booking) -> {
-//			if (booking.getRestaurant().getRestaurantId() == bookingDto.getRestaurantId() && 
-//					booking.getDay().equals(bookingDto.getDay()) && booking.getTurn().getTurnId() == bookingDto.getTurn().getTurnId()) {
-//				isAvailable = false;
-////				break;
-//			}});
-		
+				
 		System.out.println("cantidad personas del dto : " + bookingDto.getPersons());
 		if (bookingDto.getPersons() < 1)  errors.rejectValue(null, "Cantidad de Personas para la reserva no es válido");
+		if (bookingDto.getDay() == null)  errors.rejectValue(null, "fecha de reserva no es válida");
 		
 	//	if (!isAvailable) errors.rejectValue(null, "Booking not available"); 
 	}

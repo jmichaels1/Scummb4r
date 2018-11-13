@@ -56,10 +56,6 @@ public class BookingController extends BookingAssembler {
 		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
 		dtoValidate.validate(dto, result);
-//		System.out.println("result validation : " + result.hasErrors() != null? "hay errores" : mv.setView("success"));
-//		mv.setViewName(result.hasErrors()? "success" : "booking");
-//		if (result.hasErrors()) System.out.println("hay errores");
-//		else System.out.println("No hay errores");
 		
 		if (result.hasErrors()) {
 			mv.setViewName("booking");
