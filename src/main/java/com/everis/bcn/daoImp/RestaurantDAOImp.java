@@ -2,6 +2,7 @@ package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;

@@ -46,19 +46,13 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Override
 	public boolean reserve(Booking booking) {
 		boolean resp = true;
-		Set<Mesa> setMesa = mesaDao.getMesasIdOfTheRestaurant(booking.getRestaurant().getRestaurantId());
-		Set<Mesa> setBookingMesa = bookinDao.getMesasIdOfTheTurn(booking.getRestaurant().getRestaurantId(), booking.getTurn().getTurnId());
-		List<Mesa> listMesasAvailables = setMesa.stream().filter(mesa -> (!setBookingMesa.contains(mesa))).collect(Collectors.toList());
-		
-		if (listMesasAvailables.size() > 0) {
-			
-		}
-		
-		
-		
-		booking.setMesa(listMesasAvailables.size()>0? listMesasAvailables.get(0): null);
-		if (booking.getMesa() == null) resp = false;
-		else bookinDao.save(booking);
+			Set<Mesa> setMesa = mesaDao.getMesasIdOfTheRestaurant(booking.getRestaurant().getRestaurantId());
+			Set<Mesa> setBookingMesa = bookinDao.getMesasIdOfTheTurn(booking.getRestaurant().getRestaurantId(), booking.getTurn().getTurnId());
+			List<Mesa> listMesasAvailables = setMesa.stream().filter(mesa -> (!setBookingMesa.contains(mesa) && booking.getPersonas()<=mesa.getCapacity())).collect(Collectors.toList());
+			booking.setMesa(listMesasAvailables.size()>0? listMesasAvailables.get(0): null);
+			if (booking.getMesa() == null) resp = false;
+			else bookinDao.save(booking);
+
 		return resp;
 	}
 
@@ -80,7 +74,18 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Override
 	public Set<Booking> getBookings() {
 		return bookinDao.getAll();
-	}	
+	}
 	
-	
+	/***
+	 * return boolean of table
+	 * available by turn in restaurant
+	 * @param RestaurantId
+	 * @param turnId
+	 * @return
+	 */
+	public boolean IsThereTableAvailable(int restaurantId, int turnId) {
+		return mesaDao.getMesasIdOfTheRestaurant(restaurantId).stream().filter(
+				mesa -> (!bookinDao.getMesasIdOfTheTurn(restaurantId, turnId)
+						.contains(mesa))).collect(Collectors.toList()).size()>0;
+	}
 }

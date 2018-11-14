@@ -20,8 +20,8 @@
 			<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 			<span id="reauth-email" class="reauth-email"></span> <br>
 			<ul>
-				<li>¡Enhorabuena, tu Reserva ha sido registrada con el email :
-					<c:out value="${reserva}" />
+				<li>
+					<c:out value="${message}" />
 				</li>
 <!-- 				<span id="reauth-email" class="reauth-email"></span> -->
 <!-- 				<br> -->
