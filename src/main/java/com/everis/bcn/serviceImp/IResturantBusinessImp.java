@@ -88,4 +88,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 				mesa -> (!bookinDao.getMesasIdOfTheTurn(restaurantId, turnId)
 						.contains(mesa))).collect(Collectors.toList()).size()>0;
 	}
+	
+	
+	//public String getMessageBooking
 }
