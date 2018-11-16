@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 //@ComponentScan("com.everis.bcn")
 public class AppConfig {
 	
-	protected EntityManager entityManager;
+	static protected EntityManager entityManager;
 	
 /*//	@Bean
 	public EntityManager getEntity() {

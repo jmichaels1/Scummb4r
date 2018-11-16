@@ -38,10 +38,6 @@ public class BookingController extends BookingAssembler {
 	private IResturantBusinessImp iResturantBusinessImp;
 	private BookingDtoValidate dtoValidate;
 	
-	private StringBuilder success = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
-	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
-	private static final String FAILED_CAPACITY = "LO SIENTO, no hay mesas disponibles para la cantidad de personas";
-	
 	/**
 	 * Método Constructor
 	 */
@@ -59,13 +55,12 @@ public class BookingController extends BookingAssembler {
 		iResturantBusinessImp = new IResturantBusinessImp();
 		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
-		dtoValidate.validate(dto, result);
 		
+		dtoValidate.validate(dto, result);
 		if (!result.hasErrors()) {
 			Booking booking = getBookingFromDto(dto);
 			mv.setViewName("infRegBooking");
-			mv.addObject("message", (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
-					booking.getTurn().getTurnId()))? iResturantBusinessImp.reserve(booking)? success.append(booking):FAILED_CAPACITY : FAILED_MESAS); //TODO METER A CAPA DE SERVICIO Y RETURN STRING
+			mv.addObject("message", iResturantBusinessImp.messageByRegisterBooking(booking)); 
 		} else {
 			mv.setViewName("booking");
 			mv.addObject("command", new BookingDto());

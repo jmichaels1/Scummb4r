@@ -30,6 +30,10 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private TurnDAOImp turnDAO = new TurnDAOImp();
 	private MesaDAOImp mesaDao = new MesaDAOImp();
 	
+	private StringBuilder success = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
+	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
+	private static final String FAILED_CAPACITY = "LO SIENTO, no hay mesas disponibles para la cantidad de personas";
+	
 	@Override
 	public boolean editBooking(Booking booking) {
 		// TODO Auto-generated method stub
@@ -74,6 +78,18 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Override
 	public Set<Booking> getBookings() {
 		return bookinDao.getAll();
+	}
+	
+	/***
+	 * message By Register
+	 * Booking
+	 * @param booking
+	 * @return
+	 */
+	public String messageByRegisterBooking(Booking booking) {
+		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
+				booking.getTurn().getTurnId()))? reserve(booking)? 
+						success.append(booking).toString():FAILED_CAPACITY : FAILED_MESAS;
 	}
 	
 	/***
