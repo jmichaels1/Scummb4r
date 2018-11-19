@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +18,10 @@ import com.google.common.collect.Sets;
  * @author J Michael
  *
  */
-public class TurnDAOImp extends AppConfig implements Dao<Turn> {
+public class TurnDAOImp implements Dao<Turn> {
+	
+	@PersistenceContext
+    EntityManager entityManager;
 	
 	@Override
 	public void save(Turn turn) {

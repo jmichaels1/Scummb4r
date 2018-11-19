@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
@@ -11,7 +14,10 @@ import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.google.common.collect.Sets;
 
-public class RestaurantDAOImp extends AppConfig implements Dao<Restaurant> {
+public class RestaurantDAOImp implements Dao<Restaurant> {
+	
+	@PersistenceContext
+    EntityManager entityManager;
 
 	@Override
 	public void save(Restaurant restaurant) {

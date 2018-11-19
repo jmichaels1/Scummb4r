@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,8 +20,10 @@ import com.google.common.collect.Sets;
  * @author J Michael
  *
  */
-public class BookingDAOImp extends AppConfig implements Dao<Booking> {
+public class BookingDAOImp implements Dao<Booking> {
 	
+	@PersistenceContext
+    EntityManager entityManager;
 
 	@Override
 	public void save(Booking booking) {

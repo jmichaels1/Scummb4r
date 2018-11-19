@@ -3,6 +3,9 @@ package com.everis.bcn.daoImp;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Mesa;
@@ -16,8 +19,11 @@ import com.google.common.collect.Sets;
  * @author J Michael
  *
  */
-public class MesaDAOImp extends AppConfig implements Dao<Mesa> {
-
+public class MesaDAOImp implements Dao<Mesa> {
+	
+	@PersistenceContext
+    EntityManager entityManager;
+	
 	@Override
 	public void save(Mesa mesa) {
 		entityManager.getTransaction().begin();
