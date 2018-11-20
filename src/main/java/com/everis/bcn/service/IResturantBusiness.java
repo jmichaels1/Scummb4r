@@ -2,6 +2,8 @@ package com.everis.bcn.service;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
@@ -21,4 +23,5 @@ public interface IResturantBusiness {
 	public Set<Restaurant> getRestaurants();
 	public Set<Turn> getTurns();
 	public Set<Booking> getBookings();
+	public String messageByRegisterBooking(Booking booking);
 }
