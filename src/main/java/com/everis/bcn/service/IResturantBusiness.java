@@ -23,5 +23,4 @@ public interface IResturantBusiness {
 	public Set<Restaurant> getRestaurants();
 	public Set<Turn> getTurns();
 	public Set<Booking> getBookings();
-	public String messageByRegisterBooking(Booking booking);
 }

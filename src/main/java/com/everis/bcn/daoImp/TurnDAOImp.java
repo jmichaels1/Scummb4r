@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.everis.bcn.config.AppConfig;
+import com.everis.bcn.config.EntityManagerConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Turn;
 import com.google.common.collect.Sets;
@@ -22,14 +23,14 @@ import com.google.common.collect.Sets;
  * @author J Michael
  *
  */
-@Component
 public class TurnDAOImp implements Dao<Turn> {
 	
-//	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-//    EntityManager entityManager = ctx.getBean(EntityManager.class);
+//	@Autowired
+//	EntityManager entityManager;
 	
-	@PersistenceContext
-	EntityManager entityManager;
+	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+	EntityManagerConfig entityManagerConf = ctx.getBean(EntityManagerConfig.class);
+	EntityManager entityManager = entityManagerConf.getEntityManager();
 	
 	@Override
 	public void save(Turn turn) {

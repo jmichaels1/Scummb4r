@@ -38,16 +38,15 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 @Controller
 public class BookingController extends BookingAssembler {
 	
-	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-	private IResturantBusiness iResturantBusinessImp = context.getBean(IResturantBusiness.class);
+	private IResturantBusinessImp iResturantBusinessImp;
 	private BookingDtoValidate dtoValidate;
 	
-//	/**
-//	 * Método Constructor
-//	 */
-//	public BookingController() {
-//		//dtoValidate = new BookingDtoValidate();
-//	}
+	/**
+	 * Método Constructor
+	 */
+	public BookingController() {
+		dtoValidate = new BookingDtoValidate();
+	}
 
 	@RequestMapping(value="booking", method=RequestMethod.GET)
 	public ModelAndView booking() {
@@ -56,7 +55,7 @@ public class BookingController extends BookingAssembler {
 	
 	@RequestMapping(method=RequestMethod.POST)
     public ModelAndView form(@ModelAttribute("command") BookingDto dto, BindingResult result, SessionStatus session){
-//		iResturantBusinessImp = new IResturantBusinessImp();
+		iResturantBusinessImp = new IResturantBusinessImp();
 		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
 		
@@ -77,7 +76,7 @@ public class BookingController extends BookingAssembler {
 	
 	@ModelAttribute("aListRestaurnt")
 	public ArrayList<Integer> getRestaurantIdList(){
-//		iResturantBusinessImp = new IResturantBusinessImp();
+		iResturantBusinessImp = new IResturantBusinessImp();
 		final ArrayList<Integer> aListRestaurnt = new ArrayList<Integer>();
 		iResturantBusinessImp.getRestaurants().stream().forEach(new Consumer<Restaurant>() {
 			@Override
@@ -90,7 +89,7 @@ public class BookingController extends BookingAssembler {
 	
 	@ModelAttribute("aListTurn")
 	public ArrayList<Integer> getTurnList(){
-//		iResturantBusinessImp = new IResturantBusinessImp();
+		iResturantBusinessImp = new IResturantBusinessImp();
 		final ArrayList<Integer> aListTurn = new ArrayList<Integer>();
 		iResturantBusinessImp.getTurns().stream().forEach(new Consumer<Turn>() {
 			@Override

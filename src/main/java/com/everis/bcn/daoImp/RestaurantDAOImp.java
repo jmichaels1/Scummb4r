@@ -7,26 +7,31 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.everis.bcn.config.AppConfig;
+import com.everis.bcn.config.EntityManagerConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.google.common.collect.Sets;
 
-@Component
+
+/**
+ * 
+ * @author J Michael
+ *
+ */
 public class RestaurantDAOImp implements Dao<Restaurant> {
 	
-//	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-//    EntityManager entityManager = ctx.getBean(EntityManager.class);
-	
-	@PersistenceContext
-	EntityManager entityManager;
+	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+	EntityManagerConfig entityManagerConf = ctx.getBean(EntityManagerConfig.class);
+	EntityManager entityManager = entityManagerConf.getEntityManager();
 
 	@Override
 	public void save(Restaurant restaurant) {

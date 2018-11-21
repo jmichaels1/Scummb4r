@@ -21,42 +21,13 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  *
  */
 @Configuration
-@EnableTransactionManagement
-@ComponentScans(value = { @ComponentScan("com.everis.bcn.dao"),
-		@ComponentScan("com.everis.bcn.service") })
+@ComponentScan(basePackageClasses = EntityManagerConfig.class)
 public class AppConfig {
-
-	// private EntityManager entityManager;
-	//
-	// @Bean
-	// public EntityManager getEntity() {
-	// if (entityManager != null) entityManager =
-	// Persistence.createEntityManagerFactory("persistence").createEntityManager();
-	// return entityManager;
-	// }
-
-	// public AppConfig() {
-	// if (entityManager == null) entityManager =
-	// Persistence.createEntityManagerFactory("persistence").createEntityManager();
-	// }
-
-	@Bean
-	public LocalEntityManagerFactoryBean geEntityManagerFactoryBean() {
-		LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-		factoryBean.setPersistenceUnitName("persistence");
-		return factoryBean;
-	}
-
-	@Bean
-	public JpaTransactionManager geJpaTransactionManager() {
-		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(geEntityManagerFactoryBean().getObject());
-		return transactionManager;
-	}
 	
 	@Bean
-	public IResturantBusiness negocio() {
-		return new IResturantBusinessImp();
+	public EntityManager getEntity() {
+		return Persistence
+				.createEntityManagerFactory("persistence")
+				.createEntityManager();
 	}
-
 }
