@@ -31,9 +31,9 @@ public class MesaDAOImp implements Dao<Mesa> {
 //	@Autowired
 //	EntityManager entityManager;
 	
-	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-	EntityManagerConfig entityManagerConf = ctx.getBean(EntityManagerConfig.class);
-	EntityManager entityManager = entityManagerConf.getEntityManager();
+//	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+//	EntityManagerConfig entityManagerConf = ctx.getBean(EntityManagerConfig.class);
+//	EntityManager entityManager = entityManagerConf.getEntityManager();
 	
 	@Override
 	public void save(Mesa mesa) {
