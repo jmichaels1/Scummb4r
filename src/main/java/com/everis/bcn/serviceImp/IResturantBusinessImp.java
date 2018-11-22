@@ -122,7 +122,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * in lozalizator
 	 */
 	private long updateMesaLozalizator(long localizator, int mesaId) {
-		StringBuilder sb = new StringBuilder(String.valueOf(localizator));
-		return  Long.parseLong(sb.substring(0, 1) + mesaId + sb.substring(2, sb.length()-1));
+		System.out.println("LOZALIZATOR A MUTAR : " + localizator);
+		String sb = String.valueOf(localizator);
+		return  Long.parseLong(sb.substring(0, 2) + mesaId + sb.substring(2, sb.length()));
 	}
 }
