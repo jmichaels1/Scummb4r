@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.jpa.criteria.expression.function.SubstringFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -35,12 +36,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private RestaurantDAOImp restaurantDao = new RestaurantDAOImp();
 	private TurnDAOImp turnDAO = new TurnDAOImp();
 	private MesaDAOImp mesaDao = new MesaDAOImp();
-	
-//	private BookingDAOImp bookinDao;
-//	private RestaurantDAOImp restaurantDao;
-//	private TurnDAOImp turnDAO;
-//	private MesaDAOImp mesaDao;
-	
+		
 	private StringBuilder success = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
 	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
 	private static final String FAILED_CAPACITY = "LO SIENTO, no hay mesas disponibles para la cantidad de personas";
@@ -64,9 +60,11 @@ public class IResturantBusinessImp implements IResturantBusiness {
 			Set<Mesa> setBookingMesa = bookinDao.getMesasIdOfTheTurn(booking.getRestaurant().getRestaurantId(), booking.getTurn().getTurnId());
 			List<Mesa> listMesasAvailables = setMesa.stream().filter(mesa -> (!setBookingMesa.contains(mesa) && booking.getPersonas()<=mesa.getCapacity())).collect(Collectors.toList());
 			booking.setMesa(listMesasAvailables.size()>0? listMesasAvailables.get(0): null);
-			if (booking.getMesa() == null) resp = false;
-			else bookinDao.save(booking);
-
+			if (booking.getMesa() != null) {
+				booking.setLocalizador(updateMesaLozalizator(booking.getLocalizador(), booking.getMesa().getId()));
+				bookinDao.save(booking);
+			} else resp = false;
+			 
 		return resp;
 	}
 	
@@ -76,7 +74,6 @@ public class IResturantBusinessImp implements IResturantBusiness {
 		restaurantDao.save(restaurant);
 	}
 	
-
 	@Override
 	public Set<Restaurant> getRestaurants() {
 		return restaurantDao.getAll();
@@ -120,6 +117,12 @@ public class IResturantBusinessImp implements IResturantBusiness {
 						.contains(mesa))).collect(Collectors.toList()).size()>0;
 	}
 	
-	
-	//public String getMessageBooking
+	/**
+	 * add mesaId 
+	 * in lozalizator
+	 */
+	private long updateMesaLozalizator(long localizator, int mesaId) {
+		StringBuilder sb = new StringBuilder(String.valueOf(localizator));
+		return  Long.parseLong(sb.substring(0, 1) + mesaId + sb.substring(2, sb.length()-1));
+	}
 }

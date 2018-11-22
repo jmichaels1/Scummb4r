@@ -27,14 +27,6 @@ import com.google.common.collect.Sets;
  */
 public class BookingDAOImp implements Dao<Booking> {
 	
-//	@Autowired
-//	EntityManager entityManager;
-	
-//	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-//	EntityManagerConfig entityManagerConf = ctx.getBean(EntityManagerConfig.class);
-//	EntityManager entityManager = entityManagerConf.getEntityManager();
-	
-
 	@Override
 	public void save(Booking booking) {
 		entityManager.getTransaction().begin();
@@ -59,7 +51,6 @@ public class BookingDAOImp implements Dao<Booking> {
 	@Override
 	public void delete(int id) {
 		entityManager.getTransaction().begin();
-		Booking b = get(id);
 		entityManager.remove(get(id));
 		entityManager.getTransaction().commit();
 //		entityManager.close();

@@ -23,6 +23,8 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 public class BookingAssembler extends IResturantBusinessImp {
 	
 	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("dd/MM/yyyy");
+	private ModelMapper modelMapper;
+	private Booking booking;
 
 	/**
 	 * get BookingDto object
@@ -30,9 +32,20 @@ public class BookingAssembler extends IResturantBusinessImp {
 	 * @return
 	 */
 	public Booking getBookingFromDto(BookingDto bookingDto) {
-		System.out.println("bookingDTO to mapped : " + bookingDto);
-		Booking booking = new Booking();
-		ModelMapper modelMapper = new ModelMapper();
+		booking = new Booking();
+		modelMapper = modelMapperConfig();
+		modelMapper.map(bookingDto, booking);
+		booking.setLocalizador(generateLocalizator());
+		return booking;
+	}
+	
+	/**
+	 * config modelmapper
+	 * by reserve mapping
+	 * @return
+	 */
+	public ModelMapper modelMapperConfig() {
+		modelMapper = new ModelMapper();
 		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
 		modelMapper.addMappings(new PropertyMap<BookingDto, Booking>() {
 			@Override
@@ -43,21 +56,7 @@ public class BookingAssembler extends IResturantBusinessImp {
 				map().setPersonas(source.getPersons());
 			}
 		});
-		
-		
-		Restaurant restaurant = new Restaurant();
-		restaurant.setRestaurantId(1);
-		
-		Mesa m = new Mesa();
-		m.setId(1);
-		m.setRestaurant(restaurant); 
-		
-		modelMapper.map(bookingDto, booking);
-		booking.setMesa(m);
-		
-		booking.setLocalizador(generateLocalizator(booking));
-		
-		return booking;
+		return modelMapper;
 	}
 	
 	/**
@@ -65,14 +64,9 @@ public class BookingAssembler extends IResturantBusinessImp {
 	 * @param booking
 	 * @return
 	 */
-	private long generateLocalizator(Booking booking) {		
-//		return Long.parseLong(booking.getRestaurant().getRestaurantId() + booking.getTurn().getTurnId(
-//				)+FORMAT.format(booking.getDay()).replaceAll("/", ""));
-		return 123456;
+	private long generateLocalizator() {		
+		return Long.parseLong(""+booking.getRestaurant().getRestaurantId() 
+				+ booking.getTurn().getTurnId() +  FORMAT.format(booking.getDay())
+				.replaceAll("/", ""));
 	}
-	
-	
-	
-	
-
 }

@@ -28,10 +28,6 @@ import com.google.common.collect.Sets;
  *
  */
 public class RestaurantDAOImp implements Dao<Restaurant> {
-	
-//	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-//	EntityManagerConfig entityManagerConf = ctx.getBean(EntityManagerConfig.class);
-//	EntityManager entityManager = entityManagerConf.getEntityManager();
 
 	@Override
 	public void save(Restaurant restaurant) {
