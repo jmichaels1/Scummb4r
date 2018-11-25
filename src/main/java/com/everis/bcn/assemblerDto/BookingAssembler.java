@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
 import com.everis.bcn.dto.BookingDto;
+import com.everis.bcn.dto.CancelDto;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
@@ -27,18 +28,18 @@ public class BookingAssembler extends IResturantBusinessImp {
 	 */
 	public Booking getBookingFromDto(BookingDto bookingDto) {
 		booking = new Booking();
-		modelMapper = modelMapperConfig();
+		modelMapper = modelMapperBookingConfig();
 		modelMapper.map(bookingDto, booking);
 		booking.setLocalizador(generateLocalizator());
 		return booking;
 	}
 	
 	/**
-	 * config modelmapper
+	 * config modelmapper booking
 	 * by reserve mapping
 	 * @return
 	 */
-	public ModelMapper modelMapperConfig() {
+	public ModelMapper modelMapperBookingConfig() {
 		modelMapper = new ModelMapper();
 		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
 		modelMapper.addMappings(new PropertyMap<BookingDto, Booking>() {
@@ -48,6 +49,25 @@ public class BookingAssembler extends IResturantBusinessImp {
 				map().setDay(source.getDay());
 				map().setTurn(source.getTurn());
 				map().setPersonas(source.getPersons());
+			}
+		});
+		return modelMapper;
+	}
+	
+	/**
+	 * config modelmapper cancel booking
+	 * @return
+	 */
+	public ModelMapper modelMapperCancelConfig() {
+		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
+		modelMapper.addMappings(new PropertyMap<CancelDto, Booking>() {
+			@Override
+			protected void configure() {
+				map().setRestaurant(source.getResturant()); 
+				map().setDay(source.getDay());
+				map().setTurn(source.getTurn());
+				map().setLocalizador(source.getLocalizator());
 			}
 		});
 		return modelMapper;

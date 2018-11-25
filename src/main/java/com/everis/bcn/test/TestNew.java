@@ -80,7 +80,14 @@ public class TestNew {
 			
 //			dao_rest.getAll().stream().forEach(Rest -> System.out.println(Rest));
 			
-			dao_rest.get(2).getaListBooking().stream().forEach(booking -> System.out.println(booking));
+//			dao_rest.get(2).getaListBooking().stream().forEach(booking -> System.out.println(booking));
+			
+			Booking b = new Booking();
+			b.setBookingId(16);
+			
+			dao_booking.delete(b.getBookingId());
+			
+			
 		
 		} catch (Exception e) {
 			System.out.println("Error : " + e.getMessage() + e.getCause());

@@ -3,6 +3,8 @@ package com.everis.bcn.dto;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.everis.bcn.daoImp.RestaurantDAOImp;
+import com.everis.bcn.daoImp.TurnDAOImp;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
 
@@ -17,9 +19,9 @@ public class CancelDto {
 	private ArrayList<Turn> aListTurn;
 	
 	private int restaurantId;
-	private Date dia;
+	private Date day;
 	private int turnId;
-	private int locator;
+	private int localizator;
 	
 	/*** Getters And Setters ****/
 	
@@ -41,11 +43,11 @@ public class CancelDto {
 	public void setRestaurantId(int restaurantId) {
 		this.restaurantId = restaurantId;
 	}
-	public Date getDia() {
-		return dia;
+	public Date getDay() {
+		return day;
 	}
-	public void setDia(Date dia) {
-		this.dia = dia;
+	public void setDay(Date day) {
+		this.day = day;
 	}
 	public int getTurnId() {
 		return turnId;
@@ -53,13 +55,20 @@ public class CancelDto {
 	public void setTurnId(int turnId) {
 		this.turnId = turnId;
 	}
-	public int getLocator() {
-		return locator;
+	public int getLocalizator() {
+		return localizator;
 	}
-	public void setLocator(int locator) {
-		this.locator = locator;
+	public void setLocalizator(int localizator) {
+		this.localizator = localizator;
 	}
 	
+	/******* Métodos agregados **********/
 	
-
+	public Restaurant getResturant() {
+		return new RestaurantDAOImp().get(restaurantId);
+	}
+	
+	public Turn getTurn() {
+		return new TurnDAOImp().get(turnId);
+	}
 }
