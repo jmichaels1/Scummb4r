@@ -1,6 +1,7 @@
 package com.everis.bcn.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -151,16 +152,8 @@ public class Booking implements Serializable {
 
 	@Override
 	public String toString() {
-//		final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-mm-yyyy");
-//		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + 
-//				FORMAT.format(day) + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
+		SimpleDateFormat FORMAT = new SimpleDateFormat("dd-mm-yyyy");
 		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + 
-		day + ", mesa=" + mesa + ", turn=" + turn + "]";
+				FORMAT.format(day) + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
 	}
-	
-	
-	
-
-	
-
 }

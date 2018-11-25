@@ -1,8 +1,6 @@
 package com.everis.bcn.config;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
 import org.springframework.stereotype.Component;
 
 /**

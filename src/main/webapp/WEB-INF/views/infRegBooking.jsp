@@ -9,7 +9,6 @@
 <body>
 	<div class="container">
 		<div class="card card-container">
-			<h1>¡¡ Reserva con éxito !!</h1>
 <%-- 			<link href="<c:url value="resources/css/styles.css" />" --%>
 <!-- 				rel="stylesheet" /> -->
 <!-- 			<link -->

@@ -5,7 +5,6 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.everis.bcn.dto.BookingDto;
-import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
 /**
@@ -15,9 +14,6 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  */
 public class BookingDtoValidate implements Validator {
 	
-	private IResturantBusinessImp iResturantBusinessImp;
-	private Boolean isAvailable = true;
-
 	@Override
 	public boolean supports(Class<?> type) {
 		return BookingDto.class.isAssignableFrom(type);

@@ -1,16 +1,11 @@
 package com.everis.bcn.serviceImp;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
-
-import org.hibernate.jpa.criteria.expression.function.SubstringFunction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.MesaDAOImp;
@@ -23,7 +18,6 @@ import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
 import com.everis.bcn.service.IResturantBusiness;
-import com.mysql.cj.xdevapi.Result;
 
 /**
  * 
@@ -41,6 +35,9 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
 	private static final String FAILED_CAPACITY = "LO SIENTO, no hay mesas disponibles para la cantidad de personas";
 	
+	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+	
+	
 	@Override
 	public boolean editBooking(Booking booking) {
 		// TODO Auto-generated method stub
@@ -57,9 +54,11 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public boolean reserve(Booking booking) {
 		boolean resp = true;
 			Set<Mesa> setMesa = mesaDao.getMesasIdOfTheRestaurant(booking.getRestaurant().getRestaurantId());
-			Set<Mesa> setBookingMesa = bookinDao.getMesasIdOfTheTurn(booking.getRestaurant().getRestaurantId(), booking.getTurn().getTurnId());
-			List<Mesa> listMesasAvailables = setMesa.stream().filter(mesa -> (!setBookingMesa.contains(mesa) && booking.getPersonas()<=mesa.getCapacity())).collect(Collectors.toList());
-			booking.setMesa(listMesasAvailables.size()>0? listMesasAvailables.get(0): null);
+			Set<Mesa> setBookingMesa = bookinDao.getMesasIdOfTheTurn(booking.getRestaurant().getRestaurantId(), 
+					booking.getTurn().getTurnId());
+			List<Mesa> listMesasAvailablesCapacity = setMesa.stream().filter(mesa -> (!setBookingMesa.contains(mesa) 
+					&& booking.getPersonas()<=mesa.getCapacity())).collect(Collectors.toList());
+			booking.setMesa(listMesasAvailablesCapacity.size()>0? listMesasAvailablesCapacity.get(0): null);
 			if (booking.getMesa() != null) {
 				booking.setLocalizador(updateMesaLozalizator(booking.getLocalizador(), booking.getMesa().getId()));
 				bookinDao.save(booking);
@@ -100,7 +99,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public String messageByRegisterBooking(Booking booking) {
 		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
 				booking.getTurn().getTurnId()))? reserve(booking)? 
-						success.append(booking).toString():FAILED_CAPACITY : FAILED_MESAS;
+						success.append(bookingDetail(booking)).toString():FAILED_CAPACITY : FAILED_MESAS;
 	}
 	
 	/***
@@ -124,5 +123,17 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private long updateMesaLozalizator(long localizator, int mesaId) {
 		return  Long.parseLong(String.valueOf(localizator).substring(0, 2) + mesaId 
 				+ String.valueOf(localizator).substring(2, String.valueOf(localizator).length()));
+	}
+	
+	/**
+	 * info detail string
+	 * @return
+	 */
+	private String bookingDetail(Booking booking) {
+		return " detail : Codigo de Restaurant - " + booking.getRestaurant().getRestaurantId() + "\n" + 
+						"Mesa - " + booking.getMesa().getId() + "\n" + 
+						"Day - " + FORMAT.format(booking.getDay()) + "\n" +  
+						"Turno - " + booking.getTurn().getTurnId() + "\n" +  
+						"Localizator : " + booking.getLocalizador();
 	}
 }
