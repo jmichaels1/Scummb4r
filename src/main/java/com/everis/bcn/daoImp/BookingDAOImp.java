@@ -85,7 +85,6 @@ public class BookingDAOImp implements Dao<Booking> {
 						+ "From Booking a "
 						+ "where a.localizador = " + booking.getLocalizador(), Booking.class)
 				.getSingleResult();
-		return booking.getLocalizador() == booking_aux.getLocalizador();
+		return booking.equals(booking_aux);
 	}
-	
 }

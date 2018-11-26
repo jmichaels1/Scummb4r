@@ -18,14 +18,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  * @author J Michael
  *
  */
-public class BookingDto {
+public class BookingDto extends Dto {
 
-	private ArrayList<Restaurant> aListRestaurant;
-	private ArrayList<Turn> aListTurn;
-	
-	private int restaurantId;
-	private Date day;
-	private int turnId;
+//	private ArrayList<Restaurant> aListRestaurant;
+//	private ArrayList<Turn> aListTurn;
+//	
+//	private int restaurantId;
+//	private Date day;
+//	private int turnId;
 	private int persons;
 	private Mesa mesa;
 	
@@ -33,31 +33,31 @@ public class BookingDto {
 	
 	/**** Getters And Setters *****/
 	
-	public ArrayList<Restaurant> getaListRestaurant() {
-		return aListRestaurant;
-	}
-	public void setaListRestaurant(ArrayList<Restaurant> aListRestaurant) {
-		this.aListRestaurant = aListRestaurant;
-	}
-	public ArrayList<Turn> getaListTurn() {
-		return aListTurn;
-	}
-	public void setaListTurn(ArrayList<Turn> aListTurn) {
-		this.aListTurn = aListTurn;
-	}
-	public int getRestaurantId() {
-		return restaurantId;
-	}
-	public void setRestaurantId(int restaurantId) {
-		this.restaurantId = restaurantId;
-	}
-	
-	public int getTurnId() {
-		return turnId;
-	}
-	public void setTurnId(int turnId) {
-		this.turnId = turnId;
-	}
+//	public ArrayList<Restaurant> getaListRestaurant() {
+//		return aListRestaurant;
+//	}
+//	public void setaListRestaurant(ArrayList<Restaurant> aListRestaurant) {
+//		this.aListRestaurant = aListRestaurant;
+//	}
+//	public ArrayList<Turn> getaListTurn() {
+//		return aListTurn;
+//	}
+//	public void setaListTurn(ArrayList<Turn> aListTurn) {
+//		this.aListTurn = aListTurn;
+//	}
+//	public int getRestaurantId() {
+//		return restaurantId;
+//	}
+//	public void setRestaurantId(int restaurantId) {
+//		this.restaurantId = restaurantId;
+//	}
+//	
+//	public int getTurnId() {
+//		return turnId;
+//	}
+//	public void setTurnId(int turnId) {
+//		this.turnId = turnId;
+//	}
 	public int getPersons() {
 		return persons;
 	}
@@ -70,32 +70,32 @@ public class BookingDto {
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
 	}
-
-	public Date getDay() {
-		return day;
-	}
-
-
-	public void setDay(Date day) throws ParseException {
-		this.day = day;
-	}
-	
-	/******* Métodos agregados **********/
-	
-	public Restaurant getResturant() {
-		return new RestaurantDAOImp().get(restaurantId);
-	}
-	
-	public Turn getTurn() {
-		return new TurnDAOImp().get(turnId);
-	}
-	
-	
-	@Override
-	public String toString() {
-		return "BookingDto [aListRestaurant=" + aListRestaurant + ", aListTurn=" + aListTurn + ", restaurantId="
-				+ restaurantId + ", day=" + day + ", turnId=" + turnId + ", persons=" + persons + ", mesa=" + mesa
-				+ "]";
-	}
+//
+//	public Date getDay() {
+//		return day;
+//	}
+//
+//
+//	public void setDay(Date day) throws ParseException {
+//		this.day = day;
+//	}
+//	
+//	/******* Métodos agregados **********/
+//	
+//	public Restaurant getResturant() {
+//		return new RestaurantDAOImp().get(restaurantId);
+//	}
+//	
+//	public Turn getTurn() {
+//		return new TurnDAOImp().get(turnId);
+//	}
+//	
+//	
+//	@Override
+//	public String toString() {
+//		return "BookingDto [aListRestaurant=" + aListRestaurant + ", aListTurn=" + aListTurn + ", restaurantId="
+//				+ restaurantId + ", day=" + day + ", turnId=" + turnId + ", persons=" + persons + ", mesa=" + mesa
+//				+ "]";
+//	}
 	
 }

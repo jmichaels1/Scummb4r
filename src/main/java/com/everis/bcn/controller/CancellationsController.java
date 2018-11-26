@@ -41,11 +41,11 @@ public class CancellationsController extends BookingAssembler  {
 	 */
 	@RequestMapping(value="cancel", method=RequestMethod.GET)
 	public ModelAndView cancel() {
-		return new ModelAndView("cancel", "command2", new CancelDto());
+		return new ModelAndView("cancel", "command", new CancelDto());
 	}
 	
 	@RequestMapping(value="cancel", method=RequestMethod.POST)
-    public ModelAndView formCancel(@ModelAttribute("command2") CancelDto dto, BindingResult result, SessionStatus session){
+    public ModelAndView formCancel(@ModelAttribute("command") CancelDto dto, BindingResult result, SessionStatus session){
 		iResturantBusinessImp = new IResturantBusinessImp();
 //		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
@@ -53,7 +53,7 @@ public class CancellationsController extends BookingAssembler  {
 //		dtoValidate.validate(dto, result);
 //		if (!result.hasErrors()) {
 			mv.setViewName("infRegCancelBooking");
-			mv.addObject("message", iResturantBusinessImp.messageByCancelBooking(getBookingFromDto(dto, this.modelMapperCancelConfig()))); 
+			mv.addObject("message", iResturantBusinessImp.messageByCancelBooking(getBookingFromDto(dto, modelMapperCancelConfig()))); 
 //		} else {
 //			mv.setViewName("booking");
 //			mv.addObject("command", new BookingDto());

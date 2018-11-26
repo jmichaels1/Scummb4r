@@ -62,7 +62,7 @@ public class BookingController extends BookingAssembler {
 		if (!result.hasErrors()) {
 			mv.setViewName("infRegBooking");
 			mv.addObject("message", iResturantBusinessImp
-					.messageByRegisterBooking(getBookingFromDto(dto, this.modelMapperBookingConfig()))); 
+					.messageByRegisterBooking(getBookingFromDto(dto, modelMapperBookingConfig()))); 
 		} else {
 			mv.setViewName("booking");
 			mv.addObject("command", new BookingDto());

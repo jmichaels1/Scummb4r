@@ -68,7 +68,7 @@
 				<span class="col-md-1 col-md-offset-2 text-center"><i
 					class="fa fa-phone-square bigicon"></i></span>
 				<div class="col-md-8">
-					<form:label path="persons">Localizator : </form:label>
+					<form:label path="localizator">Localizator : </form:label>
 					<form:input id="localizator" path="localizator" name="localizator" type="text"
 						placeholder="localizator" class="form-control" />
 					<form:errors path="localizator" />

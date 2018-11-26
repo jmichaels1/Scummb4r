@@ -34,12 +34,14 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private TurnDAOImp turnDAO = new TurnDAOImp();
 	private MesaDAOImp mesaDao = new MesaDAOImp();
 	
-	private ModelMapper modelMapper;
-		
-	private StringBuilder success = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
+	private StringBuilder success_booking = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
 	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
 	private static final String FAILED_CAPACITY = "LO SIENTO, no hay mesas disponibles para la cantidad de personas";
 	
+	private StringBuilder success_cancelBooking = new StringBuilder("Su reserva ha sido Cancelada : ");
+	private static final String FAILED_CANCEL = "LO SIENTO, los datos de la reserva no son correctos";
+	
+	private ModelMapper modelMapper;
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 	
 	
@@ -65,7 +67,9 @@ public class IResturantBusinessImp implements IResturantBusiness {
 					booking.getTurn().getTurnId());
 			List<Mesa> listMesasAvailablesCapacity = setMesa.stream().filter(mesa -> (!setBookingMesa.contains(mesa) 
 					&& booking.getPersonas()<=mesa.getCapacity())).collect(Collectors.toList());
+			
 			booking.setMesa(listMesasAvailablesCapacity.size()>0? listMesasAvailablesCapacity.get(0): null);
+			
 			if (booking.getMesa() != null) {
 				booking.setLocalizador(updateMesaLozalizator(booking.getLocalizador(), booking.getMesa().getId()));
 				bookinDao.save(booking);
@@ -106,7 +110,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public String messageByRegisterBooking(Booking booking) {
 		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
 				booking.getTurn().getTurnId()))? reserve(booking)? 
-						success.append(bookingDetail(booking)).toString():FAILED_CAPACITY : FAILED_MESAS;
+						success_booking.append(bookingDetail(booking)).toString():FAILED_CAPACITY : FAILED_MESAS;
 	}
 	
 	/***
@@ -182,9 +186,13 @@ public class IResturantBusinessImp implements IResturantBusiness {
 		});
 		return modelMapper;
 	}
-
+	
+	/***
+	 * 
+	 * @param bookingFromDto
+	 * @return
+	 */
 	public String messageByCancelBooking(Booking bookingFromDto) {
-		// TODO Auto-generated method stub
-		return null;
+		return cancelBooking(bookingFromDto)? success_cancelBooking.toString() : FAILED_CANCEL;
 	}
 }

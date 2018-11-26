@@ -7,6 +7,7 @@ import org.modelmapper.PropertyMap;
 
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.dto.CancelDto;
+import com.everis.bcn.dto.Dto;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
@@ -25,9 +26,9 @@ public class BookingAssembler extends IResturantBusinessImp {
 	 * from booking
 	 * @return
 	 */
-	public Booking getBookingFromDto(Object bookingDto, ModelMapper modelMapper) {
+	public Booking getBookingFromDto(Dto dto, ModelMapper modelMapper) {
 		booking = new Booking();
-		modelMapper.map(bookingDto, booking);
+		modelMapper.map(dto, booking);
 		booking.setLocalizador(generateLocalizator());
 		return booking;
 	}

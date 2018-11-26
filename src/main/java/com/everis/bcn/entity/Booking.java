@@ -125,14 +125,15 @@ public class Booking implements Serializable {
 	public void setTurn(Turn turn) {
 		this.turn = turn;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + bookingId;
+		result = prime * result + ((day == null) ? 0 : day.hashCode());
+		result = prime * result + (int) (localizador ^ (localizador >>> 32));
+		result = prime * result + ((restaurant == null) ? 0 : restaurant.hashCode());
+		result = prime * result + ((turn == null) ? 0 : turn.hashCode());
 		return result;
 	}
 
@@ -145,15 +146,23 @@ public class Booking implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Booking other = (Booking) obj;
-		if (bookingId != other.bookingId)
+		if (day == null) {
+			if (other.day != null)
+				return false;
+		} else if (!day.equals(other.day))
+			return false;
+		if (localizador != other.localizador)
+			return false;
+		if (restaurant == null) {
+			if (other.restaurant != null)
+				return false;
+		} else if (!restaurant.equals(other.restaurant))
+			return false;
+		if (turn == null) {
+			if (other.turn != null)
+				return false;
+		} else if (!turn.equals(other.turn))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		SimpleDateFormat FORMAT = new SimpleDateFormat("dd-mm-yyyy");
-		return "Booking [id=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day=" + 
-				FORMAT.format(day) + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
 	}
 }
