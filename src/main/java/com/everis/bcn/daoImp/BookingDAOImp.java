@@ -2,7 +2,13 @@ package com.everis.bcn.daoImp;
 
 import java.util.ArrayList;
 import java.util.Set;
+
+import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
+
 import com.everis.bcn.dao.Dao;
+import com.everis.bcn.dto.BookingDto;
+import com.everis.bcn.dto.CancelDto;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
 import com.google.common.collect.Sets;
@@ -65,6 +71,21 @@ public class BookingDAOImp implements Dao<Booking> {
 						+ "where a.restaurant.id = " + restaurantId + 
 								" and a.turn.id = " + turnId, Mesa.class)
 				.getResultList());
+	}
+	
+	/**
+	 * valid booking
+	 * from cancel dto
+	 * @param booking
+	 * @return
+	 */
+	public boolean isValidBooking(Booking booking) {
+		Booking booking_aux = entityManager
+				.createQuery("Select a "
+						+ "From Booking a "
+						+ "where a.localizador = " + booking.getLocalizador(), Booking.class)
+				.getSingleResult();
+		return booking.getLocalizador() == booking_aux.getLocalizador();
 	}
 	
 }

@@ -18,7 +18,6 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 public class BookingAssembler extends IResturantBusinessImp {
 	
 	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("dd/MM/yyyy");
-	private ModelMapper modelMapper;
 	private Booking booking;
 
 	/**
@@ -26,51 +25,11 @@ public class BookingAssembler extends IResturantBusinessImp {
 	 * from booking
 	 * @return
 	 */
-	public Booking getBookingFromDto(BookingDto bookingDto) {
+	public Booking getBookingFromDto(Object bookingDto, ModelMapper modelMapper) {
 		booking = new Booking();
-		modelMapper = modelMapperBookingConfig();
 		modelMapper.map(bookingDto, booking);
 		booking.setLocalizador(generateLocalizator());
 		return booking;
-	}
-	
-	/**
-	 * config modelmapper booking
-	 * by reserve mapping
-	 * @return
-	 */
-	public ModelMapper modelMapperBookingConfig() {
-		modelMapper = new ModelMapper();
-		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
-		modelMapper.addMappings(new PropertyMap<BookingDto, Booking>() {
-			@Override
-			protected void configure() {
-				map().setRestaurant(source.getResturant()); 
-				map().setDay(source.getDay());
-				map().setTurn(source.getTurn());
-				map().setPersonas(source.getPersons());
-			}
-		});
-		return modelMapper;
-	}
-	
-	/**
-	 * config modelmapper cancel booking
-	 * @return
-	 */
-	public ModelMapper modelMapperCancelConfig() {
-		modelMapper = new ModelMapper();
-		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
-		modelMapper.addMappings(new PropertyMap<CancelDto, Booking>() {
-			@Override
-			protected void configure() {
-				map().setRestaurant(source.getResturant()); 
-				map().setDay(source.getDay());
-				map().setTurn(source.getTurn());
-				map().setLocalizador(source.getLocalizator());
-			}
-		});
-		return modelMapper;
 	}
 	
 	/**

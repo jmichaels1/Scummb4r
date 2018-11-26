@@ -20,7 +20,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  * @author J Michael
  *
  */
-@Controller
+@Controller("/booking")
 public class BookingController extends BookingAssembler {
 	
 	private IResturantBusinessImp iResturantBusinessImp;
@@ -52,7 +52,7 @@ public class BookingController extends BookingAssembler {
 	 * @param session
 	 * @return
 	 */
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="booking", method=RequestMethod.POST)
     public ModelAndView form(@ModelAttribute("command") BookingDto dto, BindingResult result, SessionStatus session){
 		iResturantBusinessImp = new IResturantBusinessImp();
 		dtoValidate = new BookingDtoValidate();
@@ -61,7 +61,8 @@ public class BookingController extends BookingAssembler {
 		dtoValidate.validate(dto, result);
 		if (!result.hasErrors()) {
 			mv.setViewName("infRegBooking");
-			mv.addObject("message", iResturantBusinessImp.messageByRegisterBooking(getBookingFromDto(dto))); 
+			mv.addObject("message", iResturantBusinessImp
+					.messageByRegisterBooking(getBookingFromDto(dto, this.modelMapperBookingConfig()))); 
 		} else {
 			mv.setViewName("booking");
 			mv.addObject("command", new BookingDto());

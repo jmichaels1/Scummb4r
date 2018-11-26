@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
+
 import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.MesaDAOImp;
 import com.everis.bcn.daoImp.RestaurantDAOImp;
@@ -30,6 +33,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private RestaurantDAOImp restaurantDao = new RestaurantDAOImp();
 	private TurnDAOImp turnDAO = new TurnDAOImp();
 	private MesaDAOImp mesaDao = new MesaDAOImp();
+	
+	private ModelMapper modelMapper;
 		
 	private StringBuilder success = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
 	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
@@ -46,8 +51,10 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	
 	@Override
 	public boolean cancelBooking(Booking booking) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean resp = true;
+		if (!bookinDao.isValidBooking(booking)) resp = false;
+		else bookinDao.delete(booking.getBookingId());
+		return resp;
 	}
 
 	@Override
@@ -135,5 +142,49 @@ public class IResturantBusinessImp implements IResturantBusiness {
 						"Day - " + FORMAT.format(booking.getDay()) + "\n" +  
 						"Turno - " + booking.getTurn().getTurnId() + "\n" +  
 						"Localizator : " + booking.getLocalizador();
+	}
+	
+	/**
+	 * config modelmapper booking
+	 * by reserve mapping
+	 * @return
+	 */
+	public ModelMapper modelMapperBookingConfig() {
+		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
+		modelMapper.addMappings(new PropertyMap<BookingDto, Booking>() {
+			@Override
+			protected void configure() {
+				map().setRestaurant(source.getResturant()); 
+				map().setDay(source.getDay());
+				map().setTurn(source.getTurn());
+				map().setPersonas(source.getPersons());
+			}
+		});
+		return modelMapper;
+	}
+	
+	/**
+	 * config modelmapper cancel booking
+	 * @return
+	 */
+	public ModelMapper modelMapperCancelConfig() {
+		modelMapper = new ModelMapper();
+		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
+		modelMapper.addMappings(new PropertyMap<CancelDto, Booking>() {
+			@Override
+			protected void configure() {
+				map().setRestaurant(source.getResturant()); 
+				map().setDay(source.getDay());
+				map().setTurn(source.getTurn());
+				map().setLocalizador(source.getLocalizator());
+			}
+		});
+		return modelMapper;
+	}
+
+	public String messageByCancelBooking(Booking bookingFromDto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
