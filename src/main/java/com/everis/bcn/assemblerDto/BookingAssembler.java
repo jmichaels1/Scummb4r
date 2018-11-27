@@ -18,7 +18,6 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  */
 public class BookingAssembler extends IResturantBusinessImp {
 	
-	private final static SimpleDateFormat FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 	private Booking booking;
 
 	/**
@@ -29,18 +28,6 @@ public class BookingAssembler extends IResturantBusinessImp {
 	public Booking getBookingFromDto(Dto dto, ModelMapper modelMapper) {
 		booking = new Booking();
 		modelMapper.map(dto, booking);
-		booking.setLocalizador(generateLocalizator());
 		return booking;
-	}
-	
-	/**
-	 * generate Localizator
-	 * @param booking
-	 * @return
-	 */
-	private long generateLocalizator() {		
-		return Long.parseLong(""+booking.getRestaurant().getRestaurantId() 
-				+ booking.getTurn().getTurnId() +  FORMAT.format(booking.getDay())
-				.replaceAll("/", ""));
 	}
 }

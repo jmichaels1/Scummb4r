@@ -35,10 +35,11 @@ public class BookingDAOImp implements Dao<Booking> {
 		entityManager.getTransaction().commit();
 //		entityManager.close();
 	}
-
+	
+	//TODO UPDATE FOR GET BOOKING FROM LOCALIZATOR
 	@Override
-	public Booking get(int id) {
-		return entityManager.find(Booking.class, id);
+	public Booking get(int bookingId) {
+		return entityManager.find(Booking.class, bookingId);
 	}
 
 	@Override
@@ -80,6 +81,7 @@ public class BookingDAOImp implements Dao<Booking> {
 	 * @return
 	 */
 	public boolean isValidBooking(Booking booking) {
+		System.out.println("booking.getLocalizator : " + booking.getLocalizador());
 		Booking booking_aux = entityManager
 				.createQuery("Select a "
 						+ "From Booking a "

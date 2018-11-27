@@ -15,14 +15,14 @@ import com.everis.bcn.entity.Turn;
  */
 public class CancelDto extends Dto {
 	
-	private int localizator;
+	private long localizator;
 	
 	/*** Getters And Setters ****/
 	
-	public int getLocalizator() {
+	public long getLocalizator() {
 		return localizator;
 	}
-	public void setLocalizator(int localizator) {
+	public void setLocalizator(long localizator) {
 		this.localizator = localizator;
 	}
 }

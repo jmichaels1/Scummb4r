@@ -53,9 +53,11 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	
 	@Override
 	public boolean cancelBooking(Booking booking) {
+		System.out.println("booking to delete: " + booking);
 		boolean resp = true;
 		if (!bookinDao.isValidBooking(booking)) resp = false;
 		else bookinDao.delete(booking.getBookingId());
+		System.out.println("eliminará : " + resp);
 		return resp;
 	}
 
@@ -71,14 +73,13 @@ public class IResturantBusinessImp implements IResturantBusiness {
 			booking.setMesa(listMesasAvailablesCapacity.size()>0? listMesasAvailablesCapacity.get(0): null);
 			
 			if (booking.getMesa() != null) {
-				booking.setLocalizador(updateMesaLozalizator(booking.getLocalizador(), booking.getMesa().getId()));
+				booking.setLocalizador(generateLocalizator(booking));
 				bookinDao.save(booking);
 			} else resp = false;
 			 
 		return resp;
 	}
-	
-	
+
 	@Override
 	public void addRestaurant(Restaurant restaurant) {
 		restaurantDao.save(restaurant);
@@ -99,6 +100,17 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Override
 	public Set<Booking> getBookings() {
 		return bookinDao.getAll();
+	}
+	
+	/**
+	 * generate Localizator
+	 * @param booking
+	 * @return
+	 */
+	private long generateLocalizator(Booking booking) {
+		return Long.parseLong(""+booking.getRestaurant().getRestaurantId() + booking.getMesa().getId() +
+				+ booking.getTurn().getTurnId() +  FORMAT.format(booking.getDay())
+				.replaceAll("-", ""));
 	}
 	
 	/***
@@ -125,15 +137,6 @@ public class IResturantBusinessImp implements IResturantBusiness {
 		return mesaDao.getMesasIdOfTheRestaurant(restaurantId).stream().filter(
 				mesa -> (!bookinDao.getMesasIdOfTheTurn(restaurantId, turnId)
 						.contains(mesa))).collect(Collectors.toList()).size()>0;
-	}
-	
-	/**
-	 * add mesaId 
-	 * in lozalizator
-	 */
-	private long updateMesaLozalizator(long localizator, int mesaId) {
-		return  Long.parseLong(String.valueOf(localizator).substring(0, 2) + mesaId 
-				+ String.valueOf(localizator).substring(2, String.valueOf(localizator).length()));
 	}
 	
 	/**
