@@ -44,6 +44,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private ModelMapper modelMapper;
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 	
+	private Booking booking_cancel_aux;
+	
 	
 	@Override
 	public boolean editBooking(Booking booking) {
@@ -52,12 +54,11 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	}
 	
 	@Override
-	public boolean cancelBooking(Booking booking) {
-		System.out.println("booking to delete: " + booking);
+	public boolean cancelBooking(Booking bookingFromDto) {
 		boolean resp = true;
-		if (!bookinDao.isValidBooking(booking)) resp = false;
-		else bookinDao.delete(booking.getBookingId());
-		System.out.println("eliminará : " + resp);
+		booking_cancel_aux = bookinDao.get(bookingFromDto.getLocalizador());
+		if (booking_cancel_aux == null || !bookingFromDto.equals(booking_cancel_aux)) resp = false;
+		else bookinDao.delete(booking_cancel_aux.getBookingId());
 		return resp;
 	}
 

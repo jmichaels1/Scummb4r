@@ -74,19 +74,16 @@ public class BookingDAOImp implements Dao<Booking> {
 				.getResultList());
 	}
 	
-	/**
-	 * valid booking
-	 * from cancel dto
-	 * @param booking
+	/***
+	 * 
+	 * @param localizator
 	 * @return
 	 */
-	public boolean isValidBooking(Booking booking) {
-		System.out.println("booking.getLocalizator : " + booking.getLocalizador());
-		Booking booking_aux = entityManager
+	public Booking get(long localizator) {
+		return entityManager
 				.createQuery("Select a "
 						+ "From Booking a "
-						+ "where a.localizador = " + booking.getLocalizador(), Booking.class)
-				.getSingleResult();
-		return booking.equals(booking_aux);
+						+ "where a.localizador = " + localizator, Booking.class)
+				.getResultList().stream().findFirst().orElse(null);
 	}
 }
