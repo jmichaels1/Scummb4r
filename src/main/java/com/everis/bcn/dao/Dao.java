@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -19,8 +20,8 @@ import com.everis.bcn.config.EntityManagerConfig;
  */
 public interface Dao<T> {
 	
-	EntityManager entityManager = new AnnotationConfigApplicationContext(AppConfig.class)
-			.getBean(EntityManagerConfig.class).getEntityManager();
+//	EntityManager entityManager = new AnnotationConfigApplicationContext(AppConfig.class)
+//			.getBean(EntityManagerConfig.class).getEntityManager();
 	
 	public void save(T t);
 	public void update(T t);

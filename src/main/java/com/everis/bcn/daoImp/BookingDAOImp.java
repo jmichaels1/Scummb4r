@@ -3,9 +3,13 @@ package com.everis.bcn.daoImp;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.everis.bcn.config.EntityManagerConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.dto.CancelDto;
@@ -19,6 +23,8 @@ import com.google.common.collect.Sets;
  *
  */
 public class BookingDAOImp implements Dao<Booking> {
+	
+	@Autowired EntityManager entityManager;
 	
 	@Override
 	public void save(Booking booking) {
@@ -36,7 +42,6 @@ public class BookingDAOImp implements Dao<Booking> {
 //		entityManager.close();
 	}
 	
-	//TODO UPDATE FOR GET BOOKING FROM LOCALIZATOR
 	@Override
 	public Booking get(int bookingId) {
 		return entityManager.find(Booking.class, bookingId);

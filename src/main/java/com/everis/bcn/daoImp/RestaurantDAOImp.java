@@ -3,6 +3,10 @@ package com.everis.bcn.daoImp;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.persistence.EntityManager;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Restaurant;
 import com.google.common.collect.Sets;
@@ -14,7 +18,9 @@ import com.google.common.collect.Sets;
  *
  */
 public class RestaurantDAOImp implements Dao<Restaurant> {
-
+	
+	@Autowired EntityManager entityManager;
+	
 	@Override
 	public void save(Restaurant restaurant) {
 		entityManager.getTransaction().begin();
