@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.entity.Turn;
 import com.google.common.collect.Sets;
@@ -18,40 +19,42 @@ import com.google.common.collect.Sets;
  */
 public class TurnDAOImp implements Dao<Turn> {
 	
-	@Autowired EntityManager entityManager;
+//	@Autowired EntityManager entityManager;
+	
+	@Autowired private AppConfig appConfig;
 	
 	@Override
 	public void save(Turn turn) {
-		entityManager.getTransaction().begin();
-		entityManager.persist(turn);
-		entityManager.getTransaction().commit();
+		appConfig.getEntityManager().getTransaction().begin();
+		appConfig.getEntityManager().persist(turn);
+		appConfig.getEntityManager().getTransaction().commit();
 //		entityManager.close();
 	}
 
 	@Override
 	public void update(Turn turn) {
-		entityManager.getTransaction().begin();
-		entityManager.merge(turn);
-		entityManager.getTransaction().commit();
+		appConfig.getEntityManager().getTransaction().begin();
+		appConfig.getEntityManager().merge(turn);
+		appConfig.getEntityManager().getTransaction().commit();
 //		entityManager.close();
 	}
 
 	@Override
 	public Turn get(int id) {
-		return entityManager.find(Turn.class, id);
+		return appConfig.getEntityManager().find(Turn.class, id);
 	}
 
 	@Override
 	public void delete(int id) {
-		entityManager.getTransaction().begin();
-		entityManager.remove(get(id));
-		entityManager.getTransaction().commit();
+		appConfig.getEntityManager().getTransaction().begin();
+		appConfig.getEntityManager().remove(get(id));
+		appConfig.getEntityManager().getTransaction().commit();
 //		entityManager.close();
 	}
 
 	@Override
 	public Set<Turn> getAll() {
-		return Sets.newHashSet((ArrayList<Turn>) entityManager
+		return Sets.newHashSet((ArrayList<Turn>) appConfig.getEntityManager()
 				.createQuery("Select a From Turn a", Turn.class)
 				.getResultList());
 	}

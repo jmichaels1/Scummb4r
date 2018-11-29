@@ -8,13 +8,21 @@ import org.springframework.stereotype.Component;
  * @author J Michael
  *
  */
-@Component
+//@Component
 public class EntityManagerConfig {
 	
 	private EntityManager entityManager;
 	
+	
 	/**
-	 * Método Constructor
+	 * Método Constructor without paramter
+	 */
+	public EntityManagerConfig() {
+		super();
+	}
+
+	/**
+	 * Método Constructor with paramter
 	 * @param entityManager
 	 */
 	public EntityManagerConfig(EntityManager entityManager) {

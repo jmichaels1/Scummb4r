@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.config.EntityManagerConfig;
 import com.everis.bcn.dao.Dao;
 import com.everis.bcn.dto.BookingDto;
@@ -24,40 +25,42 @@ import com.google.common.collect.Sets;
  */
 public class BookingDAOImp implements Dao<Booking> {
 	
-	@Autowired EntityManager entityManager;
+//	@Autowired EntityManager entityManager;
+	
+	@Autowired private AppConfig appConfig;
 	
 	@Override
 	public void save(Booking booking) {
-		entityManager.getTransaction().begin();
-		entityManager.persist(booking);
-		entityManager.getTransaction().commit();
+		appConfig.getEntityManager().getTransaction().begin();
+		appConfig.getEntityManager().persist(booking);
+		appConfig.getEntityManager().getTransaction().commit();
 //		entityManager.close();
 	}
 
 	@Override
 	public void update(Booking booking) {
-		entityManager.getTransaction().begin();
-		entityManager.merge(booking);
-		entityManager.getTransaction().commit();
+		appConfig.getEntityManager().getTransaction().begin();
+		appConfig.getEntityManager().merge(booking);
+		appConfig.getEntityManager().getTransaction().commit();
 //		entityManager.close();
 	}
 	
 	@Override
 	public Booking get(int bookingId) {
-		return entityManager.find(Booking.class, bookingId);
+		return appConfig.getEntityManager().find(Booking.class, bookingId);
 	}
 
 	@Override
 	public void delete(int id) {
-		entityManager.getTransaction().begin();
-		entityManager.remove(get(id));
-		entityManager.getTransaction().commit();
+		appConfig.getEntityManager().getTransaction().begin();
+		appConfig.getEntityManager().remove(get(id));
+		appConfig.getEntityManager().getTransaction().commit();
 //		entityManager.close();
 	}
 
 	@Override
 	public Set<Booking> getAll() {
-		return Sets.newHashSet((ArrayList<Booking>) entityManager
+		return Sets.newHashSet((ArrayList<Booking>) appConfig.getEntityManager()
 				.createQuery("Select a From Booking a", Booking.class)
 				.getResultList());
 	}	
@@ -71,7 +74,7 @@ public class BookingDAOImp implements Dao<Booking> {
 	 * @return
 	 */
 	public Set<Mesa> getMesasIdOfTheTurn(int restaurantId, int turnId){
-		return Sets.newHashSet((ArrayList<Mesa>) entityManager
+		return Sets.newHashSet((ArrayList<Mesa>) appConfig.getEntityManager()
 				.createQuery("Select a.mesa "
 						+ "From Booking a "
 						+ "where a.restaurant.id = " + restaurantId + 
@@ -85,7 +88,7 @@ public class BookingDAOImp implements Dao<Booking> {
 	 * @return
 	 */
 	public Booking get(long localizator) {
-		return entityManager
+		return appConfig.getEntityManager()
 				.createQuery("Select a "
 						+ "From Booking a "
 						+ "where a.localizador = " + localizator, Booking.class)
