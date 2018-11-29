@@ -1,10 +1,6 @@
 package com.everis.bcn.config;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,22 +13,15 @@ public class EntityManagerConfig {
 	
 	private EntityManager entityManager;
 	
-	
-	/**
-	 * Método Constructor without paramter
-	 */
-	public EntityManagerConfig() {
-		super();
-	}
-
-	/**
-	 * Método Constructor with paramter
+	/***
+	 * Método Constructor
 	 * @param entityManager
 	 */
 	public EntityManagerConfig(EntityManager entityManager) {
+		super();
 		this.entityManager = entityManager;
 	}
-	
+
 	/*** Getters and Setters ***/
 
 	public EntityManager getEntityManager() {

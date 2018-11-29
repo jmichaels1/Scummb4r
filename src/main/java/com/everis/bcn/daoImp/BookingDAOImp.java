@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.config.EntityManagerConfig;
 import com.everis.bcn.dao.Dao;
-import com.everis.bcn.dto.BookingDto;
-import com.everis.bcn.dto.CancelDto;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
 import com.google.common.collect.Sets;
@@ -25,12 +19,9 @@ import com.google.common.collect.Sets;
  *
  */
 public class BookingDAOImp implements Dao<Booking> {
-	
-//	@Autowired private EntityManager entityManager;
-	
-	@PersistenceContext(unitName = "persistence")
-	private EntityManager entityManager;
-	
+
+	private EntityManager entityManager = new AnnotationConfigApplicationContext(AppConfig.class)
+			.getBean(EntityManagerConfig.class).getEntityManager();
 	
 	@Override
 	public void save(Booking booking) {

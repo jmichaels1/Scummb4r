@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.config.EntityManagerConfig;
@@ -21,10 +19,8 @@ import com.google.common.collect.Sets;
  */
 public class TurnDAOImp implements Dao<Turn> {
 	
-//	@Autowired private EntityManager entityManager;
-	
-	@PersistenceContext(unitName = "persistence")
-	private EntityManager entityManager;
+	private EntityManager entityManager = new AnnotationConfigApplicationContext(AppConfig.class)
+			.getBean(EntityManagerConfig.class).getEntityManager();
 	
 	@Override
 	public void save(Turn turn) {

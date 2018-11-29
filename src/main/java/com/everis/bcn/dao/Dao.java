@@ -20,9 +20,6 @@ import com.everis.bcn.config.EntityManagerConfig;
  */
 public interface Dao<T> {
 	
-//	EntityManager entityManager = new AnnotationConfigApplicationContext(AppConfig.class)
-//			.getBean(EntityManagerConfig.class).getEntityManager();
-	
 	public void save(T t);
 	public void update(T t);
 	public T get(int id);

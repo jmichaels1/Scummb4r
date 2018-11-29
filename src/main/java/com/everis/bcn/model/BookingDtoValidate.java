@@ -26,9 +26,6 @@ public class BookingDtoValidate implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "day",
 		        "required.persons", "es olbigatorio indicar el día de la reserva");
 		
-//		Restaurant restaurant = bookingDto.getResturant();
-				
-		System.out.println("cantidad personas del dto : " + bookingDto.getPersons());
 		if (bookingDto.getPersons() < 1)  errors.rejectValue(null, "Cantidad de Personas para la reserva no es válido");
 		if (bookingDto.getDay() == null)  errors.rejectValue(null, "fecha de reserva no es válida");
 		

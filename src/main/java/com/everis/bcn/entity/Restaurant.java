@@ -47,7 +47,6 @@ public class Restaurant implements Serializable {
 	@OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
 	private Set<Booking> aListBooking;
 	
-	//TODO lista de reservas?
 	
 	/**
 	 * Constructor without parameters
