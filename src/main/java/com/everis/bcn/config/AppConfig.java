@@ -13,33 +13,14 @@ import org.springframework.stereotype.Component;
  * @author J Michael
  *
  */
-// @Configuration
-// @ComponentScan(basePackageClasses = EntityManagerConfig.class)
-@Component
+//@ComponentScan(basePackageClasses = EntityManagerConfig.class)
+@ComponentScan(basePackageClasses = EntityManagerConfig.class)
+@Configuration
 public class AppConfig {
 
-	// @Bean
-	// public EntityManager entityManager() {
-	// return Persistence
-	// .createEntityManagerFactory("persistence")
-	// .createEntityManager();
-	// }
-
-	private EntityManager entityManager;
-
-	public AppConfig() {
-		System.out.println("entra al menos aqui");
-//		if (entityManager == null) {
-			entityManager = Persistence.createEntityManagerFactory("persistence").createEntityManager();
-//		}
-	}
-
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
-
-	public void setEntityManager(EntityManager entityManager) {
-		this.entityManager = entityManager;
+	@Bean
+	public EntityManager entityManagerConfig() {
+		return Persistence.createEntityManagerFactory("persistence").createEntityManager();
 	}
 
 }
