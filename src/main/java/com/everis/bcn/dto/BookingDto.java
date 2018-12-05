@@ -12,8 +12,6 @@ public class BookingDto extends Dto {
 	private int persons;
 	private Mesa mesa;
 	
-	
-	
 	/**** Getters And Setters *****/
 	
 	public int getPersons() {

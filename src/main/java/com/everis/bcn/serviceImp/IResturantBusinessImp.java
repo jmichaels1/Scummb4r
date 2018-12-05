@@ -57,6 +57,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public boolean cancelBooking(Booking bookingFromDto) {
 		boolean resp = true;
 		booking_cancel_aux = bookinDao.get(bookingFromDto.getLocalizador());
+		System.out.println("bookingFromDto : " + bookingFromDto.toString());
+		System.out.println("booking_cancel_aux : " + booking_cancel_aux.toString());
 		if (booking_cancel_aux == null || !bookingFromDto.equals(booking_cancel_aux)) resp = false;
 		else bookinDao.delete(booking_cancel_aux.getBookingId());
 		return resp;
