@@ -166,9 +166,11 @@ public class Booking implements Serializable {
 		return true;
 	}
 
-
+	
 	@Override
 	public String toString() {
-		return "Booking [bookingId=" + bookingId + ", localizador=" + localizador +  "]";
+		return "Booking [bookingId=" + bookingId + ", localizador=" + localizador + ", personas=" + personas + ", day="
+				+ day + ", mesa=" + mesa + ", restaurant=" + restaurant + ", turn=" + turn + "]";
 	}
+	
 }

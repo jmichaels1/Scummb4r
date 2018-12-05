@@ -163,9 +163,9 @@ public class IResturantBusinessImp implements IResturantBusiness {
 		modelMapper.addMappings(new PropertyMap<BookingDto, Booking>() {
 			@Override
 			protected void configure() {
-				map().setRestaurant(source.getResturant()); 
+				map().setRestaurant(source.getResturantFromDto()); 
 				map().setDay(source.getDay());
-				map().setTurn(source.getTurn());
+				map().setTurn(source.getTurnFromDto());
 				map().setPersonas(source.getPersons());
 			}
 		});
@@ -182,9 +182,9 @@ public class IResturantBusinessImp implements IResturantBusiness {
 		modelMapper.addMappings(new PropertyMap<CancelDto, Booking>() {
 			@Override
 			protected void configure() {
-				map().setRestaurant(source.getResturant()); 
+				map().setRestaurant(source.getResturantFromDto()); 
 				map().setDay(source.getDay());
-				map().setTurn(source.getTurn());
+				map().setTurn(source.getTurnFromDto());
 				map().setLocalizador(source.getLocalizator());
 			}
 		});

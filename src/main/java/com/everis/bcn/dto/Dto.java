@@ -18,9 +18,10 @@ public abstract class Dto {
 	private ArrayList<Restaurant> aListRestaurant;
 	private ArrayList<Turn> aListTurn;
 	
-	private int restaurantId;
+	private String restaurantName;
 	private Date day;
-	private int turnId;
+	private int turn;
+	
 	
 	/*** Getters And Setters ****/
 	
@@ -36,11 +37,11 @@ public abstract class Dto {
 	public void setaListTurn(ArrayList<Turn> aListTurn) {
 		this.aListTurn = aListTurn;
 	}
-	public int getRestaurantId() {
-		return restaurantId;
+	public String getRestaurantName() {
+		return restaurantName;
 	}
-	public void setRestaurantId(int restaurantId) {
-		this.restaurantId = restaurantId;
+	public void setRestaurantName(String restaurantId) {
+		this.restaurantName = restaurantId;
 	}
 	public Date getDay() {
 		return day;
@@ -48,20 +49,20 @@ public abstract class Dto {
 	public void setDay(Date day) {
 		this.day = day;
 	}
-	public int getTurnId() {
-		return turnId;
+	public int getTurn() {
+		return turn;
 	}
-	public void setTurnId(int turnId) {
-		this.turnId = turnId;
+	public void setTurn(int turn) {
+		this.turn = turn;
 	}
 	
 /******* Métodos agregados **********/
 	
-	public Restaurant getResturant() {
-		return new RestaurantDAOImp().get(restaurantId);
+	public Restaurant getResturantFromDto() {
+		return new RestaurantDAOImp().get(restaurantName);
 	}
 	
-	public Turn getTurn() {
-		return new TurnDAOImp().get(turnId);
+	public Turn getTurnFromDto() {
+		return new TurnDAOImp().get(turn);
 	}
 }

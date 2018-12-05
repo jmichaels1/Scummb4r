@@ -72,12 +72,6 @@ public class Restaurant implements Serializable {
 	/**** Metodos ******/
 
 
-//	@Transient
-//	public Integer getTotalPlazas() {
-//		//TODO implementar
-//		return null;
-//	}
-
 	public int getRestaurantId() {
 		return restaurantId;
 	}
@@ -156,17 +150,7 @@ public class Restaurant implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Restaurant [restaurantId=" + restaurantId + ", name=" + name + ", address=" + address + ", description="
-				+ description + ", aListMesa=" + aListMesa + ", aListBooking=" + aListBooking + "]";
+		return "Restaurant [restaurantId=" + restaurantId + ", name=" + name + "]";
 	}
-
-//	@Override
-//	public String toString() {
-//		return "Restaurant [id=" + restaurantId + ", name=" + name + ", address=" + address + ", description=" + description
-//				+ "]";
-//	}
-	
-	
-	
 
 }

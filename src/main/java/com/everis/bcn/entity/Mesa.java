@@ -112,7 +112,7 @@ public class Mesa implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Mesa [id=" + mesaId + ", capacity=" + capacity + "]";
+		return "Mesa [id=" + mesaId + "]";
 	}
 	
 }

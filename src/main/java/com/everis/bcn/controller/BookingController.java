@@ -1,6 +1,7 @@
 package com.everis.bcn.controller;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -75,12 +76,10 @@ public class BookingController extends BookingAssembler {
 	 * 
 	 * @return
 	 */
-	@ModelAttribute("aListRestaurnt")
-	public ArrayList<Integer> getRestaurantIdList(){
-		iResturantBusinessImp = new IResturantBusinessImp();
-		aListRestaurnt = new ArrayList<Integer>();
-		iResturantBusinessImp.getRestaurants().stream().forEach(rest->aListRestaurnt.add(rest.getRestaurantId()));
-		return aListRestaurnt;
+	@ModelAttribute("aListRestaurant")
+	public ArrayList<String> getRestaurantIdList(){
+		return (ArrayList<String>) new IResturantBusinessImp().getRestaurants().stream()
+				.map(restaurant->restaurant.getName()).collect(Collectors.toList());
 	}
 	
 	/**
@@ -89,9 +88,8 @@ public class BookingController extends BookingAssembler {
 	 */
 	@ModelAttribute("aListTurn")
 	public ArrayList<Integer> getTurnList(){
-		iResturantBusinessImp = new IResturantBusinessImp();
-		aListTurn = new ArrayList<Integer>();
-		iResturantBusinessImp.getTurns().stream().forEach(rest->aListTurn.add(rest.getTurnId()));
-		return aListTurn;
+		return (ArrayList<Integer>) new IResturantBusinessImp().getTurns().stream()
+				.map(turn->turn.getTurnId()).collect(Collectors.toList());
 	}
+
 }

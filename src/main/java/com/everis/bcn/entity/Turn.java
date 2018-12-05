@@ -64,9 +64,6 @@ public class Turn implements Serializable {
 		this.description = description;
 	}
 	
-	/**** sobreCarga *****/
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -97,8 +94,6 @@ public class Turn implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Turn [id=" + turnId + ", description=" + description + "]";
+		return "Turn [id=" + turnId +"]";
 	}
-	
-
 }

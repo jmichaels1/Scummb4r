@@ -33,10 +33,10 @@
 				<span class="col-md-1 col-md-offset-2 text-center"><i
 					class="fa fa-user bigicon"></i></span>
 				<div class="col-md-8">
-					<form:label path="restaurantId">restaurant : </form:label>
-					<form:select id="restaurantId" path="restaurantId" name="restaurantId" type="text" class="form-control">
-						<form:options items="${aListRestaurnt}" />
-						<form:errors path="restaurantId" />
+					<form:label path="restaurantName">restaurantName : </form:label>
+					<form:select id="restaurantName" path="restaurantName" name="restaurantName" type="text" class="form-control">
+						<form:options items="${aListRestaurant}" />
+						<form:errors path="restaurantName" />
 					</form:select>
 				</div>
 			</div>
@@ -55,11 +55,11 @@
 				<span class="col-md-1 col-md-offset-2 text-center"><i
 					class="fa fa-envelope-o bigicon"></i></span>
 				<div class="col-md-8">
-					<form:label path="turnId">Turn : </form:label>
-					<form:select id="turnId" path="turnId" name="turnId" type="text"
+					<form:label path="turn">Turn : </form:label>
+					<form:select id="turn" path="turn" name="turn" type="text"
 						class="form-control">
 						<form:options items="${aListTurn}" />
-						<form:errors path="turnId" />
+						<form:errors path="turn" />
 					</form:select>
 				</div>
 			</div>

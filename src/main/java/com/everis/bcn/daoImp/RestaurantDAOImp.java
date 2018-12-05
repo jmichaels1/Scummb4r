@@ -12,6 +12,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.config.EntityManagerConfig;
 import com.everis.bcn.dao.Dao;
+import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Restaurant;
 import com.google.common.collect.Sets;
 
@@ -43,8 +44,16 @@ public class RestaurantDAOImp implements Dao<Restaurant> {
 	}
 
 	@Override
-	public Restaurant get(int id) {
-		return entityManager.find(Restaurant.class, id);
+	public Restaurant get(int restaurantId) {
+		return entityManager.find(Restaurant.class, restaurantId);
+	}
+	
+	public Restaurant get(String restaurantName) {
+		Restaurant rest = entityManager
+				.createQuery("Select a From Restaurant a where a.name = '" + restaurantName + "'", Restaurant.class)
+				.getSingleResult();
+		System.out.println("ERES NULL ? : " + rest);
+		return  rest;
 	}
 
 	@Override
@@ -57,7 +66,6 @@ public class RestaurantDAOImp implements Dao<Restaurant> {
 
 	@Override
 	public Set<Restaurant> getAll() {
-		System.out.println("entityManager is null : " + entityManager);
 		return Sets.newHashSet((ArrayList<Restaurant>) entityManager
 				.createQuery("Select a From Restaurant a", Restaurant.class)
 				.getResultList());
