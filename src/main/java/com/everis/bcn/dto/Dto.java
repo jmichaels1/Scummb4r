@@ -56,7 +56,7 @@ public abstract class Dto {
 		this.turn = turn;
 	}
 	
-/******* Métodos agregados **********/
+	/******* Métodos agregados **********/
 	
 	public Restaurant getResturantFromDto() {
 		return new RestaurantDAOImp().get(restaurantName);
