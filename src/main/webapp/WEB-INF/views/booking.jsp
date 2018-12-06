@@ -7,17 +7,27 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Booking</title>
-<link rel="stylesheet" href="/src/main/resources/css/style.css">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="main/webapp/css/style.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
 <script>
   $( function() {
     $( "#datepicker" ).datepicker({ minDate:0});
   } );
   </script>
+	<style type="text/css">
+	body, html {
+		height: 100%;
+		background-repeat: repeat;
+		background-image: linear-gradient(rgb(104, 120, 162), rgb(12, 80, 33));
+	}
+</style>
 </head>
 <body>
 
@@ -32,7 +42,8 @@
 					class="fa fa-user bigicon"></i></span>
 				<div class="col-md-8">
 					<form:label path="restaurantName">restaurantName : </form:label>
-					<form:select id="restaurantName" path="restaurantName" name="restaurantName" type="text" class="form-control">
+					<form:select id="restaurantName" path="restaurantName"
+						name="restaurantName" type="text" class="form-control">
 						<form:options items="${aListRestaurant}" />
 						<form:errors path="restaurantName" />
 					</form:select>
