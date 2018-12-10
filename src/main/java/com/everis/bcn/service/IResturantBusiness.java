@@ -3,6 +3,7 @@ package com.everis.bcn.service;
 import java.util.Set;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
@@ -14,6 +15,7 @@ import com.everis.bcn.entity.Turn;
  * @author J Michael
  *
  */
+@Service
 public interface IResturantBusiness {
 	
 	public boolean editBooking(Booking booking);

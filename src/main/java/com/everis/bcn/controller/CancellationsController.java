@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,7 +28,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 @Controller("/cancel")
 public class CancellationsController extends BookingAssembler  {
 	
-	private IResturantBusinessImp iResturantBusinessImp;
+	@Autowired private IResturantBusinessImp iResturantBusinessImp;
 	private CancelDto cancelDto;
 	private ArrayList<Integer> aListRestaurnt;
 	private ArrayList<Integer> aListTurn;
@@ -47,7 +48,7 @@ public class CancellationsController extends BookingAssembler  {
 	
 	@RequestMapping(value="cancel", method=RequestMethod.POST)
     public ModelAndView formCancel(@ModelAttribute("command") CancelDto dto, BindingResult result, SessionStatus session){
-		iResturantBusinessImp = new IResturantBusinessImp();
+//		iResturantBusinessImp = new IResturantBusinessImp();
 //		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
 		
@@ -69,7 +70,7 @@ public class CancellationsController extends BookingAssembler  {
 	 */
 	@ModelAttribute("aListRestaurant")
 	public ArrayList<String> getRestaurantIdList(){
-		return (ArrayList<String>) new IResturantBusinessImp().getRestaurants().stream()
+		return (ArrayList<String>) iResturantBusinessImp.getRestaurants().stream()
 				.map(restaurant->restaurant.getName()).collect(Collectors.toList());
 	}
 	
@@ -79,7 +80,7 @@ public class CancellationsController extends BookingAssembler  {
 	 */
 	@ModelAttribute("aListTurn")
 	public ArrayList<Integer> getTurnList(){
-		return (ArrayList<Integer>) new IResturantBusinessImp().getTurns().stream()
+		return (ArrayList<Integer>) iResturantBusinessImp.getTurns().stream()
 				.map(turn->turn.getTurnId()).collect(Collectors.toList());
 	}
 }

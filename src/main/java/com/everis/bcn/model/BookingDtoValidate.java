@@ -1,5 +1,6 @@
 package com.everis.bcn.model;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -12,6 +13,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  * @author J Michael
  *
  */
+@Component
 public class BookingDtoValidate implements Validator {
 	
 	@Override

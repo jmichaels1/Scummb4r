@@ -1,6 +1,8 @@
 package com.everis.bcn.config;
 
 import javax.persistence.EntityManager;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,7 +14,7 @@ import org.springframework.stereotype.Component;
 public class EntityManagerConfig {
 	
 	private EntityManager entityManager;
-	
+
 	/***
 	 * Método Constructor
 	 * @param entityManager

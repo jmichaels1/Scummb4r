@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Repository;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.config.EntityManagerConfig;
@@ -21,6 +22,7 @@ import com.google.common.collect.Sets;
  * @author J Michael
  *
  */
+@Repository
 public class MesaDAOImp implements Dao<Mesa> {
 	
 	private EntityManager entityManager = new AnnotationConfigApplicationContext(AppConfig.class)

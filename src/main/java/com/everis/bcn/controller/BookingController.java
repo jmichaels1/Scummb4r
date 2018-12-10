@@ -3,6 +3,7 @@ package com.everis.bcn.controller;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,8 +25,9 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 @Controller("/booking")
 public class BookingController extends BookingAssembler {
 	
-	private IResturantBusinessImp iResturantBusinessImp;
-	private BookingDtoValidate dtoValidate;
+	@Autowired private IResturantBusinessImp iResturantBusinessImp;
+	@Autowired private BookingDtoValidate dtoValidate;
+	
 	private ArrayList<Integer> aListRestaurnt;
 	private ArrayList<Integer> aListTurn;
 	
@@ -55,8 +57,7 @@ public class BookingController extends BookingAssembler {
 	 */
 	@RequestMapping(value="booking", method=RequestMethod.POST)
     public ModelAndView form(@ModelAttribute("command") BookingDto dto, BindingResult result, SessionStatus session){
-		iResturantBusinessImp = new IResturantBusinessImp();
-		dtoValidate = new BookingDtoValidate();
+//		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
 		
 		dtoValidate.validate(dto, result);
@@ -78,7 +79,7 @@ public class BookingController extends BookingAssembler {
 	 */
 	@ModelAttribute("aListRestaurant")
 	public ArrayList<String> getRestaurantIdList(){
-		return (ArrayList<String>) new IResturantBusinessImp().getRestaurants().stream()
+		return (ArrayList<String>) iResturantBusinessImp.getRestaurants().stream()
 				.map(restaurant->restaurant.getName()).collect(Collectors.toList());
 	}
 	
@@ -88,7 +89,7 @@ public class BookingController extends BookingAssembler {
 	 */
 	@ModelAttribute("aListTurn")
 	public ArrayList<Integer> getTurnList(){
-		return (ArrayList<Integer>) new IResturantBusinessImp().getTurns().stream()
+		return (ArrayList<Integer>) iResturantBusinessImp.getTurns().stream()
 				.map(turn->turn.getTurnId()).collect(Collectors.toList());
 	}
 

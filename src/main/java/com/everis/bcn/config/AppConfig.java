@@ -7,12 +7,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import com.everis.bcn.model.MessageString;
+
 /**
  * 
  * @author J Michael
  *
  */
-@ComponentScan(basePackageClasses = EntityManagerConfig.class)
+@ComponentScan(basePackageClasses = {EntityManagerConfig.class, MessageString.class})
 @Configuration
 public class AppConfig {
 
@@ -20,4 +22,10 @@ public class AppConfig {
 	public EntityManager getEntity() {
 		return Persistence.createEntityManagerFactory("persistence").createEntityManager();
 	}
+	
+	@Bean
+	public MessageString getMessageString() {
+		return new MessageString();
+	}
+	
 }

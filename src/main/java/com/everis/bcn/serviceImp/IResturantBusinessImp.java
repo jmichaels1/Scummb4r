@@ -9,6 +9,8 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.MesaDAOImp;
@@ -20,6 +22,7 @@ import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
+import com.everis.bcn.model.MessageString;
 import com.everis.bcn.service.IResturantBusiness;
 
 /**
@@ -27,23 +30,16 @@ import com.everis.bcn.service.IResturantBusiness;
  * @author J Michael
  *
  */
+
 public class IResturantBusinessImp implements IResturantBusiness {
 	
-	private BookingDAOImp bookinDao = new BookingDAOImp();
-	private RestaurantDAOImp restaurantDao = new RestaurantDAOImp();
-	private TurnDAOImp turnDAO = new TurnDAOImp();
-	private MesaDAOImp mesaDao = new MesaDAOImp();
-	
-	private StringBuilder success_booking = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
-	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
-	private static final String FAILED_CAPACITY = "LO SIENTO, no hay mesas disponibles para la cantidad de personas";
-	
-	private StringBuilder success_cancelBooking = new StringBuilder("Su reserva ha sido Cancelada : ");
-	private static final String FAILED_CANCEL = "LO SIENTO, los datos de la reserva no son correctos";
+	@Autowired private BookingDAOImp bookinDao;
+	@Autowired private RestaurantDAOImp restaurantDao;
+	@Autowired private TurnDAOImp turnDAO;
+	@Autowired private MesaDAOImp mesaDao;
+	@Autowired private MessageString messageString;
 	
 	private ModelMapper modelMapper;
-	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
-	
 	private Booking booking_cancel_aux;
 	
 	
@@ -57,8 +53,6 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public boolean cancelBooking(Booking bookingFromDto) {
 		boolean resp = true;
 		booking_cancel_aux = bookinDao.get(bookingFromDto.getLocalizador());
-		System.out.println("bookingFromDto : " + bookingFromDto.toString());
-		System.out.println("booking_cancel_aux : " + booking_cancel_aux.toString());
 		if (booking_cancel_aux == null || !bookingFromDto.equals(booking_cancel_aux)) resp = false;
 		else bookinDao.delete(booking_cancel_aux.getBookingId());
 		return resp;
@@ -112,7 +106,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 */
 	private long generateLocalizator(Booking booking) {
 		return Long.parseLong(""+booking.getRestaurant().getRestaurantId() + booking.getMesa().getId() +
-				+ booking.getTurn().getTurnId() +  FORMAT.format(booking.getDay())
+				+ booking.getTurn().getTurnId() +  MessageString.getFormat().format(booking.getDay())
 				.replaceAll("-", ""));
 	}
 	
@@ -125,7 +119,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public String messageByRegisterBooking(Booking booking) {
 		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
 				booking.getTurn().getTurnId()))? reserve(booking)? 
-						success_booking.append(bookingDetail(booking)).toString():FAILED_CAPACITY : FAILED_MESAS;
+						messageString.getSuccess_booking().append(bookingDetail(booking)).toString():MessageString.getFailedCapacity() : MessageString.getFailedMesas();
 	}
 	
 	/***
@@ -149,7 +143,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	private String bookingDetail(Booking booking) {
 		return " detail : Codigo de Restaurant - " + booking.getRestaurant().getRestaurantId() + "\n" + 
 						"Mesa - " + booking.getMesa().getId() + "\n" + 
-						"Day - " + FORMAT.format(booking.getDay()) + "\n" +  
+						"Day - " + MessageString.getFormat().format(booking.getDay()) + "\n" +  
 						"Turno - " + booking.getTurn().getTurnId() + "\n" +  
 						"Localizator : " + booking.getLocalizador();
 	}
@@ -199,6 +193,6 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @return
 	 */
 	public String messageByCancelBooking(Booking bookingFromDto) {
-		return cancelBooking(bookingFromDto)? success_cancelBooking.toString() : FAILED_CANCEL;
+		return cancelBooking(bookingFromDto)? messageString.getSuccess_cancelBooking().toString() : messageString.getFailedCancel();
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.EntityManager;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Repository;
 
 import com.everis.bcn.config.AppConfig;
 import com.everis.bcn.config.EntityManagerConfig;
@@ -18,6 +19,7 @@ import com.google.common.collect.Sets;
  * @author J Michael
  *
  */
+@Repository
 public class BookingDAOImp implements Dao<Booking> {
 
 	private EntityManager entityManager = new AnnotationConfigApplicationContext(AppConfig.class)
