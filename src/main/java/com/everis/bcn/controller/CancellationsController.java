@@ -1,6 +1,5 @@
 package com.everis.bcn.controller;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
@@ -13,10 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.everis.bcn.assemblerDto.BookingAssembler;
-import com.everis.bcn.dto.BookingDto;
+
 import com.everis.bcn.dto.CancelDto;
-import com.everis.bcn.model.BookingDtoValidate;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
 
@@ -29,12 +26,12 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 public class CancellationsController  {
 	
 	@Autowired private IResturantBusinessImp iResturantBusinessImp;
-	private CancelDto cancelDto;
+
 	private ArrayList<Integer> aListRestaurnt;
 	private ArrayList<Integer> aListTurn;
 
 	public CancellationsController() {
-		cancelDto = new CancelDto();
+		
 	}
 	
 	/**

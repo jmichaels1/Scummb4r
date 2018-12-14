@@ -2,12 +2,11 @@ package com.everis.bcn.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
-import com.everis.bcn.assemblerDto.BookingAssembler;
+import com.everis.bcn.model.BookingAssembler;
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.entity.Booking;
 

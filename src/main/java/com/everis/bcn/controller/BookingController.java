@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.everis.bcn.assemblerDto.BookingAssembler;
+import com.everis.bcn.model.BookingAssembler;
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.model.BookingDtoValidate;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;

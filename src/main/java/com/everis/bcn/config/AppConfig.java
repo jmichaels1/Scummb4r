@@ -7,15 +7,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.everis.bcn.assemblerDto.BookingAssembler;
+import com.everis.bcn.model.BookingAssembler;
 import com.everis.bcn.model.MessageString;
+import com.everis.bcn.model.ModdelMapperConfig;
 
 /**
  * 
  * @author J Michael
  *
  */
-@ComponentScan(basePackageClasses = {EntityManagerConfig.class, MessageString.class, BookingAssembler.class})
+@ComponentScan(basePackageClasses = {EntityManagerConfig.class, MessageString.class, BookingAssembler.class, ModdelMapperConfig.class})
 @Configuration
 public class AppConfig {
 
@@ -32,6 +33,11 @@ public class AppConfig {
 	@Bean
 	public BookingAssembler getAssembler() {
 		return new BookingAssembler();
+	}
+	
+	@Bean
+	public ModdelMapperConfig getAmoddelMaper() {
+		return new ModdelMapperConfig();
 	}
 	
 }

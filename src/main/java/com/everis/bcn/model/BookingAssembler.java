@@ -1,4 +1,4 @@
-package com.everis.bcn.assemblerDto;
+package com.everis.bcn.model;
 
 import java.text.SimpleDateFormat;
 

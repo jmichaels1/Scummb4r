@@ -11,19 +11,18 @@ import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.everis.bcn.assemblerDto.BookingAssembler;
+import com.everis.bcn.model.BookingAssembler;
 import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.MesaDAOImp;
 import com.everis.bcn.daoImp.RestaurantDAOImp;
 import com.everis.bcn.daoImp.TurnDAOImp;
-import com.everis.bcn.dto.BookingDto;
-import com.everis.bcn.dto.CancelDto;
 import com.everis.bcn.dto.Dto;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
 import com.everis.bcn.entity.Turn;
 import com.everis.bcn.model.MessageString;
+import com.everis.bcn.model.ModdelMapperConfig;
 import com.everis.bcn.service.IResturantBusiness;
 
 /**
@@ -40,9 +39,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Autowired private MesaDAOImp mesaDao;
 	@Autowired private MessageString messageString;
 	@Autowired private BookingAssembler bookingAssembler;
-	
-	private ModelMapper modelMapper;
-	private Booking booking_cancel_aux;
+	@Autowired private ModdelMapperConfig moddelMapperConfig;
 	
 	
 	@Override
@@ -54,7 +51,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Override
 	public boolean cancelBooking(Booking bookingFromDto) {
 		boolean resp = true;
-		booking_cancel_aux = bookinDao.get(bookingFromDto.getLocalizador());
+		Booking booking_cancel_aux = bookinDao.get(bookingFromDto.getLocalizador());
 		if (booking_cancel_aux == null || !bookingFromDto.equals(booking_cancel_aux)) resp = false;
 		else bookinDao.delete(booking_cancel_aux.getBookingId());
 		return resp;
@@ -119,7 +116,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @return
 	 */
 	public String ManageReserve(Dto dto) {
-		Booking booking = bookingAssembler.getBookingFromDto(dto, modelMapperBookingConfig());
+		Booking booking = bookingAssembler.getBookingFromDto(dto, moddelMapperConfig.getModelMapperBooking());
 		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
 				booking.getTurn().getTurnId()))? reserve(booking)? 
 						messageString.getSuccess_booking().append(bookingDetail(booking)).toString():MessageString.getFailedCapacity() : MessageString.getFailedMesas();
@@ -151,44 +148,6 @@ public class IResturantBusinessImp implements IResturantBusiness {
 						"Localizator : " + booking.getLocalizador();
 	}
 	
-	/**
-	 * config modelmapper booking
-	 * by reserve mapping
-	 * @return
-	 */
-	public ModelMapper modelMapperBookingConfig() {
-		modelMapper = new ModelMapper();
-		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
-		modelMapper.addMappings(new PropertyMap<BookingDto, Booking>() {
-			@Override
-			protected void configure() {
-				map().setRestaurant(source.getResturantFromDto()); 
-				map().setDay(source.getDay());
-				map().setTurn(source.getTurnFromDto());
-				map().setPersonas(source.getPersons());
-			}
-		});
-		return modelMapper;
-	}
-	
-	/**
-	 * config modelmapper cancel booking
-	 * @return
-	 */
-	public ModelMapper modelMapperCancelConfig() {
-		modelMapper = new ModelMapper();
-		modelMapper.getConfiguration (). setAmbiguityIgnored (true);
-		modelMapper.addMappings(new PropertyMap<CancelDto, Booking>() {
-			@Override
-			protected void configure() {
-				map().setRestaurant(source.getResturantFromDto()); 
-				map().setDay(source.getDay());
-				map().setTurn(source.getTurnFromDto());
-				map().setLocalizador(source.getLocalizator());
-			}
-		});
-		return modelMapper;
-	}
 	
 	/***
 	 * 
@@ -196,7 +155,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @return
 	 */
 	public String manageCancelReverse(Dto dto) {
-		Booking booking = bookingAssembler.getBookingFromDto(dto, modelMapperCancelConfig());
+		Booking booking = bookingAssembler.getBookingFromDto(dto, moddelMapperConfig.getModelMapperBookingCancel());
 		return cancelBooking(booking)? messageString.getSuccess_cancelBooking().toString() : messageString.getFailedCancel();
 	}
 }
