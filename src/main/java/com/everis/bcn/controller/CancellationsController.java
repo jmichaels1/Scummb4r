@@ -26,7 +26,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  *
  */
 @Controller("/cancel")
-public class CancellationsController extends BookingAssembler  {
+public class CancellationsController  {
 	
 	@Autowired private IResturantBusinessImp iResturantBusinessImp;
 	private CancelDto cancelDto;
@@ -55,7 +55,7 @@ public class CancellationsController extends BookingAssembler  {
 //		dtoValidate.validate(dto, result);
 //		if (!result.hasErrors()) {
 			mv.setViewName("infRegCancelBooking");
-			mv.addObject("message", iResturantBusinessImp.messageByCancelBooking(getBookingFromDto(dto, modelMapperCancelConfig()))); 
+			mv.addObject("message", iResturantBusinessImp.manageCancelReverse(dto)); 
 //		} else {
 //			mv.setViewName("booking");
 //			mv.addObject("command", new BookingDto());

@@ -23,7 +23,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  *
  */
 @Controller("/booking")
-public class BookingController extends BookingAssembler {
+public class BookingController {
 	
 	@Autowired private IResturantBusinessImp iResturantBusinessImp;
 	@Autowired private BookingDtoValidate dtoValidate;
@@ -63,8 +63,7 @@ public class BookingController extends BookingAssembler {
 		dtoValidate.validate(dto, result);
 		if (!result.hasErrors()) {
 			mv.setViewName("infRegBooking");
-			mv.addObject("message", iResturantBusinessImp
-					.messageByRegisterBooking(getBookingFromDto(dto, modelMapperBookingConfig()))); 
+			mv.addObject("message", iResturantBusinessImp.ManageReserve(dto)); 
 		} else {
 			mv.setViewName("booking");
 			mv.addObject("command", new BookingDto());

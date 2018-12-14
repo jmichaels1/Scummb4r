@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.springframework.stereotype.Component;
 
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.dto.CancelDto;
@@ -16,9 +17,14 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  * @author J Michael
  *
  */
-public class BookingAssembler extends IResturantBusinessImp {
+@Component
+public class BookingAssembler{
 	
 	private Booking booking;
+
+	public BookingAssembler() {
+		super();
+	}
 
 	/**
 	 * get BookingDto object
@@ -29,5 +35,13 @@ public class BookingAssembler extends IResturantBusinessImp {
 		booking = new Booking();
 		modelMapper.map(dto, booking);
 		return booking;
+	}
+
+	public Booking getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 }

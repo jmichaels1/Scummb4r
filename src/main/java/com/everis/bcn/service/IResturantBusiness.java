@@ -15,7 +15,6 @@ import com.everis.bcn.entity.Turn;
  * @author J Michael
  *
  */
-@Service
 public interface IResturantBusiness {
 	
 	public boolean editBooking(Booking booking);

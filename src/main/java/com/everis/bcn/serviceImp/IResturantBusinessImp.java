@@ -1,6 +1,5 @@
 package com.everis.bcn.serviceImp;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -10,14 +9,16 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+import com.everis.bcn.assemblerDto.BookingAssembler;
 import com.everis.bcn.daoImp.BookingDAOImp;
 import com.everis.bcn.daoImp.MesaDAOImp;
 import com.everis.bcn.daoImp.RestaurantDAOImp;
 import com.everis.bcn.daoImp.TurnDAOImp;
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.dto.CancelDto;
+import com.everis.bcn.dto.Dto;
 import com.everis.bcn.entity.Booking;
 import com.everis.bcn.entity.Mesa;
 import com.everis.bcn.entity.Restaurant;
@@ -30,7 +31,7 @@ import com.everis.bcn.service.IResturantBusiness;
  * @author J Michael
  *
  */
-
+@Service
 public class IResturantBusinessImp implements IResturantBusiness {
 	
 	@Autowired private BookingDAOImp bookinDao;
@@ -38,6 +39,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Autowired private TurnDAOImp turnDAO;
 	@Autowired private MesaDAOImp mesaDao;
 	@Autowired private MessageString messageString;
+	@Autowired private BookingAssembler bookingAssembler;
 	
 	private ModelMapper modelMapper;
 	private Booking booking_cancel_aux;
@@ -116,7 +118,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @param booking
 	 * @return
 	 */
-	public String messageByRegisterBooking(Booking booking) {
+	public String ManageReserve(Dto dto) {
+		Booking booking = bookingAssembler.getBookingFromDto(dto, modelMapperBookingConfig());
 		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
 				booking.getTurn().getTurnId()))? reserve(booking)? 
 						messageString.getSuccess_booking().append(bookingDetail(booking)).toString():MessageString.getFailedCapacity() : MessageString.getFailedMesas();
@@ -192,7 +195,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @param bookingFromDto
 	 * @return
 	 */
-	public String messageByCancelBooking(Booking bookingFromDto) {
-		return cancelBooking(bookingFromDto)? messageString.getSuccess_cancelBooking().toString() : messageString.getFailedCancel();
+	public String manageCancelReverse(Dto dto) {
+		Booking booking = bookingAssembler.getBookingFromDto(dto, modelMapperCancelConfig());
+		return cancelBooking(booking)? messageString.getSuccess_cancelBooking().toString() : messageString.getFailedCancel();
 	}
 }
