@@ -6,6 +6,8 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import com.everis.bcn.dto.BookingDto;
+import com.everis.bcn.dto.Dto;
+import com.everis.bcn.entity.Booking;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
 /**
@@ -25,13 +27,8 @@ public class BookingDtoValidate implements Validator {
 	public void validate(Object obj, Errors errors) {
 		BookingDto bookingDto = (BookingDto) obj;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "day",
-		        "required.persons", "es olbigatorio indicar el día de la reserva");
-		
-		if (bookingDto.getPersons() < 1)  errors.rejectValue(null, "Cantidad de Personas para la reserva no es válido");
-		if (bookingDto.getDay() == null)  errors.rejectValue(null, "fecha de reserva no es válida");
-		
-	//	if (!isAvailable) errors.rejectValue(null, "Booking not available"); 
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "day", "required.persons", "es olbigatorio indicar el día de la reserva");
+		if (bookingDto.getDay() == null)  errors.rejectValue("day", "fecha de reserva no es válida");
+		if (bookingDto.getPersons() < 1)  errors.rejectValue("persons", "Cantidad de Personas para la reserva no es válido");
 	}
-
 }

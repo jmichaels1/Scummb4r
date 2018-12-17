@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +35,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	@Autowired private RestaurantDAOImp restaurantDao;
 	@Autowired private TurnDAOImp turnDAO;
 	@Autowired private MesaDAOImp mesaDao;
+	
 	@Autowired private MessageString messageString;
 	@Autowired private BookingAssembler bookingAssembler;
 	@Autowired private ModdelMapperConfig moddelMapperConfig;
@@ -119,7 +118,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 		Booking booking = bookingAssembler.getBookingFromDto(dto, moddelMapperConfig.getModelMapperBooking());
 		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
 				booking.getTurn().getTurnId()))? reserve(booking)? 
-						messageString.getSuccess_booking().append(bookingDetail(booking)).toString():MessageString.getFailedCapacity() : MessageString.getFailedMesas();
+						messageString.getSuccess_booking().append(reserveDetail(booking)).toString():MessageString.getFailedCapacity() : MessageString.getFailedMesas();
 	}
 	
 	/***
@@ -136,11 +135,12 @@ public class IResturantBusinessImp implements IResturantBusiness {
 						.contains(mesa))).collect(Collectors.toList()).size()>0;
 	}
 	
+	
 	/**
 	 * info detail string
 	 * @return
 	 */
-	private String bookingDetail(Booking booking) {
+	private String reserveDetail(Booking booking) {
 		return " detail : Codigo de Restaurant - " + booking.getRestaurant().getRestaurantId() + "\n" + 
 						"Mesa - " + booking.getMesa().getId() + "\n" + 
 						"Day - " + MessageString.getFormat().format(booking.getDay()) + "\n" +  
@@ -148,13 +148,12 @@ public class IResturantBusinessImp implements IResturantBusiness {
 						"Localizator : " + booking.getLocalizador();
 	}
 	
-	
 	/***
 	 * 
 	 * @param bookingFromDto
 	 * @return
 	 */
-	public String manageCancelReverse(Dto dto) {
+	public String manageCancelReserve(Dto dto) {
 		Booking booking = bookingAssembler.getBookingFromDto(dto, moddelMapperConfig.getModelMapperBookingCancel());
 		return cancelBooking(booking)? messageString.getSuccess_cancelBooking().toString() : messageString.getFailedCancel();
 	}

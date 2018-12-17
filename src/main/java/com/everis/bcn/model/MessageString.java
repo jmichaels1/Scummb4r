@@ -13,19 +13,18 @@ import org.springframework.stereotype.Component;
 public class MessageString {
 	
 	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("dd-MM-yyyy");
-
-	private StringBuilder success_booking = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
 	private static final String FAILED_MESAS = "LO SIENTO, todas las mesas se encuentran reservadas";
 	private static final String FAILED_CAPACITY = "LO SIENTO, no hay mesas disponibles para la cantidad de personas";
-
-	private StringBuilder success_cancelBooking = new StringBuilder("Su reserva ha sido Cancelada : ");
 	private static final String FAILED_CANCEL = "LO SIENTO, los datos de la reserva no son correctos";
+	
+	private StringBuilder success_booking;
+	private StringBuilder success_cancelBooking;
 
 	/***
 	 * Método Constructor without parameters
 	 */
 	public MessageString() {
-		super();
+		config();
 	}
 
 	/**** Getters And Setters ****/
@@ -60,6 +59,14 @@ public class MessageString {
 
 	public static SimpleDateFormat getFormat() {
 		return FORMAT;
+	}
+	
+	/***
+	 * variables config
+	 */
+	private void config() {
+		success_booking = new StringBuilder("ENHORABUENA, su reserva ha sido registrada : ");
+		success_cancelBooking = new StringBuilder("Su reserva ha sido Cancelada : ");
 	}
 
 }

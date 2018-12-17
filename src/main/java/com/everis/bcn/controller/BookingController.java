@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.everis.bcn.model.BookingAssembler;
 import com.everis.bcn.dto.BookingDto;
 import com.everis.bcn.model.BookingDtoValidate;
+import com.everis.bcn.model.ModelAttributeConfig;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
 /**
@@ -27,9 +28,6 @@ public class BookingController {
 	
 	@Autowired private IResturantBusinessImp iResturantBusinessImp;
 	@Autowired private BookingDtoValidate dtoValidate;
-	
-	private ArrayList<Integer> aListRestaurnt;
-	private ArrayList<Integer> aListTurn;
 	
 	/**
 	 * Método Constructor
@@ -57,13 +55,14 @@ public class BookingController {
 	 */
 	@RequestMapping(value="booking", method=RequestMethod.POST)
     public ModelAndView form(@ModelAttribute("command") BookingDto dto, BindingResult result, SessionStatus session){
-//		dtoValidate = new BookingDtoValidate();
+		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
 		
 		dtoValidate.validate(dto, result);
 		if (!result.hasErrors()) {
 			mv.setViewName("infRegBooking");
 			mv.addObject("message", iResturantBusinessImp.ManageReserve(dto)); 
+			
 		} else {
 			mv.setViewName("booking");
 			mv.addObject("command", new BookingDto());

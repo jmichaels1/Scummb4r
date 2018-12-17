@@ -52,7 +52,7 @@ public class CancellationsController  {
 //		dtoValidate.validate(dto, result);
 //		if (!result.hasErrors()) {
 			mv.setViewName("infRegCancelBooking");
-			mv.addObject("message", iResturantBusinessImp.manageCancelReverse(dto)); 
+			mv.addObject("message", iResturantBusinessImp.manageCancelReserve(dto)); 
 //		} else {
 //			mv.setViewName("booking");
 //			mv.addObject("command", new BookingDto());

@@ -64,7 +64,6 @@ public class ModdelMapperConfig {
 				map().setPersonas(source.getPersons());
 			}
 		});
-//		return modelMapper;
 	}
 	
 	/**
@@ -83,6 +82,5 @@ public class ModdelMapperConfig {
 				map().setLocalizador(source.getLocalizator());
 			}
 		});
-//		return modelMapper;
 	}
 }
