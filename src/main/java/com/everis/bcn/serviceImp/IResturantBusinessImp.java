@@ -1,5 +1,6 @@
 package com.everis.bcn.serviceImp;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -60,8 +61,8 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	public boolean reserve(Booking booking) {
 		boolean resp = true;
 			Set<Mesa> setMesa = mesaDao.getMesasIdOfTheRestaurant(booking.getRestaurant().getRestaurantId());
-			Set<Mesa> setBookingMesa = bookinDao.getMesasIdOfTheTurn(booking.getRestaurant().getRestaurantId(), 
-					booking.getTurn().getTurnId());
+			Set<Mesa> setBookingMesa = bookinDao.getMesasOfTheTurn(booking.getRestaurant().getRestaurantId(), 
+					booking.getTurn().getTurnId(), booking.getDay());
 			List<Mesa> listMesasAvailablesCapacity = setMesa.stream().filter(mesa -> (!setBookingMesa.contains(mesa) 
 					&& booking.getPersonas()<=mesa.getCapacity())).collect(Collectors.toList());
 			
@@ -114,10 +115,11 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @param booking
 	 * @return
 	 */
-	public String ManageReserve(Dto dto) {
+	public String manageReserve(Dto dto) {
 		Booking booking = bookingAssembler.getBookingFromDto(dto, moddelMapperConfig.getModelMapperBooking());
+		messageString.setSuccess_booking(new StringBuilder());
 		return (IsThereTableAvailable(booking.getRestaurant().getRestaurantId(), 
-				booking.getTurn().getTurnId()))? reserve(booking)? 
+				booking.getTurn().getTurnId(), booking.getDay()))? reserve(booking)? 
 						messageString.getSuccess_booking().append(reserveDetail(booking)).toString():MessageString.getFailedCapacity() : MessageString.getFailedMesas();
 	}
 	
@@ -129,9 +131,9 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @return
 	 */
 	@Transactional
-	public boolean IsThereTableAvailable(int restaurantId, int turnId) {
+	public boolean IsThereTableAvailable(int restaurantId, int turnId, Date day) {
 		return mesaDao.getMesasIdOfTheRestaurant(restaurantId).stream().filter(
-				mesa -> (!bookinDao.getMesasIdOfTheTurn(restaurantId, turnId)
+				mesa -> (!bookinDao.getMesasOfTheTurn(restaurantId, turnId, day)
 						.contains(mesa))).collect(Collectors.toList()).size()>0;
 	}
 	

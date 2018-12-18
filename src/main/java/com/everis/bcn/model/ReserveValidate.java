@@ -16,7 +16,7 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
  *
  */
 @Component
-public class BookingDtoValidate implements Validator {
+public class ReserveValidate implements Validator {
 	
 	@Override
 	public boolean supports(Class<?> type) {

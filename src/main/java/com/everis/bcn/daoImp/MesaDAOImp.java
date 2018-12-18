@@ -71,8 +71,13 @@ public class MesaDAOImp implements Dao<Mesa> {
 	 * @return
 	 */
 	public Set<Mesa> getMesasIdOfTheRestaurant(int restaurantId) {
-		return Sets.newHashSet((ArrayList<Mesa>) entityManager
+		Set<Mesa> r = Sets.newHashSet((ArrayList<Mesa>) entityManager
 				.createQuery("Select a From Mesa a where a.restaurant.id = " + restaurantId, Mesa.class)
 				.getResultList());
+		
+		for (Mesa mesa : r) {
+			System.out.println("getMesasIdOfTheRestaurant : " + mesa);
+		}
+		return r;
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import com.everis.bcn.dto.CancelDto;
+import com.everis.bcn.model.CancellationsValidate;
 import com.everis.bcn.serviceImp.IResturantBusinessImp;
 
 
@@ -26,12 +27,10 @@ import com.everis.bcn.serviceImp.IResturantBusinessImp;
 public class CancellationsController  {
 	
 	@Autowired private IResturantBusinessImp iResturantBusinessImp;
-
-	private ArrayList<Integer> aListRestaurnt;
-	private ArrayList<Integer> aListTurn;
+	@Autowired private CancellationsValidate cancellationsValidate;
 
 	public CancellationsController() {
-		
+		cancellationsValidate = new CancellationsValidate();
 	}
 	
 	/**
@@ -43,20 +42,26 @@ public class CancellationsController  {
 		return new ModelAndView("cancel", "command", new CancelDto());
 	}
 	
+	/***
+	 * ModelAndView infRegCancelBooking or booking
+	 * @param dto
+	 * @param result
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="cancel", method=RequestMethod.POST)
     public ModelAndView formCancel(@ModelAttribute("command") CancelDto dto, BindingResult result, SessionStatus session){
-//		iResturantBusinessImp = new IResturantBusinessImp();
-//		dtoValidate = new BookingDtoValidate();
 		ModelAndView mv = new ModelAndView();   
+		cancellationsValidate.validate(dto, result);
 		
-//		dtoValidate.validate(dto, result);
-//		if (!result.hasErrors()) {
-			mv.setViewName("infRegCancelBooking");
+		if (!result.hasErrors()) {
+			mv.setViewName("infCancellation");
 			mv.addObject("message", iResturantBusinessImp.manageCancelReserve(dto)); 
-//		} else {
-//			mv.setViewName("booking");
-//			mv.addObject("command", new BookingDto());
-//		}
+			
+		} else {
+			mv.setViewName("cancel");
+			mv.addObject("command", new CancelDto());
+		}
 		
 		return mv;
 	}
