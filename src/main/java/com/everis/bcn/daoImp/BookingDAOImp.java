@@ -76,22 +76,13 @@ public class BookingDAOImp implements Dao<Booking> {
 	 * @return
 	 */
 	public Set<Mesa> getMesasOfTheTurn(int restaurantId, int turnId, Date day){
-		SimpleDateFormat FORMAT3 = new SimpleDateFormat("yyyy-MM-dd");
-		Set<Mesa> s = Sets.newHashSet((ArrayList<Mesa>) entityManager
+		return Sets.newHashSet((ArrayList<Mesa>) entityManager
 				.createQuery("Select a.mesa "
 						+ "From Booking a "
 						+ "where a.restaurant.id = " + restaurantId  
-						+ " and a.day = '" +  FORMAT3.format(day) + "'" 
+						+ " and a.day = '" +  new SimpleDateFormat("yyyy-MM-dd").format(day) + "'" 
 						+ " and a.turn.id = " + turnId, Mesa.class)
 				.getResultList());
-		
-		
-		for (Mesa mesa : s) {
-			
-			System.out.println("getMesasOfTheTurn : " + mesa);
-		}
-		
-		return s;
 	}
 	
 	/***

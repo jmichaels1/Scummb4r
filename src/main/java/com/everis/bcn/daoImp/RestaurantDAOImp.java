@@ -54,7 +54,6 @@ public class RestaurantDAOImp implements Dao<Restaurant> {
 		Restaurant rest = entityManager
 				.createQuery("Select a From Restaurant a where a.name = '" + restaurantName + "'", Restaurant.class)
 				.getSingleResult();
-		System.out.println("ERES NULL ? : " + rest);
 		return  rest;
 	}
 

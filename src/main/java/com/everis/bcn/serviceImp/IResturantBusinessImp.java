@@ -71,6 +71,7 @@ public class IResturantBusinessImp implements IResturantBusiness {
 			if (booking.getMesa() != null) {
 				booking.setLocalizador(generateLocalizator(booking));
 				bookinDao.save(booking);
+				
 			} else resp = false;
 			 
 		return resp;
@@ -143,10 +144,10 @@ public class IResturantBusinessImp implements IResturantBusiness {
 	 * @return
 	 */
 	private String reserveDetail(Booking booking) {
-		return " detail : Codigo de Restaurant - " + booking.getRestaurant().getRestaurantId() + "\n" + 
-						"Mesa - " + booking.getMesa().getId() + "\n" + 
-						"Day - " + MessageString.getFormat().format(booking.getDay()) + "\n" +  
-						"Turno - " + booking.getTurn().getTurnId() + "\n" +  
+		return " detail : Codigo de Restaurant - " + booking.getRestaurant().getRestaurantId() + "," + 
+						"Mesa - " + booking.getMesa().getId() + "," + 
+						"Day - " + MessageString.getFormat().format(booking.getDay()) + "," +  
+						"Turno - " + booking.getTurn().getTurnId() + "," +  
 						"Localizator : " + booking.getLocalizador();
 	}
 	
